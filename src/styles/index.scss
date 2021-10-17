@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 22px;
+    color: $primary-text-color;
+}
+
+@import 'partials/index.scss';
+@import 'pages/index.scss';
+@import 'drag-and-drop/index.scss';
+
+@import './states.scss';

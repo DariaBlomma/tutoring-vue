@@ -1,0 +1,35 @@
+.important {
+    color: white;
+    font-size: 22px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:disabled {
+    opacity: 0.6;
+}
+
+.d-none {
+    display: none;
+}
+
+// каккие из 2 вариантов нужны?
+.right {
+    background-color: aquamarine;
+}
+
+.wrong {
+    background-color: rgb(231, 143, 102);
+}
+
+.right {
+    box-shadow: 10px 0px 10px 0px rgba(0, 119, 5, 0.75), -10px 0px 10px 0px rgba(0, 119, 5, 0.75);
+}
+
+.wrong {
+    box-shadow: 10px 0px 10px 0px rgba(245, 60, 4, 0.75), -10px 0px 10px 0px rgba(245, 60, 4, 0.75);
+}

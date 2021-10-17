@@ -3,46 +3,6 @@
 </template>
 
 <style lang="scss">
-* {
-  // padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-size: 22px;
-  // color: #dad5d5;
-  color: #4b4a4a;
-}
-
-.page {
-  // background-color: #1f1f1f;
-  background-color: orange;
-  padding: 30px;
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  justify-content: center;
-}
-
-h1 {
-  font-size: 2rem;
-  // color: white;
-  color: #1f1f1f;
-
-}
-
-ul {
-  padding-top: 15px;
-  list-style-type: none;
-}
-
-li {
-  padding: 10px;
-}
-
-.centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 // #app {
 
 //   font-family: Avenir, Helvetica, Arial, sans-serif;

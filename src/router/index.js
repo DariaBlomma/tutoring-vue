@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Horizonte6 from '../views/Horizonte6.vue';
 import Zimmer from '@/components/Zimmer.vue';
+import Essen from '@/components/Essen.vue';
 
 const routes = [
   {
@@ -11,15 +12,25 @@ const routes = [
   },
   {
     path: '/horizonte-6',
-    name: 'Horizonte6',
+    name: 'horizonte-6',
     component: Horizonte6,
     сhildren: [
-      {
-        path: 'mein-zimmer',
-        name: 'zimmer',
-        component: Zimmer,
-      },
+      // {
+      //   path: 'zimmer',
+      //   name: 'zimmer',
+      //   component: Zimmer,
+      // },
     ],
+  },
+  {
+    path: '/zimmer',
+    name: 'zimmer',
+    component: Zimmer,
+  },
+  {
+    path: '/essen',
+    name: 'essen',
+    component: Essen,
   },
   {
     path: '/about',
