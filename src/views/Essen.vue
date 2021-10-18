@@ -1,28 +1,45 @@
 <template>
-  <div class='lesson essen'>
-        <router-link :to="{name: 'horizonte-6'}">Alle Lektionen</router-link>
-    <h1 class='primary-title centered'> Das Essen Еда</h1>
+  <div class='page essen'>
+    <router-link class='go-back' :to="{name: 'horizonte-6'}">Zurück</router-link>
+    <h1 class='primary-title centered'>Das Essen Еда</h1>
         <table class='table'>
             <tr>
                 <th>Das esse ich gerne</th>
                 <th>Das esse ich nicht so gerne</th>
                 <th>Das mag ich überhaupt nicht</th>
             </tr>
-            <tr>
+            <tr
+              v-for='(item, i) in eatingTableRows'
+              :key='i'
+            >
               <td class='gerne'>
-                <input class='eating-input' value='${gerne}' type="text"></td>
+                <input
+                  class='eating-input'
+                  v-model="item.gerne"
+                  type="text"
+                  @change='saveInfo'></td>
               <td class='nicht-gerne'>
-                <input class='eating-input' value='${nihctGerne}'  type="text"></td>
+                <input
+                  class='eating-input'
+                  v-model="item.nichtGerne"
+                  type="text"
+                  @change='saveInfo'></td>
               <td class='nicht'>
-                <input class='eating-input' value='${nicht}' type="text"></td>`;
+                <input
+                  class='eating-input'
+                  v-model="item.nicht"
+                  type="text"
+                  @change='saveInfo'></td>
             </tr>
-
         </table>
-        <button class='btn add-row'>+</button>
-        <button class='btn save'>Erhalten</button>
+        <button
+          class='btn add-row'
+          @click='addRow'
+        >+
+        </button>
+
         <div class='present'>
             <h2>Presens Настоящее время</h2>
-            <!-- добавить перевод местомений на русский отдельлноей таблицей -->
             <table class='table'>
                 <tbody class='pronouns no-inputs'>
                 </tbody>
@@ -108,6 +125,29 @@
 <script>
 export default {
   name: 'Essen',
+  data() {
+    return {
+      eatingTableRows: [],
+    };
+  },
+  created() {
+    const saved = JSON.parse(localStorage.getItem('eating-table'));
+    if (saved) {
+      this.eatingTableRows = saved;
+    }
+  },
+  methods: {
+    addRow() {
+      this.eatingTableRows.push({
+        gerne: '',
+        nichtGerne: '',
+        nicht: '',
+      });
+      this.saveInfo();
+    },
+    saveInfo() {
+      localStorage.setItem('eating-table', JSON.stringify(this.eatingTableRows));
+    },
+  },
 };
-
 </script>

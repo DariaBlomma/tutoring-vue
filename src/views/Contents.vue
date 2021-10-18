@@ -1,5 +1,5 @@
 <template>
-  <div class="contents">
+  <div class="page contents">
     <h1 class='primary-title'>Contents</h1>
     <ul>
       <li><router-link to="/ЕГЭ">ЕГЭ</router-link></li>
@@ -14,8 +14,3 @@ export default {
   name: 'Contents',
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
-</style>
