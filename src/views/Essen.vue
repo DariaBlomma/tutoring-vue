@@ -38,22 +38,25 @@
         >
           <td class='gerne'>
             <input
+              type="text"
               class='eating-input'
               v-model="item.gerne"
-              type="text"
-              @change='saveInfo'></td>
+              @change='saveInfo'>
+          </td>
           <td class='nicht-gerne'>
             <input
+              type="text"
               class='eating-input'
               v-model="item.nichtGerne"
-              type="text"
-              @change='saveInfo'></td>
+              @change='saveInfo'>
+          </td>
           <td class='nicht'>
             <input
+              type="text"
               class='eating-input'
               v-model="item.nicht"
-              type="text"
-              @change='saveInfo'></td>
+              @change='saveInfo'>
+          </td>
         </tr>
     </table>
     <button
@@ -61,82 +64,108 @@
       @click='addRow'
     >+
     </button>
+    <div class='present'>
+        <h2>Presens Настоящее время</h2>
+        <table class='table'>
+            <tbody
+              v-if='toggledElems.presensEndings'
+              class='pronouns no-inputs'
+            >
+              <tr
+                v-for='(item, i) in getPresensEndings'
+                :key='i'
+              >
+                <th>{{item.singular.pronoun}}</th>
+                <td>
+                  <input
+                    type='text'
+                    class='input'
+                    v-model='item.singular.word'
+                  >
+                  </td>
+                <th>{{item.plural.pronoun}}</th>
+                <td>
+                  <input
+                    type='text'
+                    class='input'
+                    v-model='item.plural.word'
+                  >
+                  </td>
+              </tr>
+            </tbody>
+            <tfoot>
+                <th colspan="2">
+                  <button
+                    class='btn btn-toggle'
+                    @click='toggleElems("presensEndings")'
+                  >
+                    Zeigen/verstecken
+                  </button>
+                </th>
+                <th colspan="2">
+                  <button type="button" class='btn btn-try'>
+                    Versuchen
+                  </button>
+                </th>
+            </tfoot>
+        </table>
+        <h3>Machen Делать</h3>
+        <table class='present-tense'>
+            <tbody class='machen no-inputs'>
+            </tbody>
+            <tfoot>
+                <th colspan="2">
+                  <button type="button" class='btn btn-hide'>
+                    Zeigen/verstecken
+                  </button>
+                </th>
+                <th colspan="2">
+                  <button type="button" class='btn btn-try'>
+                    Versuchen
+                  </button>
+                </th>
+            </tfoot>
+        </table>
 
-        <div class='present'>
-            <h2>Presens Настоящее время</h2>
-            <table class='table'>
-                <tbody class='pronouns no-inputs'>
-                </tbody>
-                <tfoot>
-                    <th colspan="2">
-                      <button type="button" class='btn btn-hide'>
-                        Zeigen/verstecken
-                        </button>
-                    </th>
-                    <th colspan="2">
-                      <button type="button" class='btn btn-try'>
-                        Versuchen
-                      </button>
-                    </th>
-                </tfoot>
-            </table>
-            <h3>Machen Делать</h3>
-            <table class='present-tense'>
-                <tbody class='machen no-inputs'>
-                </tbody>
-                <tfoot>
-                    <th colspan="2">
-                      <button type="button" class='btn btn-hide'>
-                        Zeigen/verstecken
-                      </button>
-                    </th>
-                    <th colspan="2">
-                      <button type="button" class='btn btn-try'>
-                        Versuchen
-                      </button>
-                    </th>
-                </tfoot>
-            </table>
-
-            <h3>Essen Есть, кушать</h3>
-            <div>
-                e -> i
-            </div>
-
-            <table class='present-tense'>
-                <tbody class='essen no-inputs'>
-                </tbody>
-                <tfoot>
-                    <th colspan="2">
-                      <button type="button" class='btn btn-hide'>
-                        Zeigen/verstecken
-                      </button>
-                    </th>
-                    <th colspan="2">
-                      <button type="button" class='btn btn-try'>
-                        Versuchen
-                      </button>
-                    </th>
-                </tfoot>
-            </table>
-                <h3>Mögen Любить, нравиться</h3>
-                <table class='present-tense'>
-                    <tbody class='mogen no-inputs'>
-                    </tbody>
-
-                    <tfoot>
-                        <th colspan="2">
-                          <button type="button" class='btn btn-hide'>
-                            Zeigen/verstecken
-                          </button></th>
-                        <th colspan="2">
-                          <button type="button" class='btn btn-try'>
-                          Versuchen
-                          </button>
-                        </th>
-                    </tfoot>
-                </table>
+        <h3>Essen Есть, кушать</h3>
+        <div>
+            e -> i
         </div>
+
+        <table class='present-tense'>
+            <tbody class='essen no-inputs'>
+            </tbody>
+            <tfoot>
+                <th colspan="2">
+                  <button type="button" class='btn btn-hide'>
+                    Zeigen/verstecken
+                  </button>
+                </th>
+                <th colspan="2">
+                  <button type="button" class='btn btn-try'>
+                    Versuchen
+                  </button>
+                </th>
+            </tfoot>
+        </table>
+            <h3>Mögen Любить, нравиться</h3>
+            <table class='present-tense'>
+                <tbody class='mogen no-inputs'>
+                </tbody>
+
+                <tfoot>
+                    <th colspan="2">
+                      <button type="button" class='btn btn-hide'>
+                        Zeigen/verstecken
+                      </button></th>
+                    <th colspan="2">
+                      <button type="button" class='btn btn-try'>
+                      Versuchen
+                      </button>
+                    </th>
+                </tfoot>
+            </table>
+    </div>
         <div class='drag-and-drop'>
             <div class='ru-text'> </div>
             <div class='box'>
@@ -158,6 +187,50 @@ export default {
     return {
       eatingTableRows: [],
       tooltipShown: false,
+      presensTableShown: true,
+      toggledElems: {
+        presensEndings: true,
+      },
+      pronouns: [
+        {
+          singular: {
+            pronoun: 'Ich',
+          },
+          plural: {
+            pronoun: 'Wir',
+          },
+        },
+        {
+          singular: {
+            pronoun: 'Du',
+          },
+          plural: {
+            pronoun: 'Ihr',
+          },
+        },
+        {
+          singular: {
+            pronoun: 'Er/Sie/Es',
+          },
+          plural: {
+            pronoun: 'Sie/sie',
+          },
+        },
+      ],
+      presensEndings: [
+        {
+          singular: 'e',
+          plural: 'en',
+        },
+        {
+          singular: 'st',
+          plural: 't',
+        },
+        {
+          singular: 't',
+          plural: 'en',
+        },
+      ],
     };
   },
   created() {
@@ -165,6 +238,16 @@ export default {
     if (saved) {
       this.eatingTableRows = saved;
     }
+  },
+  computed: {
+    getPresensEndings() {
+      const presensEndings = this.pronouns;
+      presensEndings.forEach((item, index) => {
+        item.singular.word = this.presensEndings[index].singular;
+        item.plural.word = this.presensEndings[index].plural;
+      });
+      return presensEndings;
+    },
   },
   methods: {
     addRow() {
@@ -183,6 +266,20 @@ export default {
         this.tooltipShown = false;
       } else {
         this.tooltipShown = true;
+      }
+    },
+    toggleElems(name) {
+      if (this.toggledElems[name]) {
+        this.toggledElems[name] = false;
+      } else {
+        this.toggledElems[name] = true;
+      }
+    },
+    toggleTable() {
+      if (this.presensTableShown) {
+        this.presensTableShown = false;
+      } else {
+        this.presensTableShown = true;
       }
     },
   },
