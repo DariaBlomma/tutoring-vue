@@ -9,12 +9,22 @@
       <Tooltip
         v-if="tooltipShown"
         text="Еда"
+        :top=-35
       />
     </h1>
     <table class='table'>
         <tr>
-            <th>Das esse ich
-              <span class='has-tooltip'>gerne
+            <th>
+              <span class='has-tooltip'>
+                Das
+                <Tooltip
+                  v-if="tooltipShown"
+                  text="Это"
+                />
+              </span>
+              esse ich
+              <span class='has-tooltip'>
+                gerne
                 <Tooltip
                   v-if="tooltipShown"
                   text="Охотно"
@@ -65,7 +75,14 @@
     >+
     </button>
     <div class='present'>
-        <h2>Presens Настоящее время</h2>
+        <h2 class='has-tooltip'>
+          Presens
+          <Tooltip
+            v-if="tooltipShown"
+            text="Настоящее время"
+            right='auto'
+          />
+        </h2>
         <table class='table'>
             <tbody
               v-if='toggledElems.presensEndings'
