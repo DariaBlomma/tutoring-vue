@@ -1,0 +1,16 @@
+// таблица с окончаниями времени
+.root-tense-table {
+    .secondary-heading {
+        text-shadow: 1px 2px 2px #706c6c;
+    }
+
+    th, td {
+        box-shadow: -8px -5px 4px 0px rgba(21, 21, 21, 0.2) inset,
+            8px 5px 4px 0px rgba(255, 255, 255, 0.4) inset;
+        background-color: #e2e2b7;
+    }
+}
+
+.tense-table {
+    margin-bottom: 10px;
+}

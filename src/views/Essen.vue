@@ -134,10 +134,40 @@
                 </th>
             </tfoot>
         </table> -->
+        <!-- <Table
+        name='presensEndings'
+        :pronouns='pronouns'
+          :endings='presensEndings'
+        />
+        <Table
+        name='machenTable'
+        :pronouns='pronouns'
+          :endings='presensEndings'
+          conjugatedBase='mach'
+          /> -->
         <TenseTable
+          name='presensEndingsTable'
+          class='root-tense-table'
           :pronouns='pronouns'
           :endings='presensEndings'
-          :conjugatedWords='machenTable'
+          :showContent='toggledElems.presensEndingsTableContent'
+          :showInputs='toggledElems.presensEndingsTableInputs'
+          @toggleElems='toggleElems($event)'
+        >
+          <h2 class='secondary-heading has-tooltip'>
+            Presens
+            <Tooltip
+              v-if="toggledElems.tooltips"
+              text="Настоящее время"
+              right='auto'
+            />
+          </h2>
+        </TenseTable>
+        <TenseTable
+          name='machenTable'
+          :pronouns='pronouns'
+          :endings='presensEndings'
+          conjugatedBase='mach'
           :showContent='toggledElems.machenTableContent'
           :showInputs='toggledElems.machenTableInputs'
           @toggleElems='toggleElems($event)'
@@ -203,12 +233,14 @@
 <script>
 import Tooltip from '@/components/Tooltip.vue';
 import TenseTable from '@/components/TenseTable.vue';
+// import Table from '@/components/Table.vue';
 
 export default {
   name: 'Essen',
   components: {
     Tooltip,
     TenseTable,
+    // Table,
   },
   data() {
     return {
@@ -216,8 +248,9 @@ export default {
       presensTableShown: true,
       toggledElems: {
         tooltips: false,
-        presensEndings: true,
-        presensInputs: false,
+        presensEndingsTableContent: true,
+        presensEndingsTableInputs: false,
+        presensTable: true,
         machenTableContent: true,
         machenTableInputs: false,
       },
@@ -261,20 +294,6 @@ export default {
           plural: 'en',
         },
       ],
-      machenTable: [
-        {
-          singular: 'mach',
-          plural: 'mach',
-        },
-        {
-          singular: 'mach',
-          plural: 'mach',
-        },
-        {
-          singular: 'mach',
-          plural: 'mach',
-        },
-      ],
     };
   },
   created() {
@@ -284,17 +303,17 @@ export default {
     }
   },
   computed: {
-    getPresensEndings() {
-      console.log(1);
-      const presensEndings = this.pronouns;
-      console.log('presensEndings: ', presensEndings);
-      presensEndings.forEach((item, index) => {
-        item.singular.word = this.presensEndings[index].singular;
-        console.log('item.singular.word: ', item.singular.word);
-        item.plural.word = this.presensEndings[index].plural;
-      });
-      return presensEndings;
-    },
+    // getPresensEndings() {
+    //   console.log(1);
+    //   const presensEndings = this.pronouns;
+    //   console.log('presensEndings: ', presensEndings);
+    //   presensEndings.forEach((item, index) => {
+    //     item.singular.word = this.presensEndings[index].singular;
+    //     console.log('item.singular.word: ', item.singular.word);
+    //     item.plural.word = this.presensEndings[index].plural;
+    //   });
+    //   return presensEndings;
+    // },
   },
   methods: {
     addRow() {
@@ -311,11 +330,10 @@ export default {
     // скрывает или показывает элементы.
     // Нужно передать имя скрываемого элемента и записать его в this.toggledElems
     toggleElems(name) {
-      if (this.toggledElems[name]) {
-        this.toggledElems[name] = false;
-      } else {
-        this.toggledElems[name] = true;
-      }
+      console.log('name: ', name);
+      console.log('before ', this.toggledElems[name]);
+      this.toggledElems[name] = !this.toggledElems[name];
+      console.log('after ', this.toggledElems[name]);
     },
   },
 };

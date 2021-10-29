@@ -1,41 +1,28 @@
 <template>
-  <div class='table-wrapper'>
-    <slot>
-      <!-- заголовок -->
-    </slot>
-      <table class='table tense-table'>
+  <div>
+    <h3>Table test</h3>
+    <span>name: {{name}}</span> <br>
+    <span>conjugatedBase: {{conjugatedBase}}</span> <br>
+    <span>pronouns: {{pronouns}}</span> <br>
+    <span>endings: {{endings}}</span>
+          <table class='table'>
           <tbody
-            v-if='showContent'
             class='pronouns'
           >
-            <!-- показываются либо инпуты, либо обычный текст ячеек -->
             <tr
               v-for='(item, i) in totalTable'
               :key='i'
             >
               <th>{{item.singular.pronoun}}</th>
               <td>
-                <InputAnswer
-                  v-if='showInputs'
-                  :word='conjugatedBase'
-                  :ending='item.singular.ending'
-                />
-                <!-- если слово спрягается по особенному,
-                можно передать в слот  форму
-                с нужной выделенной жирным частью -->
-                <span v-if='!showInputs'>
+                <span>
                   <slot name='sing-word'>{{conjugatedBase}}</slot>
                   <slot name='sing-ending'><b>{{item.singular.ending}}</b></slot>
                 </span>
                 </td>
               <th>{{item.plural.pronoun}}</th>
               <td>
-                <InputAnswer
-                  v-if='showInputs'
-                  :word='conjugatedBase'
-                  :ending='item.plural.ending'
-                />
-                <span v-if='!showInputs'>
+                <span >
                   <slot name='plural-word'>{{conjugatedBase}}</slot>
                   <slot name='plural-ending'><b>{{item.plural.ending}}</b></slot>
                 </span>
@@ -64,42 +51,26 @@
       </table>
   </div>
 </template>
-<script>
-import InputAnswer from '@/components/InputAnswer.vue';
 
+<script>
 export default {
-  name: 'TenseTable',
-  components: {
-    InputAnswer,
-  },
+  name: 'Table',
   props: {
     name: {
       type: String,
       required: true,
     },
+    conjugatedBase: {
+      type: String,
+      required: false,
+    },
     pronouns: {
       type: Array,
-      required: true,
+      required: false,
     },
     // окончания нужного времени
     endings: {
       type: Array,
-      required: true,
-    },
-    // основа слова для правильных глаголов (без всяких исключений)
-    conjugatedBase: {
-      type: String,
-      required: false,
-      default: '',
-    },
-    // показывать ли тело таблицы, клик по zeigen/verstecken
-    showContent: {
-      type: Boolean,
-      required: true,
-    },
-    // показывать ли инпуты, клик по versuchen
-    showInputs: {
-      type: Boolean,
       required: true,
     },
   },
@@ -109,17 +80,25 @@ export default {
     };
   },
   created() {
+    // console.log('created');
+    // console.log(this.name);
     this.getConjugatedWords();
   },
   methods: {
-    // склеивает в один массив - местоимения, окончания
-    // основу слова сюда нельзя добавлять, иначе она добавится во все инстансы этой таблицы
     getConjugatedWords() {
       this.totalTable = this.pronouns;
+      // console.log('this.totalTable: ', this.totalTable);
+      // console.log('this.conjugatedWords: ', this.conjugatedWords.length);
+      // const totalTable = this.pronouns;
       this.totalTable.forEach((item, index) => {
+        // console.log('this.conjugatedWords.length: before', this.conjugatedWords.length);
+        // console.log('name', this.name);
+
         item.singular.ending = this.endings[index].singular;
         item.plural.ending = this.endings[index].plural;
       });
+      // console.log('totalTable: ', this.totalTable);
+      // return totalTable;
     },
   },
 };
