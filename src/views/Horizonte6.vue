@@ -1,5 +1,8 @@
 <template>
   <div class="page horizonte-6">
+    <header>
+      <router-link class='go-back' :to="{name: 'home'}">Zurück</router-link>
+    </header>
     <div class='contents lessons'>
       <h1>Lektionen</h1>
       <ul>

@@ -75,7 +75,7 @@
     >+
     </button>
     <div class='present'>
-        <h2 class='has-tooltip'>
+        <!-- <h2 class='has-tooltip'>
           Presens
           <Tooltip
             v-if="tooltipShown"
@@ -86,7 +86,7 @@
         <table class='table'>
             <tbody
               v-if='toggledElems.presensEndings'
-              class='pronouns no-inputs'
+              class='pronouns'
             >
               <tr
                 v-for='(item, i) in getPresensEndings'
@@ -98,7 +98,9 @@
                     type='text'
                     class='input'
                     v-model='item.singular.word'
+                    v-if='toggledElems.presensInputs'
                   >
+                  {{toggledElems.presensInputs ? '' : item.singular.word}}
                   </td>
                 <th>{{item.plural.pronoun}}</th>
                 <td>
@@ -106,7 +108,9 @@
                     type='text'
                     class='input'
                     v-model='item.plural.word'
+                    v-if='toggledElems.presensInputs'
                   >
+                  {{toggledElems.presensInputs ? '' : item.plural.word}}
                   </td>
               </tr>
             </tbody>
@@ -120,29 +124,33 @@
                   </button>
                 </th>
                 <th colspan="2">
-                  <button type="button" class='btn btn-try'>
+                  <button
+                    type="button"
+                    class='btn btn-try'
+                    @click='toggleElems("presensInputs")'
+                  >
                     Versuchen
                   </button>
                 </th>
             </tfoot>
-        </table>
-        <h3>Machen Делать</h3>
-        <table class='present-tense'>
-            <tbody class='machen no-inputs'>
-            </tbody>
-            <tfoot>
-                <th colspan="2">
-                  <button type="button" class='btn btn-hide'>
-                    Zeigen/verstecken
-                  </button>
-                </th>
-                <th colspan="2">
-                  <button type="button" class='btn btn-try'>
-                    Versuchen
-                  </button>
-                </th>
-            </tfoot>
-        </table>
+        </table> -->
+        <TenseTable
+          :pronouns='pronouns'
+          :endings='presensEndings'
+          :conjugatedWords='machenTable'
+          :showContent='toggledElems.machenTableContent'
+          :showInputs='toggledElems.machenTableInputs'
+          @toggleElems='toggleElems($event)'
+        >
+          <h3 class='has-tooltip'>
+            Machen
+            <Tooltip
+              v-if="tooltipShown"
+              text="Делать"
+              right='auto'
+            />
+          </h3>
+        </TenseTable>
 
         <h3>Essen Есть, кушать</h3>
         <div>
@@ -194,11 +202,13 @@
 </template>
 <script>
 import Tooltip from '@/components/Tooltip.vue';
+import TenseTable from '@/components/TenseTable.vue';
 
 export default {
   name: 'Essen',
   components: {
     Tooltip,
+    TenseTable,
   },
   data() {
     return {
@@ -207,6 +217,9 @@ export default {
       presensTableShown: true,
       toggledElems: {
         presensEndings: true,
+        presensInputs: false,
+        machenTableContent: true,
+        machenTableInputs: false,
       },
       pronouns: [
         {
@@ -248,6 +261,20 @@ export default {
           plural: 'en',
         },
       ],
+      machenTable: [
+        {
+          singular: 'mach',
+          plural: 'mach',
+        },
+        {
+          singular: 'mach',
+          plural: 'mach',
+        },
+        {
+          singular: 'mach',
+          plural: 'mach',
+        },
+      ],
     };
   },
   created() {
@@ -258,9 +285,12 @@ export default {
   },
   computed: {
     getPresensEndings() {
+      console.log(1);
       const presensEndings = this.pronouns;
+      console.log('presensEndings: ', presensEndings);
       presensEndings.forEach((item, index) => {
         item.singular.word = this.presensEndings[index].singular;
+        console.log('item.singular.word: ', item.singular.word);
         item.plural.word = this.presensEndings[index].plural;
       });
       return presensEndings;
@@ -285,18 +315,14 @@ export default {
         this.tooltipShown = true;
       }
     },
+    // скрывает или показывает элементы.
+    // Нужно передать имя скрываемого элемента и записать его в this.toggledElems
     toggleElems(name) {
+      console.log('name: ', name);
       if (this.toggledElems[name]) {
         this.toggledElems[name] = false;
       } else {
         this.toggledElems[name] = true;
-      }
-    },
-    toggleTable() {
-      if (this.presensTableShown) {
-        this.presensTableShown = false;
-      } else {
-        this.presensTableShown = true;
       }
     },
   },

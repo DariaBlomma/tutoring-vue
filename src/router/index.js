@@ -6,8 +6,8 @@ import Essen from '../views/Essen.vue';
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: '',
+    name: 'home',
     component: Contents,
   },
   {
