@@ -2,12 +2,12 @@
   <div class='page lesson essen'>
     <header>
       <router-link class='go-back' :to="{name: 'horizonte-6'}">Zurück</router-link>
-      <button class='btn show-tooltips'  @click='toggleTooltips'>Übersetzen</button>
+      <button class='btn show-tooltips'  @click='toggleElems("tooltips")'>Übersetzen</button>
     </header>
     <h1 class='primary-title centered has-tooltip'>
       Das Essen
       <Tooltip
-        v-if="tooltipShown"
+        v-if="toggledElems.tooltips"
         text="Еда"
         :top=-35
       />
@@ -18,15 +18,15 @@
               <span class='has-tooltip'>
                 Das
                 <Tooltip
-                  v-if="tooltipShown"
-                  text="Это"
+                  v-if='toggledElems.tooltips'
+                  text='Это'
                 />
               </span>
               esse ich
               <span class='has-tooltip'>
                 gerne
                 <Tooltip
-                  v-if="tooltipShown"
+                  v-if='toggledElems.tooltips'
                   text="Охотно"
                 />
               </span>
@@ -36,7 +36,7 @@
               <span class='has-tooltip'>
                 überhaupt nicht
                 <Tooltip
-                  v-if="tooltipShown"
+                  v-if="toggledElems.tooltips"
                   text="Вообще нет"
                 />
               </span>
@@ -145,7 +145,7 @@
           <h3 class='has-tooltip'>
             Machen
             <Tooltip
-              v-if="tooltipShown"
+              v-if="toggledElems.tooltips"
               text="Делать"
               right='auto'
             />
@@ -213,9 +213,9 @@ export default {
   data() {
     return {
       eatingTableRows: [],
-      tooltipShown: false,
       presensTableShown: true,
       toggledElems: {
+        tooltips: false,
         presensEndings: true,
         presensInputs: false,
         machenTableContent: true,
@@ -308,17 +308,9 @@ export default {
     saveInfo() {
       localStorage.setItem('eating-table', JSON.stringify(this.eatingTableRows));
     },
-    toggleTooltips() {
-      if (this.tooltipShown) {
-        this.tooltipShown = false;
-      } else {
-        this.tooltipShown = true;
-      }
-    },
     // скрывает или показывает элементы.
     // Нужно передать имя скрываемого элемента и записать его в this.toggledElems
     toggleElems(name) {
-      console.log('name: ', name);
       if (this.toggledElems[name]) {
         this.toggledElems[name] = false;
       } else {
