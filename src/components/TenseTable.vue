@@ -10,7 +10,7 @@
           >
             <!-- показываются либо инпуты, либо обычный текст ячеек -->
             <tr
-              v-for='(item, i) in getConjugatedWords'
+              v-for='(item, i) in totalTable'
               :key='i'
             >
               <th>{{item.singular.pronoun}}</th>
@@ -48,7 +48,7 @@
               <th colspan="2">
                 <button
                   class='btn btn-toggle'
-                  @click='$emit("toggleElems", "machenTableContent")'
+                  @click='$emit("toggleElems", name + "Content")'
                 >
                   Zeigen/verstecken
                 </button>
@@ -57,7 +57,7 @@
                 <button
                   type="button"
                   class='btn btn-try'
-                  @click='$emit("toggleElems", "machenTableInputs")'
+                  @click='$emit("toggleElems", name +  "Inputs")'
                 >
                   Versuchen
                 </button>
@@ -75,6 +75,10 @@ export default {
     InputAnswer,
   },
   props: {
+    name: {
+      type: String,
+      required: true,
+    },
     pronouns: {
       type: Array,
       required: true,
@@ -87,7 +91,8 @@ export default {
     // спрягаемые слова без окончаний
     conjugatedWords: {
       type: Array,
-      required: true,
+      required: false,
+      default: () => [],
     },
     // показывать ли тело таблицы, клик по zeigen/verstecken
     showContent: {
@@ -100,17 +105,30 @@ export default {
       required: true,
     },
   },
-  computed: {
+  data() {
+    return {
+      totalTable: [],
+    };
+  },
+  created() {
+    this.getConjugatedWords();
+  },
+  methods: {
     // склеивает в один массив - местоимения, окончания, спрягающиеся слова без окончаний
     getConjugatedWords() {
-      const totalTable = this.pronouns;
-      totalTable.forEach((item, index) => {
-        item.singular.word = this.conjugatedWords[index].singular;
-        item.plural.word = this.conjugatedWords[index].plural;
+      this.totalTable = this.pronouns;
+      // const totalTable = this.pronouns;
+      this.totalTable.forEach((item, index) => {
+        if (this.conjugatedWords.length) {
+          console.log('this.conjugatedWords.length: ', this.conjugatedWords.length);
+          item.singular.word = this.conjugatedWords[index].singular;
+          item.plural.word = this.conjugatedWords[index].plural;
+        }
         item.singular.ending = this.endings[index].singular;
         item.plural.ending = this.endings[index].plural;
       });
-      return totalTable;
+      // console.log('totalTable: ', totalTable);
+      // return totalTable;
     },
   },
 };

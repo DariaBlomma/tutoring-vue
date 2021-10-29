@@ -135,6 +135,24 @@
             </tfoot>
         </table> -->
         <TenseTable
+          name='presensEndings'
+          :pronouns='pronouns'
+          :endings='presensEndings'
+          :showContent='toggledElems.presensEndingsTableContent'
+          :showInputs='toggledElems.presensEndingsTableInputs'
+          @toggleElems='toggleElems($event)'
+        >
+          <h2 class='has-tooltip'>
+            Presens
+            <Tooltip
+              v-if="toggledElems.tooltips"
+              text="Настоящее время"
+              right='auto'
+            />
+          </h2>
+        </TenseTable>
+        <TenseTable
+          name='machenTable'
           :pronouns='pronouns'
           :endings='presensEndings'
           :conjugatedWords='machenTable'
@@ -216,8 +234,11 @@ export default {
       presensTableShown: true,
       toggledElems: {
         tooltips: false,
-        presensEndings: true,
-        presensInputs: false,
+        // presensEndings: true,
+        // presensInputs: false,
+        presensEndingsTableContent: true,
+        presensEndingsTableInputs: false,
+        presensTable: true,
         machenTableContent: true,
         machenTableInputs: false,
       },
