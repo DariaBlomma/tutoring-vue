@@ -24,8 +24,16 @@
                 можно передать в слот  форму
                 с нужной выделенной жирным частью -->
                 <span v-if='!showInputs'>
-                  <slot name='sing-word'>{{conjugatedBase}}</slot>
-                  <slot name='sing-ending'><b>{{item.singular.ending}}</b></slot>
+                  <slot
+                    :name='getSlotName(item.singular.pronoun, "base")'
+                  >
+                    {{conjugatedBase}}
+                  </slot>
+                  <slot
+                    :name='getSlotName(item.singular.pronoun, "ending")'
+                  >
+                    <b>{{item.singular.ending}}</b>
+                  </slot>
                 </span>
                 </td>
               <th>{{item.plural.pronoun}}</th>
@@ -36,8 +44,16 @@
                   :ending='item.plural.ending'
                 />
                 <span v-if='!showInputs'>
-                  <slot name='plural-word'>{{conjugatedBase}}</slot>
-                  <slot name='plural-ending'><b>{{item.plural.ending}}</b></slot>
+                  <slot
+                  :name='getSlotName(item.plural.pronoun, "base")'
+                  >
+                    {{conjugatedBase}}
+                  </slot>
+                  <slot
+                  :name='getSlotName(item.plural.pronoun, "ending")'
+                  >
+                    <b>{{item.plural.ending}}</b>
+                  </slot>
                 </span>
                 </td>
             </tr>
@@ -120,6 +136,15 @@ export default {
         item.singular.ending = this.endings[index].singular;
         item.plural.ending = this.endings[index].plural;
       });
+    },
+    // названия слотов, если местоимений несколько
+    getSlotName(pronoun, modifier) {
+      if (pronoun.includes('Er')) {
+        pronoun = 'Er';
+      } else if (pronoun.includes('Sie')) {
+        pronoun = 'Sie';
+      }
+      return `${pronoun}-${modifier}`;
     },
   },
 };

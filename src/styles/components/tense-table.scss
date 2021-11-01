@@ -14,3 +14,13 @@
 .tense-table {
     margin-bottom: 10px;
 }
+
+.important-letter, .short-rule {
+    font-size: 1.4em;
+    color: $link-color;
+    text-shadow: 1px 1px 2px $link-color;
+}
+
+.important-ending {
+    color: $link-color;
+}
