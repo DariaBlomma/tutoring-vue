@@ -17,8 +17,10 @@
               <td>
                 <InputAnswer
                   v-if='showInputs'
+                  :pronounClass='getSlotName(item.singular.pronoun, "word")'
                   :word='conjugatedBase'
                   :ending='item.singular.ending'
+                  :exceptions='exceptions'
                 />
                 <!-- если слово спрягается по особенному,
                 можно передать в слот  форму
@@ -40,8 +42,10 @@
               <td>
                 <InputAnswer
                   v-if='showInputs'
+                  :pronounClass='getSlotName(item.plural.pronoun, "word")'
                   :word='conjugatedBase'
                   :ending='item.plural.ending'
+                  :exceptions='exceptions'
                 />
                 <span v-if='!showInputs'>
                   <slot
@@ -107,6 +111,11 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+    exceptions: {
+      type: Array,
+      required: false,
+      default: () => [],
     },
     // показывать ли тело таблицы, клик по zeigen/verstecken
     showContent: {

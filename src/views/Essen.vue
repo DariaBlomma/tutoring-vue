@@ -119,6 +119,7 @@
           :pronouns='pronouns'
           :endings='presensEndings'
           conjugatedBase='ess'
+          :exceptions='essenExceptions'
           :showContent='toggledElems.essenTableContent'
           :showInputs='toggledElems.essenTableInputs'
           @toggleElems='toggleElems($event)'
@@ -148,6 +149,7 @@
           :pronouns='pronouns'
           :endings='presensEndings'
           conjugatedBase='mög'
+          :exceptions='mogenExceptions'
           :showContent='toggledElems.mogenTableContent'
           :showInputs='toggledElems.mogenTableInputs'
           @toggleElems='toggleElems($event)'
@@ -251,6 +253,15 @@ export default {
           singular: 't',
           plural: 'en',
         },
+      ],
+      essenExceptions: [
+        ['isst', 'Du-word'],
+        ['isst', 'Er-word'],
+      ],
+      mogenExceptions: [
+        ['mag', 'Ich-word'],
+        ['magst', 'Du-word'],
+        ['mag', 'Er-word'],
       ],
     };
   },
