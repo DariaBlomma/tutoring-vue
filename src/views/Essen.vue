@@ -1,7 +1,13 @@
 <template>
   <div class='page lesson essen'>
     <header>
-      <router-link class='go-back' :to="{name: 'horizonte-6'}">Zurück</router-link>
+      <router-link class='go-back has-tooltip' :to="{name: 'horizonte-6'}">
+        Zurück
+        <Tooltip
+          v-if="toggledElems.tooltips"
+          text="Назад"
+        />
+      </router-link>
       <button class='btn show-tooltips'  @click='toggleElems("tooltips")'>Übersetzen</button>
     </header>
     <h1 class='primary-title centered has-tooltip'>
@@ -79,10 +85,12 @@
         <TenseTable
           name='presensEndingsTable'
           class='root-tense-table'
-          :pronouns='pronouns'
+          :pronounsDE='pronounsDE'
+          :pronounsRU='pronounsRU'
           :endings='presensEndings'
           :showContent='toggledElems.presensEndingsTableContent'
           :showInputs='toggledElems.presensEndingsTableInputs'
+          :showTooltips='toggledElems.tooltips'
           @toggleElems='toggleElems($event)'
         >
           <h2 class='secondary-heading has-tooltip'>
@@ -97,11 +105,13 @@
         <!-- machen -->
         <TenseTable
           name='machenTable'
-          :pronouns='pronouns'
+          :pronounsDE='pronounsDE'
+          :pronounsRU='pronounsRU'
           :endings='presensEndings'
           conjugatedBase='mach'
           :showContent='toggledElems.machenTableContent'
           :showInputs='toggledElems.machenTableInputs'
+          :showTooltips='toggledElems.tooltips'
           @toggleElems='toggleElems($event)'
         >
           <h3 class='has-tooltip'>
@@ -116,12 +126,14 @@
         <!-- essen -->
         <TenseTable
           name='essenTable'
-          :pronouns='pronouns'
+          :pronounsDE='pronounsDE'
+          :pronounsRU='pronounsRU'
           :endings='presensEndings'
           conjugatedBase='ess'
           :exceptions='essenExceptions'
           :showContent='toggledElems.essenTableContent'
           :showInputs='toggledElems.essenTableInputs'
+          :showTooltips='toggledElems.tooltips'
           @toggleElems='toggleElems($event)'
         >
           <h3 class='has-tooltip'>
@@ -146,12 +158,14 @@
         <!-- mögen -->
         <TenseTable
           name='mogenTable'
-          :pronouns='pronouns'
+          :pronounsDE='pronounsDE'
+          :pronounsRU='pronounsRU'
           :endings='presensEndings'
           conjugatedBase='mög'
           :exceptions='mogenExceptions'
           :showContent='toggledElems.mogenTableContent'
           :showInputs='toggledElems.mogenTableInputs'
+          :showTooltips='toggledElems.tooltips'
           @toggleElems='toggleElems($event)'
         >
           <h3 class='has-tooltip'>
@@ -214,7 +228,7 @@ export default {
         mogenTableContent: true,
         mogenTableInputs: false,
       },
-      pronouns: [
+      pronounsDE: [
         {
           singular: {
             pronoun: 'Ich',
@@ -237,6 +251,32 @@ export default {
           },
           plural: {
             pronoun: 'Sie/sie',
+          },
+        },
+      ],
+      pronounsRU: [
+        {
+          singular: {
+            pronoun: 'Я',
+          },
+          plural: {
+            pronoun: 'Мы',
+          },
+        },
+        {
+          singular: {
+            pronoun: 'Ты',
+          },
+          plural: {
+            pronoun: 'Вы (мн.ч)',
+          },
+        },
+        {
+          singular: {
+            pronoun: 'Он/Она/Оно',
+          },
+          plural: {
+            pronoun: 'Вы (вежливое)/они',
           },
         },
       ],

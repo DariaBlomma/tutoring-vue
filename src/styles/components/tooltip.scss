@@ -7,4 +7,6 @@
     position: absolute;
     top: var(--top);
     right: var(--right);
+    left: var(--left);
+    min-width: var(--minWidth);
 }
