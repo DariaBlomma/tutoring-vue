@@ -194,24 +194,80 @@
         </TenseTable>
 
     </div>
-        <div class='drag-and-drop'>
-            <div class='ru-text'> </div>
-            <div class='box'>
-            </div>
-            <div class='result'>
-            </div>
+    <div class='drag-and-drop'>
+        <ol class='ru-text'>
+          <li
+            :class='["ru-text__item",
+              {
+                "right": index === answerLines - 1 && isRightAnswer,
+                "wrong": index === answerLines - 1 && isWrongAnswer
+              }]'
+            v-for='(item, index) in ruSentences'
+            :key='item'
+          >
+            {{item}}
+          </li>
+        </ol>
+          <Draggable
+            :list='dragCards'
+            item-key='getUniqueKey(name, sentence, answerOrder)'
+            class='box'
+            group='essen'
+          >
+            <template #item="{element}">
+              <div
+                class='box__item'
+              >
+                {{element.name}}
+              </div>
+            </template>
+          </Draggable>
+          <div class='result'>
+          <ol>
+              <li
+                class='result__sentence'
+                v-for='(line, index) in answerLines'
+                :key='index'
+              >
+              <Draggable
+                class='result__line'
+                group='essen'
+                :list='answerCards'
+                item-key='name'
+              >
+                <template #item="{element}">
+                  <div
+                    :class='["result__item", {"right": isRightAnswer, "wrong": isWrongAnswer}]'
+                  >
+                  {{element.name}}
+                  </div>
+                </template>
+              </Draggable>
+              <button
+                class='btn check'
+                @click='checkDraggedAnswer'
+                :disabled='!hasAnswers'
+              >
+              Check
+              </button>
+            </li>
+          </ol>
         </div>
+    </div>
   </div>
 </template>
 <script>
+import Draggable from 'vuedraggable';
 import Tooltip from '@/components/Tooltip.vue';
 import TenseTable from '@/components/TenseTable.vue';
 
+// ü ö ä ß Ü Ö Ä
 export default {
   name: 'Essen',
   components: {
     Tooltip,
     TenseTable,
+    Draggable,
   },
   data() {
     return {
@@ -303,13 +359,49 @@ export default {
         ['magst', 'Du-word'],
         ['mag', 'Er-word'],
       ],
+      dragCards: [
+        { name: 'Zum Früstuck', sentence: 1, answerOrder: 1 },
+        { name: "gibt's bei uns", sentence: 1, answerOrder: 2 },
+        { name: 'Brot', sentence: 1, answerOrder: 3 },
+        { name: 'mit', sentence: 1, answerOrder: 4 },
+        { name: 'Marmelade', sentence: 1, answerOrder: 5 },
+        { name: 'und', sentence: 1, answerOrder: 6 },
+        { name: 'Müslii.', sentence: 1, answerOrder: 7 },
+        { name: 'Ich', sentence: 2, answerOrder: 1 },
+        { name: 'esse', sentence: 2, answerOrder: 2 },
+        { name: 'am liebsten', sentence: 2, answerOrder: 3 },
+        { name: 'Müsli,', sentence: 2, answerOrder: 4 },
+        { name: 'mein Bruder', sentence: 2, answerOrder: 5 },
+        { name: 'mag', sentence: 2, answerOrder: 6 },
+        { name: 'lieber', sentence: 2, answerOrder: 7 },
+        { name: 'ein Marmeladenbrot.', sentence: 2, answerOrder: 8 },
+        { name: 'Ich', sentence: 3, answerOrder: 1 },
+        { name: 'trinke', sentence: 3, answerOrder: 2 },
+        { name: 'eine Tasse', sentence: 3, answerOrder: 3 },
+        { name: 'Tee', sentence: 3, answerOrder: 4 },
+        { name: 'oder', sentence: 3, answerOrder: 5 },
+        { name: 'zwei.', sentence: 3, answerOrder: 6 },
+      ],
+      ruSentences: [
+        'На завтрак у нас есть хлеб с вареньем или мюсли',
+        'Я ем охотнее всего мюсли, моему брату больше нравится хлеб с вареньем.',
+        'Я пью одну чашку чая или две.',
+      ],
+      answerCards: [],
+      answerLines: 1,
+      isRightAnswer: false,
+      isWrongAnswer: false,
+      originalAnswerSentenceLength: 0,
     };
   },
   created() {
-    const saved = JSON.parse(localStorage.getItem('eating-table'));
-    if (saved) {
-      this.eatingTableRows = saved;
-    }
+    this.getSavedInfo();
+    this.originalAnswerSentenceLength = this.getAnswerSentenceLength();
+  },
+  computed: {
+    hasAnswers() {
+      return this.answerCards.length > 0;
+    },
   },
   methods: {
     addRow() {
@@ -323,10 +415,47 @@ export default {
     saveInfo() {
       localStorage.setItem('eating-table', JSON.stringify(this.eatingTableRows));
     },
+    getSavedInfo() {
+      const saved = JSON.parse(localStorage.getItem('eating-table'));
+      if (saved) {
+        this.eatingTableRows = saved;
+      }
+    },
     // скрывает или показывает элементы.
     // Нужно передать имя скрываемого элемента и записать его в this.toggledElems
     toggleElems(name) {
       this.toggledElems[name] = !this.toggledElems[name];
+    },
+    getUniqueKey(one, two, three) {
+      return one + two + three;
+    },
+    getAnswerSentenceLength() {
+      return this.dragCards.reduce((acc, item) => {
+        if (item.sentence === this.answerLines) {
+          acc++;
+        }
+
+        return acc;
+      }, 0);
+    },
+    checkDraggedAnswer() {
+      if (this.hasAnswers) {
+        this.answerCards.forEach((item, index) => {
+          console.log('this.answerCards.length === originalLegth: ', this.answerCards.length === this.originalAnswerSentenceLength);
+          console.log('this.answerCards.length: ', this.answerCards.length);
+          console.log('originalLegth: ', this.originalAnswerSentenceLength);
+          if (this.answerCards.length === this.originalAnswerSentenceLength
+              && index === item.answerOrder - 1) {
+            this.isWrongAnswer = false;
+            this.isRightAnswer = true;
+          } else {
+            console.log('item.answerOrder: ', item.answerOrder - 1);
+            console.log('index: ', index);
+            this.isRightAnswer = false;
+            this.isWrongAnswer = true;
+          }
+        });
+      }
     },
   },
 };
