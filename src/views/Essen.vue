@@ -195,6 +195,21 @@
 
     </div>
     <div class='drag-and-drop'>
+      <!--
+        Обзор реализации:
+          1. Массив строк с русскими полными предложениями ruSentences
+          2. Массив объектов dragCards с карточками для перетаскивания на немецком
+            с ключами
+              name - сама фраза на немецком,
+              sentence - номер предложения (в соответствии с массивом ruSentences),
+              answerOrder - нужный порядок слова в предложении ( для проверки ответа)
+          3. Пустой (изначально) массив answerCards для ответов ученика.
+            В Draggable запомлняется с теми же ключами, что и dragCards, но имеет другие стили.
+          4. Строка ответа ученика с кнопкой Проверить.
+            Всегда 1 шт
+          5. Правильно собранные предложения через 2 секунды выводятся под русскими предложениями,
+            а массив ответов и некторые другие данные обнуляются.
+      -->
         <ol class='ru-text'>
           <li
             :class='["ru-text__item",
@@ -206,6 +221,12 @@
             :key='item'
           >
             {{item}}
+            <div
+              class='right-answer-line'
+              v-if='index <= answerLines - 1'
+            >
+            {{rightAnswerLines[index]}}
+            </div>
           </li>
         </ol>
           <Draggable
@@ -226,14 +247,12 @@
           <ol>
               <li
                 class='result__sentence'
-                v-for='(line, index) in answerLines'
-                :key='index'
               >
               <Draggable
                 class='result__line'
                 group='essen'
                 :list='answerCards'
-                item-key='name'
+                item-key='getUniqueKey(name, sentence, answerOrder)'
               >
                 <template #item="{element}">
                   <div
@@ -248,7 +267,7 @@
                 @click='checkDraggedAnswer'
                 :disabled='!hasAnswers'
               >
-              Check
+              Prüfen
               </button>
             </li>
           </ol>
@@ -387,16 +406,27 @@ export default {
         'Я ем охотнее всего мюсли, моему брату больше нравится хлеб с вареньем.',
         'Я пью одну чашку чая или две.',
       ],
+      // для пробы
+      // dragCards: [
+      //   { name: 'Zum Früstuck 1-1', sentence: 1, answerOrder: 1 },
+      //   { name: 'Zum Früstuck 1-2', sentence: 1, answerOrder: 2 },
+      //   { name: 'Zum Früstuck 2-1', sentence: 2, answerOrder: 1 },
+      //   { name: 'Zum Früstuck 2-2', sentence: 2, answerOrder: 2 },
+      //   { name: 'Zum Früstuck 2-3', sentence: 2, answerOrder: 3 },
+      // ],
       answerCards: [],
-      answerLines: 1,
+      answerLines: 0,
       isRightAnswer: false,
       isWrongAnswer: false,
       originalAnswerSentenceLength: 0,
+      sentenceCorrect: false,
+      rightAnswerLines: [],
+      rightAnswerLine: '',
     };
   },
   created() {
     this.getSavedInfo();
-    this.originalAnswerSentenceLength = this.getAnswerSentenceLength();
+    this.getOriginalAnswerSentenceLength();
   },
   computed: {
     hasAnswers() {
@@ -429,32 +459,69 @@ export default {
     getUniqueKey(one, two, three) {
       return one + two + three;
     },
+    getOriginalAnswerSentenceLength() {
+      this.originalAnswerSentenceLength = this.getAnswerSentenceLength();
+    },
     getAnswerSentenceLength() {
       return this.dragCards.reduce((acc, item) => {
-        if (item.sentence === this.answerLines) {
+        if (item.sentence === this.answerLines + 1) {
+          console.log('this.answerLines + 1: ', this.answerLines + 1);
+          console.log('item.sentence: ', item.sentence);
+          console.log('item.name: ', item.name);
           acc++;
         }
 
         return acc;
       }, 0);
     },
+    getRightAnswerLines(name) {
+      this.rightAnswerLine += `${name} `;
+    },
+    showRightAnswerLine(elemIndex, sentenceOrder) {
+      return elemIndex === sentenceOrder;
+    },
     checkDraggedAnswer() {
       if (this.hasAnswers) {
         this.answerCards.forEach((item, index) => {
-          console.log('this.answerCards.length === originalLegth: ', this.answerCards.length === this.originalAnswerSentenceLength);
+          console.log('this.answerCards.length === originalLegth: ',
+            this.answerCards.length === this.originalAnswerSentenceLength);
           console.log('this.answerCards.length: ', this.answerCards.length);
           console.log('originalLegth: ', this.originalAnswerSentenceLength);
           if (this.answerCards.length === this.originalAnswerSentenceLength
               && index === item.answerOrder - 1) {
             this.isWrongAnswer = false;
             this.isRightAnswer = true;
+            this.sentenceCorrect = true;
+            this.getRightAnswerLines(item.name);
+            // this.showRightAnswerLine(item.sentence);
+            // console.log('this.sentenceCorrect in loop: ', this.sentenceCorrect);
+            // console.log('this.anwerLines in loop: ', this.answerLines);
           } else {
-            console.log('item.answerOrder: ', item.answerOrder - 1);
-            console.log('index: ', index);
+            // console.log('item.answerOrder: ', item.answerOrder - 1);
+            // console.log('index: ', index);
             this.isRightAnswer = false;
             this.isWrongAnswer = true;
           }
         });
+        this.addAnswerLine();
+      }
+    },
+    addAnswerLine() {
+      // console.log('this.sentenceCorrect in Add: ', this.sentenceCorrect);
+      // console.log('this.anwerLines before Add: ', this.answerLines);
+      if (this.sentenceCorrect) {
+        this.rightAnswerLines.push(this.rightAnswerLine);
+        this.answerLines++;
+        setTimeout(() => {
+          this.isRightAnswer = false;
+          this.isWrongAnswer = false;
+          this.answerCards = [];
+          this.rightAnswerLine = '';
+          this.getOriginalAnswerSentenceLength();
+        }, 2000);
+
+        // this.sentenceCorrect = false;
+        // console.log('this.anwerLines after Add: ', this.answerLines);
       }
     },
   },
