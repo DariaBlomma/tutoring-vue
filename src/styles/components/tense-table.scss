@@ -9,9 +9,8 @@
     }
 
     th, td {
-        box-shadow: -8px -5px 4px 0px rgba(21, 21, 21, 0.2) inset,
-            8px 5px 4px 0px rgba(255, 255, 255, 0.4) inset;
-        background-color: #e2e2b7;
+        box-shadow: $inset-bow-shadow;
+        background-color: $beige-color;
     }
 }
 

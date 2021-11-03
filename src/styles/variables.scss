@@ -1,4 +1,17 @@
+$card-width: 140px;
+$card-height: 50px;
+
 $page-background: orange;
 $primary-text-color: #4b4a4a;
 
-$link-color: #5167d5;
+$inset-bow-shadow: -8px -5px 4px 0px rgba(21, 21, 21, 0.2) inset,
+                    8px 5px 4px 0px rgba(255, 255, 255, 0.4) inset;
+$btn-bow-shadow: -8px -5px 4px 0px #2a153c57 inset,
+                    -8px 5px 4px 0px rgba(21, 21, 21, 0.4) inset;
+
+// $link-color: #5167d5;
+$link-color: #a675b3;
+$green-color: rgba(0, 119, 5, 0.75);
+$red-color: rgba(245, 60, 4, 0.75);
+$beige-color: #e2e2b7;
+$btn-background-color: #271739;
