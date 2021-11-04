@@ -1,11 +1,11 @@
 <template>
-  <div class="page dictionaries">
+  <div class="page dictionary">
     <header>
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
     <h1 class='primary-title heading-light centered'>Dictionaries</h1>
     <h2 class='secondary-title heading-light'>Occupations</h2>
-    <div class='words'>
+    <div class='dictionary__words-block'>
       <div
         class='dictionary__item'
         :class='item.class'
@@ -22,12 +22,14 @@
           >
           <ol class='en'>
               <li
-                class='dictionary__line'
+                class='dictionary__line dictionary__line_en'
                 :class='elem[1]'
                 v-for='elem in item.en'
                 :key='elem[0]'
               >
-              {{elem[0]}}
+              <span>
+                {{elem[0]}}
+              </span>
               </li>
           </ol>
           <ul v-if='item.ru' class='ru'>
@@ -37,14 +39,16 @@
                 v-for='elem in item.ru'
                 :key='elem[0]'
               >
-              {{elem[0]}}
+              <span>
+                {{elem[0]}}
+              </span>
               </li>
           </ul>
       </div>
     </div>
     <h2 class='secondary-title heading-light'>Exam tasks</h2>
     <h4 class='title-4'>№10 - 9983</h4>
-    <div class='words another-topic'>
+    <div class='dictionary__words-block dictionary__words-block_another-topic'>
       <div
         class='dictionary__item'
         :class='item.class'
@@ -55,18 +59,20 @@
           <input
               v-if='item.answer'
               type='text'
-              class='input dictionary__input title-3 ex-10'
+              class='input title-3 heading-light ex-10 dictionary__input'
               placeholder='Write the topic name'
               :data-answer='item.answer'
           >
           <ol class='en'>
               <li
-                class='dictionary__line'
+                class='dictionary__line dictionary__line_en'
                 :class='elem[1]'
                 v-for='elem in item.en'
                 :key='elem[0]'
               >
-              {{elem[0]}}
+              <span>
+                {{elem[0]}}
+              </span>
               </li>
           </ol>
           <ul v-if='item.ru' class='ru'>
@@ -76,7 +82,9 @@
                 v-for='elem in item.ru'
                 :key='elem[0]'
               >
-              {{elem[0]}}
+              <span>
+                {{elem[0]}}
+              </span>
               </li>
           </ul>
       </div>
@@ -91,7 +99,7 @@ export default {
     return {
       dictionaries_occupations: [
         {
-          title: 'Occupations. Lawyer',
+          title: 'Lawyer',
           en: [
             ['spend time in office'],
             ['court'],
@@ -114,7 +122,7 @@ export default {
           ],
         },
         {
-          title: 'Occupations. Driver',
+          title: 'Driver',
           en: [
             ['be away from family for long periods of time'],
             ['like being on the road'],
@@ -139,7 +147,7 @@ export default {
           ],
         },
         {
-          title: 'Occupations. Journalist',
+          title: 'Journalist',
           en: [
             ['to work for a tabloid'],
             ['a serious paper'],
@@ -158,7 +166,7 @@ export default {
           ],
         },
         {
-          title: 'Occupations. Librarian',
+          title: 'Librarian',
           en: [
             ['people have this image of us being very boring'],
             ['to whisper'],
