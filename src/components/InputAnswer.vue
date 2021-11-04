@@ -25,6 +25,19 @@ export default {
       type: String,
       required: true,
     },
+    // массив слов-исключений и соответствующих классов на основе местоимений
+    exceptions: {
+      type: Array,
+      required: false,
+      default: () => [],
+    },
+    // условный id инпута для проверки - исключение он или нет
+    // структура : Местоимение-word
+    pronounClass: {
+      type: String,
+      required: false,
+      default: '',
+    },
   },
   data() {
     return {
@@ -34,21 +47,32 @@ export default {
       wordBase: '',
     };
   },
-  created() {
+  mounted() {
     this.wordBase = this.word;
   },
   computed: {
     // вернет слово -образец для проверки правильного ответа
     fullWord() {
-      return this.word + this.ending;
+      let name = this.word + this.ending;
+      if (this.exceptions) {
+        this.exceptions.forEach(item => {
+          if (item[1] === this.pronounClass) {
+            // eslint-disable-next-line prefer-destructuring
+            name = item[0];
+          }
+        });
+      }
+      return name;
     },
   },
   methods: {
     // деструктуризация - event.target.value, event.target.dataset.answer
     checkAnswer({ target: { value, dataset: { answer } } }) {
-      if (value === answer) {
+      if (value.trim() === answer) {
+        this.isWrongAnswer = false;
         this.isRightAnswer = true;
       } else {
+        this.isRightAnswer = false;
         this.isWrongAnswer = true;
       }
     },

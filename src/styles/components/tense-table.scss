@@ -1,0 +1,29 @@
+.table-wrapper {
+    margin-top: 60px;
+}
+
+// таблица с окончаниями времени
+.root-tense-table {
+    .secondary-heading {
+        text-shadow: 1px 2px 2px #706c6c;
+    }
+
+    th, td {
+        box-shadow: $inset-bow-shadow;
+        background-color: $beige-color;
+    }
+}
+
+.tense-table {
+    margin-bottom: 10px;
+}
+
+.important-letter, .short-rule {
+    font-size: 1.4em;
+    color: $link-color;
+    text-shadow: 1px 1px 2px $link-color;
+}
+
+.important-ending {
+    color: $link-color;
+}

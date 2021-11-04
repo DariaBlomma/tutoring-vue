@@ -1,42 +1,48 @@
 /* drag and drop */
-.ru-text__item {
+.ru-sentences__line {
     margin-bottom: 10px;
 }
 
-.box {
+.done-answer-line {
+    color: $green-color;
+}
+
+.to-drag-box {
     display: flex;
     flex-wrap: wrap;
 }
 
-.box__item {
-    width: 140px;
-    height: 50px;
-    border: 1px solid black;
-    background-color: rgb(127, 225, 255);
+.card {
+    width: $card-width;
+    min-height: $card-height;
+    padding: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
     text-align: center;
+    box-shadow: $btn-bow-shadow;
 }
 
-.result__line {
+.to-drag-box__card {
+    border: 1px solid black;
+    // background-color: $link-color;
+    background-color: #caabd2;
+    // color: $beige-color;
+    color: $btn-background-color;
+    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 1px #2a153c;
+}
+
+.result-output__line {
+    height: $card-height + 20;
+}
+
+.result-output__sentence-wrapper {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 15px;
 }
 
-.result__item {
-    width: 150px;
-    height: 60px;
-    border: 2px dashed rgb(184, 181, 181);
-    margin-right: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.is-dragged-over {
-    background-color:rgba(184, 181, 181, 0.5);
-}
-
-.is-dropped {
-    opacity: 0.7;
+.result-output__card {
+    width: $card-width + 10;
+    min-height: $card-height + 10;
+    border: 2px dashed $link-color;
 }

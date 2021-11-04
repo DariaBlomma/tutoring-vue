@@ -23,13 +23,27 @@ export default {
       required: false,
       default: -50,
     },
+    left: {
+      type: String,
+      required: false,
+      default: 'auto',
+    },
+    minWidth: {
+      type: String,
+      required: false,
+      default: 'auto',
+    },
   },
   computed: {
     cssProps() {
+      const rightNumber = parseInt(this.right, 10);
+      const leftNumber = parseInt(this.left, 10);
       return {
         // right может быть числом или auto
-        '--right': parseInt(this.right, 10) || this.right,
+        '--right': rightNumber ? `${rightNumber}px` : this.right,
         '--top': `${this.top}px`,
+        '--left': leftNumber ? `${leftNumber}px` : this.left,
+        '--minWidth': this.minWidth,
       };
     },
   },
