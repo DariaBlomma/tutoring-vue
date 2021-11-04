@@ -3,7 +3,7 @@
     margin: 10px;
     text-decoration: none;
     padding-top: 9px;
-    color: $link-color;
+    color: $btn-text-color;
     text-align: center;
     line-height: 20px;
     display: block;
@@ -11,9 +11,9 @@
 }
 
 .btn:not(.active) {
-    box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
-    background-image: linear-gradient(#3b2751, #271739);
-    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #311d47;
+    box-shadow: inset 0 1px 1px rgb(55, 81, 125 / 80%), inset 0 -1px 0px rgb(63, 59, 113 / 20%), 0 9px 16px 0 rgb(0, 0, 0 / 30%), 0 4px 3px 0 rgb(0, 0, 0 / 30%), 0 0 0 1px #0a0e1e;
+    background-image: linear-gradient(#273351, #171939);
+    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #1d2347;
 }
 
 .btn:not(.active):hover,

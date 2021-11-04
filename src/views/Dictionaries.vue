@@ -29,6 +29,13 @@
         :key='i'
       >
           <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
+          <div class='dates'>
+            <span class='dates__title'>Done:</span>
+            <ol class='dates__list'>
+              <li class='dates__line'><input type='date'></li>
+            </ol>
+            <button class='btn add'>+</button>
+          </div>
           <input
               v-if='item.answer'
               type='text'
@@ -36,30 +43,32 @@
               placeholder='Write the topic name'
               :data-answer='item.answer'
           >
-          <ol class='en'>
-              <li
-                class='dictionary__line dictionary__line_en'
-                :class='elem[1]'
-                v-for='elem in item.en'
-                :key='elem[0]'
-              >
-              <span>
-                {{elem[0]}}
-              </span>
-              </li>
-          </ol>
-          <ul v-if='item.ru' class='ru'>
-              <li
-                class='dictionary__line'
-                :class='elem[1]'
-                v-for='elem in item.ru'
-                :key='elem[0]'
-              >
-              <span>
-                {{elem[0]}}
-              </span>
-              </li>
-          </ul>
+          <div class='dictionary__item-inner'>
+            <ol class='en'>
+                <li
+                  class='dictionary__line dictionary__line_en'
+                  :class='elem[1]'
+                  v-for='elem in item.en'
+                  :key='elem[0]'
+                >
+                <span>
+                  {{elem[0]}}
+                </span>
+                </li>
+            </ol>
+            <ul v-if='item.ru' class='ru'>
+                <li
+                  class='dictionary__line'
+                  :class='elem[1]'
+                  v-for='elem in item.ru'
+                  :key='elem[0]'
+                >
+                <span>
+                  {{elem[0]}}
+                </span>
+                </li>
+            </ul>
+          </div>
       </div>
     </div>
     <h2 class='secondary-title heading-light' id='exam-tasks'>Exam tasks</h2>
@@ -72,6 +81,7 @@
         :key='i'
       >
           <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
+          <span class='date'>Done:</span>
           <input
               v-if='item.answer'
               type='text'
