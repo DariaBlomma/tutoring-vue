@@ -4,7 +4,23 @@
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
     <h1 class='primary-title heading-light centered'>Dictionaries</h1>
-    <h2 class='secondary-title heading-light'>Occupations</h2>
+    <ol class='contents-list'>
+      <li class='contents-list__line'>
+        <a href='#occupations' class='link'>Occupations</a>
+      </li>
+      <li class='contents-list__line'>
+        <a href='#exam-tasks' class='link'>Exam tasks</a>
+        <ol>
+          <li class='contents-list__line'>
+            <a href='#n10-9983'>
+              <span class='contents-list__unique-number'>№10 - 9983 </span>
+              <span class='contents-list__topic'>Time management</span>
+            </a>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <h2 class='secondary-title heading-light' id='occupations'>Occupations</h2>
     <div class='dictionary__words-block'>
       <div
         class='dictionary__item'
@@ -46,8 +62,8 @@
           </ul>
       </div>
     </div>
-    <h2 class='secondary-title heading-light'>Exam tasks</h2>
-    <h4 class='title-4'>№10 - 9983</h4>
+    <h2 class='secondary-title heading-light' id='exam-tasks'>Exam tasks</h2>
+    <h4 class='title-4' id='n10-9983'>№10 - 9983</h4>
     <div class='dictionary__words-block dictionary__words-block_another-topic'>
       <div
         class='dictionary__item'

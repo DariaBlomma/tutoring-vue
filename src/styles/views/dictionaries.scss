@@ -7,12 +7,12 @@
         flex-wrap: wrap;
         margin-top: 10px;
 
-        &_another-topic {
+        // &_another-topic {
             // .dictionary__item {
             //     box-shadow: 4px 4px 29px -6px rgba(106, 96, 241, 0.8) inset, 
             //     -4px -4px 29px -6px rgba(174, 171, 200, 0.2) inset;
             // }
-        }
+        // }
     }
 
     &__item {
@@ -34,7 +34,7 @@
         color: $link-light-color;
 
         &_en {
-            background-color: $darker-green-color;
+            background-color: $lighter-green-color;
             margin-right: 10px;
         }
     }
@@ -46,13 +46,27 @@
     }
 }
 
+.contents-list {
+    &__line {
+        color: $link-light-color;
+    }
+
+    &__unique-number {
+        color: $heading-blue-color;
+    }
+
+    &__topic {
+        color: $link-light-color
+    }
+}
+
 .ru {
     padding-top: 0;
 }
 
 .main {
     background-color: $dark-green-color;
-    border: 1px solid $dark-green-color;
+    border: 1px solid $lighter-green-color;
 }
 
 .main span {
