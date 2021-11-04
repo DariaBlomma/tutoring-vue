@@ -4,10 +4,10 @@
     position: relative;
 }
 
-.important {
-    color: white;
-    font-size: 22px;
-}
+// .important {
+//     color: white;
+//     font-size: 22px;
+// }
 
 .centered {
     display: flex;
@@ -33,9 +33,9 @@
 // }
 
 .right {
-    box-shadow: 10px 0px 10px 0px rgba(0, 119, 5, 0.75), -10px 0px 10px 0px rgba(0, 119, 5, 0.75);
+    box-shadow: 10px 0px 10px 0px $green-color, -10px 0px 10px 0px $green-color;
 }
 
 .wrong {
-    box-shadow: 10px 0px 10px 0px rgba(245, 60, 4, 0.75), -10px 0px 10px 0px rgba(245, 60, 4, 0.75);
+    box-shadow: 10px 0px 10px 0px $red-color, -10px 0px 10px 0px $red-color;
 }
