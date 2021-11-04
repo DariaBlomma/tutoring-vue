@@ -1,3 +1,62 @@
 .dictionaries {
-    background-color: $dictionaries-page-background
+    background-color: $dictionaries-page-background;
+    height: 100%;
+}
+
+.words {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.dictionary__item {
+    display: flex;
+    box-shadow: 4px 4px 29px -6px rgba(88, 97, 89, 0.2) inset, 
+        -4px -4px 29px -6px rgba(238, 243, 239, 0.2) inset;
+    margin: 5px;
+    padding-right: 25px;
+    padding-top: 25px;
+    position: relative;
+    flex-basis: 47%;
+}
+
+.ru {
+    padding-top: 0;
+}
+
+.dictionary__line {
+    background-color: rgb(150, 204, 150);
+    border: 1px solid darkgreen;
+    margin-bottom: 5px;
+}
+
+.en .dictionary__line {
+    background-color: rgb(140, 172, 140);
+    margin-right: 10px;
+}
+
+.en .main, .ru .main {
+    background-color: rgb(20, 41, 20);
+    border: 1px solid rgb(156, 182, 156);
+    color: white;
+    
+}
+
+.dictionary__input {
+    font-size: 16px;
+    width: 60%;
+}
+
+.another-topic .dictionary__item {
+    box-shadow: 4px 4px 29px -6px rgba(106, 96, 241, 0.8) inset, 
+    -4px -4px 29px -6px rgba(174, 171, 200, 0.2) inset;
+}
+
+.en .new, .ru .new {
+    font-style: italic;
+    background-color: #00ffff6b;
+}
+
+.not-for-add {
+    opacity: 0.5;
 }
