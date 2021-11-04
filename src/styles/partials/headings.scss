@@ -6,3 +6,19 @@
 h2 {
     font-size: 24px;
 }
+
+.title-3 {
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    color: $title-3-light-color;
+    font-family: Helvetica;
+}
+
+.title-4 {
+    color: $heading-blue-color;
+}
+
+.heading-light {
+    color: $heading-light-color;
+}
