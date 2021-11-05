@@ -19,16 +19,15 @@
     margin-right: 10px;
     margin-bottom: 10px;
     text-align: center;
-    box-shadow: $btn-bow-shadow;
+    box-shadow: $card-bow-shadow;
+    word-break: break-word;
 }
 
 .to-drag-box__card {
-    border: 1px solid black;
-    // background-color: $link-color;
-    background-color: #caabd2;
-    // color: $beige-color;
-    color: $btn-background-color;
-    text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 1px #2a153c;
+    border: 1px solid $primary-text-color;
+    font-weight: bold;
+    color: $primary-text-color;
+    background-color: $beige-color;
 }
 
 .result-output__line {

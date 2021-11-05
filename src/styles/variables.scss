@@ -1,33 +1,43 @@
-$card-width: 140px;
-$card-height: 50px;
+// colors
+// common colors
 
+$dark-blue-color: #070135eb; //input text  in ege
+$green-color: rgba(0, 119, 5, 0.75);
+$red-color: rgba(245, 60, 4, 0.75);
+$beige-color: #e2e2b7;
+// pages
 $page-background: orange;
 $dictionaries-page-background: #373a37;
 $ege-page-background: #112211;
 
+// text, fonts
 $primary-text-color: #4b4a4a;
-
+// links
 $link-light-color: #bbbbbb;
+$link-color: #7676ff;
+// headings
 $heading-light-color: white;
 $title-3-light-color: #dedcdc;
 $heading-blue-color: #7676ff;
+
+
+// ege dictionaries
 $light-green-color: rgb(150, 204, 150);
-$darker-green-color: rgb(140, 172, 140);
+$grey-background-color: #afbdaf;
 $dark-green-color: rgb(20, 41, 20);
-$dark-blue-color: #070135eb;
 
-$green-box-shadow: 4px 4px 29px -6px rgba(88, 97, 89, 0.2) inset, 
--4px -4px 29px -6px rgba(238, 243, 239, 0.2) inset;
-$primary-text-color: #4b4a4a;
-
-$inset-bow-shadow: -8px -5px 4px 0px rgba(21, 21, 21, 0.2) inset,
+// shadows
+// ege
+$light-box-shadow: 4px 4px 29px -6px rgba(88, 97, 89, 0.2) inset, 
+                    -4px -4px 29px -6px rgba(238, 243, 239, 0.2) inset;
+// horizonte
+$card-bow-shadow: -8px -5px 4px 0px rgba(21, 21, 21, 0.2) inset,
                     8px 5px 4px 0px rgba(255, 255, 255, 0.4) inset;
-$btn-bow-shadow: -8px -5px 4px 0px #2a153c57 inset,
-                    -8px 5px 4px 0px rgba(21, 21, 21, 0.4) inset;
 
-// $link-color: #5167d5;
-$link-color: #a675b3;
-$green-color: rgba(0, 119, 5, 0.75);
-$red-color: rgba(245, 60, 4, 0.75);
-$beige-color: #e2e2b7;
-$btn-background-color: #271739;
+
+// buttons
+$btn-text-color: #a7a7a7;
+
+// drag and drop
+$card-width: 140px;
+$card-height: 50px;
