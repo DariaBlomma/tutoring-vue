@@ -32,7 +32,13 @@
           <div class='dates'>
             <span class='dates__title'>Done:</span>
             <ol class='dates__list'>
-              <li class='dates__line'><input type='date'></li>
+              <li class='dates__line'>
+                <input
+                  type='date'
+                  :value='doneDates[item.title] || ""'
+                  @change='saveDate(item.title, $event)'
+                >
+              </li>
             </ol>
             <button class='btn add'>+</button>
           </div>
@@ -81,7 +87,19 @@
         :key='i'
       >
           <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
-          <span class='date'>Done:</span>
+          <div class='dates'>
+            <span class='dates__title'>Done:</span>
+            <ol class='dates__list'>
+              <li class='dates__line'>
+                <input
+                  type='date'
+                  :value='doneDates[item.title] || doneDates[item.answer] || ""'
+                  @change='saveDate(item.title || item.answer, $event)'
+                >
+              </li>
+            </ol>
+            <button class='btn add'>+</button>
+          </div>
           <input
               v-if='item.answer'
               type='text'
@@ -119,6 +137,9 @@
 </template>
 
 <script>
+import saveInfo from '@/helpers/saveInfo';
+import getSavedInfo from '@/helpers/getSavedInfo';
+
 export default {
   name: 'Dictionaries',
   data() {
@@ -387,7 +408,17 @@ export default {
           ],
         },
       ],
+      doneDates: {},
     };
+  },
+  created() {
+    this.doneDates = getSavedInfo('done-dates') || {};
+  },
+  methods: {
+    saveDate(name, { target: { value } }) {
+      this.doneDates[name] = value;
+      saveInfo('done-dates', this.doneDates);
+    },
   },
 };
 </script>
