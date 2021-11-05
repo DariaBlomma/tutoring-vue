@@ -25,6 +25,11 @@ export default {
       type: String,
       required: true,
     },
+    readyFullWord: {
+      type: String,
+      required: false,
+      default: '',
+    },
     // массив слов-исключений и соответствующих классов на основе местоимений
     exceptions: {
       type: Array,
@@ -54,6 +59,9 @@ export default {
     // вернет слово -образец для проверки правильного ответа
     fullWord() {
       let name = this.word + this.ending;
+      if (this.readyFullWord) {
+        name = this.readyFullWord;
+      }
       if (this.exceptions) {
         this.exceptions.forEach(item => {
           if (item[1] === this.pronounClass) {
@@ -62,6 +70,7 @@ export default {
           }
         });
       }
+
       return name;
     },
   },

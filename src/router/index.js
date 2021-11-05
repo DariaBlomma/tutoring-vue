@@ -6,6 +6,7 @@ import EGE from '../views/EGE.vue';
 import Zimmer from '../views/Zimmer.vue';
 import Essen from '../views/Essen.vue';
 import Dictionaries from '@/views/Dictionaries.vue';
+import EGELessonMaterials from '@/views/EGELessonMaterials.vue';
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: '/dictionaries',
     name: 'ege-dictionaries',
     component: Dictionaries,
+  },
+  {
+    path: '/lesson-materials',
+    name: 'ege-lesson-materials',
+    component: EGELessonMaterials,
   },
   {
     // path: '/about',

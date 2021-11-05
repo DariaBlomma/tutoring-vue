@@ -7,7 +7,20 @@
       <h1 class='primary-title heading-light'>Contents</h1>
       <ul>
           <li>
-            <router-link class='light' :to="{name: 'ege-dictionaries'}">Dictionaries</router-link>
+            <router-link
+              class='light'
+              :to="{name: 'ege-dictionaries'}"
+            >
+            Dictionaries
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              class='light'
+              :to="{name: 'ege-lesson-materials'}"
+            >
+            Lesson materials
+            </router-link>
           </li>
         <!-- <li><router-link :to="{name: 'en-word-forms'}">Word forms</router-link></li> -->
       </ul>
