@@ -17,6 +17,12 @@
               <span class='contents-list__topic'>Time management</span>
             </a>
           </li>
+          <li class='contents-list__line'>
+            <a href='#n11-1926'>
+              <span class='contents-list__unique-number'>№11-1926 </span>
+              <span class='contents-list__topic'>Number of teenagers with Saturday job drops</span>
+            </a>
+          </li>
         </ol>
       </li>
     </ol>
@@ -32,7 +38,13 @@
           <div class='dates'>
             <span class='dates__title'>Done:</span>
             <ol class='dates__list'>
-              <li class='dates__line'><input type='date'></li>
+              <li class='dates__line'>
+                <input
+                  type='date'
+                  :value='doneDates[item.title] || ""'
+                  @change='saveDate(item.title, $event)'
+                >
+              </li>
             </ol>
             <button class='btn add'>+</button>
           </div>
@@ -81,7 +93,19 @@
         :key='i'
       >
           <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
-          <span class='date'>Done:</span>
+          <div class='dates'>
+            <span class='dates__title'>Done:</span>
+            <ol class='dates__list'>
+              <li class='dates__line'>
+                <input
+                  type='date'
+                  :value='doneDates[item.title] || doneDates[item.answer] || ""'
+                  @change='saveDate(item.title || item.answer, $event)'
+                >
+              </li>
+            </ol>
+            <button class='btn add'>+</button>
+          </div>
           <input
               v-if='item.answer'
               type='text'
@@ -115,10 +139,72 @@
           </ul>
       </div>
     </div>
+    <h2 class='secondary-title heading-light' id='n11-1926'>
+      Number of teenagers with Saturday job drops
+    </h2>
+    <div class='dictionary__words-block'>
+      <div
+        class='dictionary__item'
+        :class='item.class'
+        v-for='(item, i) in dictionaries_11_1926'
+        :key='i'
+      >
+          <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
+          <div class='dates'>
+            <span class='dates__title'>Done:</span>
+            <ol class='dates__list'>
+              <li class='dates__line'>
+                <input
+                  type='date'
+                  :value='doneDates[item.title] || ""'
+                  @change='saveDate(item.title, $event)'
+                >
+              </li>
+            </ol>
+            <button class='btn add'>+</button>
+          </div>
+          <input
+              v-if='item.answer'
+              type='text'
+              class='input dictionary__input title-3 ex-10'
+              placeholder='Write the topic name'
+              :data-answer='item.answer'
+          >
+          <div class='dictionary__item-inner'>
+            <ol class='en'>
+                <li
+                  class='dictionary__line dictionary__line_en'
+                  :class='elem[1]'
+                  v-for='elem in item.en'
+                  :key='elem[0]'
+                >
+                <span>
+                  {{elem[0]}}
+                </span>
+                </li>
+            </ol>
+            <ul v-if='item.ru' class='ru'>
+                <li
+                  class='dictionary__line'
+                  :class='elem[1]'
+                  v-for='elem in item.ru'
+                  :key='elem[0]'
+                >
+                <span>
+                  {{elem[0]}}
+                </span>
+                </li>
+            </ul>
+          </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import saveInfo from '@/helpers/saveInfo';
+import getSavedInfo from '@/helpers/getSavedInfo';
+
 export default {
   name: 'Dictionaries',
   data() {
@@ -387,7 +473,74 @@ export default {
           ],
         },
       ],
+      dictionaries_11_1926: [
+        {
+          title: 'Number of teenagers with Saturday job drops',
+          en: [
+            ['number of teenagers'],
+            ['to drop'],
+            ['to acquire experience'],
+            ['CV'],
+            ['full-time work'],
+            ['part-time job'],
+            ['to combine'],
+            ['according to'],
+            ['to show'],
+            ['increasing'],
+            ['a falling number'],
+            ['employer'],
+            ['employee'],
+            ['find less time to do'],
+            ['state school'],
+            ['is meant to'],
+            ['an access to'],
+            ['to offer'],
+            ['to research'],
+            ['compared with'],
+            ['to leave'],
+            ['increasingly less experienced'],
+            ['to inspire'],
+            ['to mean'],
+          ],
+          ru: [
+            ['число подростков'],
+            ['падать'],
+            ['приобретать опыт'],
+            ['резюме'],
+            ['полный рабочий день'],
+            ['частичный рабочий день'],
+            ['совмещать'],
+            ['согласно (кому-либо)'],
+            ['показывать'],
+            ['возрастающий'],
+            ['падающее число'],
+            ['работодатель'],
+            ['работник'],
+            ['находить меньше времени чтобы делать'],
+            ['городская школа'],
+            ['предназначено, чтобы'],
+            ['доступ к'],
+            ['предлагать'],
+            ['исследовать'],
+            ['по сравнению с'],
+            ['покидать, оставлять'],
+            ['намного менее опытные'],
+            ['вдохновлять'],
+            ['означать'],
+          ],
+        },
+      ],
+      doneDates: {},
     };
+  },
+  created() {
+    this.doneDates = getSavedInfo('done-dates') || {};
+  },
+  methods: {
+    saveDate(name, { target: { value } }) {
+      this.doneDates[name] = value;
+      saveInfo('done-dates', this.doneDates);
+    },
   },
 };
 </script>

@@ -1,0 +1,20 @@
+.ege-lesson-materials {
+    background-color: $dictionaries-page-background;
+    height: 100%;
+}
+
+.linking-words {
+    // display: flex;
+
+    &__line {
+        color: $link-color;
+    }
+
+    &__line-ru {
+        color: $link-light-color;
+    }
+
+    &__example {
+        color: $grey-background-color;
+    }
+}

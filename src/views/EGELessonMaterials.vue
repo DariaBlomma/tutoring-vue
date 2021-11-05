@@ -1,0 +1,124 @@
+<template>
+<div class="page ege-lesson-materials">
+    <header>
+      <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
+    </header>
+  <h1 class='primary-title heading-light centered'>Lesson materials</h1>
+  <h2 class='secondary-title heading-light'>Linking words</h2>
+  <div class='linking-words'>
+    <div class='dictionary__item-inner'>
+      <ul>
+        <li class='linking-words__line'>which</li>
+        <li class='linking-words__line'>as well as</li>
+        <li class='linking-words__line'>that</li>
+        <li class='linking-words__line'>whether</li>
+        <li class='linking-words__line'>so</li>
+        <li class='linking-words__line'>because</li>
+        <li class='linking-words__line'>for</li>
+        <li class='linking-words__line'>but</li>
+        <li class='linking-words__line'>such as</li>
+        <li class='linking-words__line'>whereas</li>
+      </ul>
+      <ul>
+        <li class='linking-words__line-ru'>который</li>
+        <li class='linking-words__line-ru'>так же, как и</li>
+        <li class='linking-words__line-ru'>что</li>
+        <li class='linking-words__line-ru'>ли</li>
+        <li class='linking-words__line-ru'>так, таким образом</li>
+        <li class='linking-words__line-ru'>потому что</li>
+        <li class='linking-words__line-ru'>так как</li>
+        <li class='linking-words__line-ru'>но</li>
+        <li class='linking-words__line-ru'>такие (-ой, -ая) как</li>
+        <li class='linking-words__line-ru'>в то время как</li>
+      </ul>
+    </div>
+    <ol>
+      <li class='linking-words__example'>
+        On receipt of a call the 999 Room operator ascertains by
+        electronic device the position of the nearest available police car
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='which'
+        />
+        is contacted by radio
+      </li>
+      <li class='linking-words__example'>
+        Make sure
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='that'
+        />
+        this policeman will bring the criminal to justice
+      </li>
+      <li class='linking-words__example'>
+        One dog, for example, can search a warehouse in ten minutes,
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='whereas'
+        />
+        the same search would take six men an hour
+      </li>
+      <li class='linking-words__example'>
+        These horses are particularly suited to ceremonial occasions,
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='for'
+        />
+        they are accustomed to military bands
+      </li>
+      <li class='linking-words__example'>
+        Retail is still a big employer,
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='but'
+        />
+        a lot more of it is being done online
+      </li>
+      <li class='linking-words__example'>
+        I could not understand
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='whether'
+        />
+        she improved her English skills or not
+      </li>
+      <li class='linking-words__example'>
+        It seemed
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='like'
+        />
+        it's going to rain soon
+      </li>
+      <li class='linking-words__example'>
+        This research,
+        <InputAnswer
+          word=''
+          ending=''
+          readyFullWord='as well as'
+        />
+        my own thoughts made me think that the Egyptian pyramids
+        were not built by slaves without any modern technologies.
+      </li>
+    </ol>
+  </div>
+</div>
+</template>
+
+<script>
+import InputAnswer from '@/components/InputAnswer.vue';
+
+export default {
+  name: 'EGELessonMaterials',
+  components: {
+    InputAnswer,
+  },
+};
+</script>
