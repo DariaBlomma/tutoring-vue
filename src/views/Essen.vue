@@ -15,7 +15,8 @@
       <Tooltip
         v-if="toggledElems.tooltips"
         text="Еда"
-        :top=-35
+        right='-80'
+        :top=0
       />
     </h1>
     <table class='table'>
@@ -389,42 +390,42 @@ export default {
         ['magst', 'Du-word'],
         ['mag', 'Er-word'],
       ],
-      // dragCards: [
-      //   { name: 'Zum Früstuck', sentence: 1, answerOrder: 1 },
-      //   { name: "gibt's bei uns", sentence: 1, answerOrder: 2 },
-      //   { name: 'Brot', sentence: 1, answerOrder: 3 },
-      //   { name: 'mit', sentence: 1, answerOrder: 4 },
-      //   { name: 'Marmelade', sentence: 1, answerOrder: 5 },
-      //   { name: 'und', sentence: 1, answerOrder: 6 },
-      //   { name: 'Müslii.', sentence: 1, answerOrder: 7 },
-      //   { name: 'Ich', sentence: 2, answerOrder: 1 },
-      //   { name: 'esse', sentence: 2, answerOrder: 2 },
-      //   { name: 'am liebsten', sentence: 2, answerOrder: 3 },
-      //   { name: 'Müsli,', sentence: 2, answerOrder: 4 },
-      //   { name: 'mein Bruder', sentence: 2, answerOrder: 5 },
-      //   { name: 'mag', sentence: 2, answerOrder: 6 },
-      //   { name: 'lieber', sentence: 2, answerOrder: 7 },
-      //   { name: 'ein Marmeladenbrot.', sentence: 2, answerOrder: 8 },
-      //   { name: 'Ich', sentence: 3, answerOrder: 1 },
-      //   { name: 'trinke', sentence: 3, answerOrder: 2 },
-      //   { name: 'eine Tasse', sentence: 3, answerOrder: 3 },
-      //   { name: 'Tee', sentence: 3, answerOrder: 4 },
-      //   { name: 'oder', sentence: 3, answerOrder: 5 },
-      //   { name: 'zwei.', sentence: 3, answerOrder: 6 },
-      // ],
+      dragCards: [
+        { name: 'Zum Früstuck', sentence: 1, answerOrder: 1 },
+        { name: "gibt's bei uns", sentence: 1, answerOrder: 2 },
+        { name: 'Brot', sentence: 1, answerOrder: 3 },
+        { name: 'mit', sentence: 1, answerOrder: 4 },
+        { name: 'Marmelade', sentence: 1, answerOrder: 5 },
+        { name: 'und', sentence: 1, answerOrder: 6 },
+        { name: 'Müslii.', sentence: 1, answerOrder: 7 },
+        { name: 'Ich', sentence: 2, answerOrder: 1 },
+        { name: 'esse', sentence: 2, answerOrder: 2 },
+        { name: 'am liebsten', sentence: 2, answerOrder: 3 },
+        { name: 'Müsli,', sentence: 2, answerOrder: 4 },
+        { name: 'mein Bruder', sentence: 2, answerOrder: 5 },
+        { name: 'mag', sentence: 2, answerOrder: 6 },
+        { name: 'lieber', sentence: 2, answerOrder: 7 },
+        { name: 'ein Marmeladenbrot.', sentence: 2, answerOrder: 8 },
+        { name: 'Ich', sentence: 3, answerOrder: 1 },
+        { name: 'trinke', sentence: 3, answerOrder: 2 },
+        { name: 'eine Tasse', sentence: 3, answerOrder: 3 },
+        { name: 'Tee', sentence: 3, answerOrder: 4 },
+        { name: 'oder', sentence: 3, answerOrder: 5 },
+        { name: 'zwei.', sentence: 3, answerOrder: 6 },
+      ],
       ruSentences: [
         'На завтрак у нас есть хлеб с вареньем или мюсли',
         'Я ем охотнее всего мюсли, моему брату больше нравится хлеб с вареньем.',
         'Я пью одну чашку чая или две.',
       ],
       // для пробы
-      dragCards: [
-        { name: 'Zum Früstuck 1-1', sentence: 1, answerOrder: 1 },
-        { name: 'Zum Früstuck 1-2', sentence: 1, answerOrder: 2 },
-        { name: 'Zum Früstuck 2-1', sentence: 2, answerOrder: 1 },
-        { name: 'Zum Früstuck 2-2', sentence: 2, answerOrder: 2 },
-        { name: 'Zum Früstuck 2-3', sentence: 2, answerOrder: 3 },
-      ],
+      // dragCards: [
+      //   { name: 'Zum Früstuck 1-1', sentence: 1, answerOrder: 1 },
+      //   { name: 'Zum Früstuck 1-2', sentence: 1, answerOrder: 2 },
+      //   { name: 'Zum Früstuck 2-1', sentence: 2, answerOrder: 1 },
+      //   { name: 'Zum Früstuck 2-2', sentence: 2, answerOrder: 2 },
+      //   { name: 'Zum Früstuck 2-3', sentence: 2, answerOrder: 3 },
+      // ],
       answerCards: [],
       answerLines: 0,
       isRightAnswer: false,
