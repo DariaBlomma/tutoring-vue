@@ -14,39 +14,6 @@
             // }
         // }
     }
-
-    &__item {
-        box-shadow: $light-box-shadow;
-        margin: 5px;
-        margin-bottom: 15px;
-        padding-right: 25px;
-        padding-top: 25px;
-        position: relative;
-        flex-basis: 47%;
-    }
-
-    &__item-inner {
-        display: flex;
-    }
-
-    &__line {
-        background-color: $light-green-color;
-        border: 1px solid $dark-green-color;
-        margin-bottom: 5px;
-        min-width: max-content;
-        color: $link-light-color;
-
-        &_en {
-            background-color: $grey-background-color;
-            margin-right: 10px;
-        }
-    }
-
-    &__input {
-        font-size: 16px;
-        width: 60%;
-        color: $dark-blue-color;
-    }
 }
 
 .contents-list {
@@ -61,42 +28,4 @@
     &__topic {
         color: $link-light-color
     }
-}
-
-.dates {
-    max-width: fit-content;
-
-    &__title {
-        color: $heading-blue-color;
-    }
-
-    &__line {
-        color: $heading-blue-color;
-    }
-
-    .add {
-        margin: 10px auto;
-    }
-}
-
-.ru {
-    padding-top: 0;
-}
-
-.main {
-    background-color: $dark-green-color;
-    border: 1px solid $grey-background-color;
-}
-
-.main span {
-    color: white;
-}
-
-.new {
-    font-style: italic;
-    background-color: $heading-blue-color;
-}
-
-.not-for-add {
-    opacity: 0.5;
 }

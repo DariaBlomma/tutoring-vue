@@ -23,190 +23,57 @@
               <span class='contents-list__topic'>Number of teenagers with Saturday job drops</span>
             </a>
           </li>
+          <li class='contents-list__line'>
+            <a href='#n12-806'>
+              <span class='contents-list__unique-number'>№12-806 </span>
+              <span class='contents-list__topic'>Cry-baby</span>
+            </a>
+          </li>
         </ol>
       </li>
     </ol>
     <h2 class='secondary-title heading-light' id='occupations'>Occupations</h2>
     <div class='dictionary__words-block'>
-      <div
-        class='dictionary__item'
-        :class='item.class'
-        v-for='(item, i) in dictionaries_occupations'
-        :key='i'
-      >
-          <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
-          <div class='dates'>
-            <span class='dates__title'>Done:</span>
-            <ol class='dates__list'>
-              <li class='dates__line'>
-                <input
-                  type='date'
-                  :value='doneDates[item.title] || ""'
-                  @change='saveDate(item.title, $event)'
-                >
-              </li>
-            </ol>
-            <button class='btn add'>+</button>
-          </div>
-          <input
-              v-if='item.answer'
-              type='text'
-              class='input dictionary__input title-3 ex-10'
-              placeholder='Write the topic name'
-              :data-answer='item.answer'
-          >
-          <div class='dictionary__item-inner'>
-            <ol class='en'>
-                <li
-                  class='dictionary__line dictionary__line_en'
-                  :class='elem[1]'
-                  v-for='elem in item.en'
-                  :key='elem[0]'
-                >
-                <span>
-                  {{elem[0]}}
-                </span>
-                </li>
-            </ol>
-            <ul v-if='item.ru' class='ru'>
-                <li
-                  class='dictionary__line'
-                  :class='elem[1]'
-                  v-for='elem in item.ru'
-                  :key='elem[0]'
-                >
-                <span>
-                  {{elem[0]}}
-                </span>
-                </li>
-            </ul>
-          </div>
-      </div>
+      <DictionaryItem
+        :dictionary='dictionaries_occupations'
+      />
     </div>
     <h2 class='secondary-title heading-light' id='exam-tasks'>Exam tasks</h2>
-    <h4 class='title-4' id='n10-9983'>№10 - 9983</h4>
+    <h2 class='secondary-title heading-light'  id='n10-9983'>
+      Time management
+    </h2>
     <div class='dictionary__words-block dictionary__words-block_another-topic'>
-      <div
-        class='dictionary__item'
-        :class='item.class'
-        v-for='(item, i) in dictionaries_10_9983'
-        :key='i'
-      >
-          <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
-          <div class='dates'>
-            <span class='dates__title'>Done:</span>
-            <ol class='dates__list'>
-              <li class='dates__line'>
-                <input
-                  type='date'
-                  :value='doneDates[item.title] || doneDates[item.answer] || ""'
-                  @change='saveDate(item.title || item.answer, $event)'
-                >
-              </li>
-            </ol>
-            <button class='btn add'>+</button>
-          </div>
-          <input
-              v-if='item.answer'
-              type='text'
-              class='input title-3 heading-light ex-10 dictionary__input'
-              placeholder='Write the topic name'
-              :data-answer='item.answer'
-          >
-          <ol class='en'>
-              <li
-                class='dictionary__line dictionary__line_en'
-                :class='elem[1]'
-                v-for='elem in item.en'
-                :key='elem[0]'
-              >
-              <span>
-                {{elem[0]}}
-              </span>
-              </li>
-          </ol>
-          <ul v-if='item.ru' class='ru'>
-              <li
-                class='dictionary__line'
-                :class='elem[1]'
-                v-for='elem in item.ru'
-                :key='elem[0]'
-              >
-              <span>
-                {{elem[0]}}
-              </span>
-              </li>
-          </ul>
-      </div>
+      <DictionaryItem
+        :dictionary='dictionaries_10_9983'
+      />
     </div>
     <h2 class='secondary-title heading-light' id='n11-1926'>
       Number of teenagers with Saturday job drops
     </h2>
     <div class='dictionary__words-block'>
-      <div
-        class='dictionary__item'
-        :class='item.class'
-        v-for='(item, i) in dictionaries_11_1926'
-        :key='i'
-      >
-          <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
-          <div class='dates'>
-            <span class='dates__title'>Done:</span>
-            <ol class='dates__list'>
-              <li class='dates__line'>
-                <input
-                  type='date'
-                  :value='doneDates[item.title] || ""'
-                  @change='saveDate(item.title, $event)'
-                >
-              </li>
-            </ol>
-            <button class='btn add'>+</button>
-          </div>
-          <input
-              v-if='item.answer'
-              type='text'
-              class='input dictionary__input title-3 ex-10'
-              placeholder='Write the topic name'
-              :data-answer='item.answer'
-          >
-          <div class='dictionary__item-inner'>
-            <ol class='en'>
-                <li
-                  class='dictionary__line dictionary__line_en'
-                  :class='elem[1]'
-                  v-for='elem in item.en'
-                  :key='elem[0]'
-                >
-                <span>
-                  {{elem[0]}}
-                </span>
-                </li>
-            </ol>
-            <ul v-if='item.ru' class='ru'>
-                <li
-                  class='dictionary__line'
-                  :class='elem[1]'
-                  v-for='elem in item.ru'
-                  :key='elem[0]'
-                >
-                <span>
-                  {{elem[0]}}
-                </span>
-                </li>
-            </ul>
-          </div>
-      </div>
+      <DictionaryItem
+        :dictionary='dictionaries_11_1926'
+      />
+    </div>
+    <h2 class='secondary-title heading-light' id='n12-806'>
+      Cry-baby
+    </h2>
+    <div class='dictionary__words-block'>
+      <DictionaryItem
+        :dictionary='dictionaries_12_806'
+      />
     </div>
   </div>
 </template>
 
 <script>
-import saveInfo from '@/helpers/saveInfo';
-import getSavedInfo from '@/helpers/getSavedInfo';
+import DictionaryItem from '@/components/DictionaryItem.vue';
 
 export default {
   name: 'Dictionaries',
+  components: {
+    DictionaryItem,
+  },
   data() {
     return {
       dictionaries_occupations: [
@@ -530,17 +397,68 @@ export default {
           ],
         },
       ],
-      doneDates: {},
+      dictionaries_12_806: [
+        {
+          title: 'Cry-baby',
+          en: [
+            ['well-known', 'common'],
+            ['personality', 'common'],
+            ['guest stars'],
+            ['to award a prize'],
+            ['invention', 'common'],
+            ['other', 'common'],
+            ['significant', 'common'],
+            ['to look around', 'common'],
+            ['you see', 'common'],
+            ['to bring to a ceremony'],
+            ['to play a role'],
+            ['to be called the greatest find', 'not-for-add'],
+            ['to steal under the nose of', 'common'],
+            ['a female star'],
+            ['to nominate'],
+            ['to announce'],
+            ['a contest'],
+            ['leading contestants'],
+            ['to boil each other', 'not-for-add'],
+            ['a scene'],
+            ['audience'],
+            ['to applaud'],
+            ['to run episode'],
+            ['applause'],
+            ['pleasant', 'common'],
+            ["couldn't do anyting with", 'common'],
+          ],
+          ru: [
+            ['хорошо известный', 'common'],
+            ['личность (человек)', 'common'],
+            ['звезды - гости'],
+            ['наградить призом'],
+            ['изобретение', 'common'],
+            ['другой', 'common'],
+            ['значительный', 'common'],
+            ['оглядеться вокруг', 'common'],
+            ['видишь (ли)', 'common'],
+            ['принести на церемонию'],
+            ['играть роль'],
+            ['быть названным величайшей находкой', 'not-for-add'],
+            ['украсть из-под носа (кого-либо)', 'common'],
+            ['звезда - женщина'],
+            ['номинировать'],
+            ['объявить'],
+            ['соревнование'],
+            ['ведущие (основные) участники соревнования'],
+            ['вскипятить друг друга', 'not-for-add'],
+            ['сцена'],
+            ['публика, зрители, аудитория'],
+            ['аплодировать'],
+            ['проиграть (включить для просмотра) эпизод'],
+            ['аплодисменты'],
+            ['приятный', 'common'],
+            ['не мог ничего поделать с', 'common'],
+          ],
+        },
+      ],
     };
-  },
-  created() {
-    this.doneDates = getSavedInfo('done-dates') || {};
-  },
-  methods: {
-    saveDate(name, { target: { value } }) {
-      this.doneDates[name] = value;
-      saveInfo('done-dates', this.doneDates);
-    },
   },
 };
 </script>

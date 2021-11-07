@@ -16,6 +16,7 @@
         <li class='linking-words__line'>because</li>
         <li class='linking-words__line'>for</li>
         <li class='linking-words__line'>but</li>
+        <li class='linking-words__line'>like</li>
         <li class='linking-words__line'>such as</li>
         <li class='linking-words__line'>whereas</li>
       </ul>
