@@ -23,6 +23,12 @@
               <span class='contents-list__topic'>Number of teenagers with Saturday job drops</span>
             </a>
           </li>
+          <li class='contents-list__line'>
+            <a href='#n12-806'>
+              <span class='contents-list__unique-number'>№12-806 </span>
+              <span class='contents-list__topic'>Cry-baby</span>
+            </a>
+          </li>
         </ol>
       </li>
     </ol>
@@ -33,7 +39,9 @@
       />
     </div>
     <h2 class='secondary-title heading-light' id='exam-tasks'>Exam tasks</h2>
-    <h4 class='title-4' id='n10-9983'>№10 - 9983</h4>
+    <h2 class='secondary-title heading-light'  id='n10-9983'>
+      Time management
+    </h2>
     <div class='dictionary__words-block dictionary__words-block_another-topic'>
       <DictionaryItem
         :dictionary='dictionaries_10_9983'
@@ -45,6 +53,14 @@
     <div class='dictionary__words-block'>
       <DictionaryItem
         :dictionary='dictionaries_11_1926'
+      />
+    </div>
+    <h2 class='secondary-title heading-light' id='n12-806'>
+      Cry-baby
+    </h2>
+    <div class='dictionary__words-block'>
+      <DictionaryItem
+        :dictionary='dictionaries_12_806'
       />
     </div>
   </div>
@@ -378,6 +394,67 @@ export default {
             ['намного менее опытные'],
             ['вдохновлять'],
             ['означать'],
+          ],
+        },
+      ],
+      dictionaries_12_806: [
+        {
+          title: 'Cry-baby',
+          en: [
+            ['well-known', 'common'],
+            ['personality', 'common'],
+            ['guest stars'],
+            ['to award a prize'],
+            ['invention', 'common'],
+            ['other', 'common'],
+            ['significant', 'common'],
+            ['to look around', 'common'],
+            ['you see', 'common'],
+            ['to bring to a ceremony'],
+            ['to play a role'],
+            ['to be called the greatest find', 'not-for-add'],
+            ['to steal under the nose of', 'common'],
+            ['a female star'],
+            ['to nominate'],
+            ['to announce'],
+            ['a contest'],
+            ['leading contestants'],
+            ['to boil each other', 'not-for-add'],
+            ['a scene'],
+            ['audience'],
+            ['to applaud'],
+            ['to run episode'],
+            ['applause'],
+            ['pleasant', 'common'],
+            ["couldn't do anyting with", 'common'],
+          ],
+          ru: [
+            ['хорошо известный', 'common'],
+            ['личность (человек)', 'common'],
+            ['звезды - гости'],
+            ['наградить призом'],
+            ['изобретение', 'common'],
+            ['другой', 'common'],
+            ['значительный', 'common'],
+            ['оглядеться вокруг', 'common'],
+            ['видишь (ли)', 'common'],
+            ['принести на церемонию'],
+            ['играть роль'],
+            ['быть названным величайшей находкой', 'not-for-add'],
+            ['украсть из-под носа (кого-либо)', 'common'],
+            ['звезда - женщина'],
+            ['номинировать'],
+            ['объявить'],
+            ['соревнование'],
+            ['ведущие (основные) участники соревнования'],
+            ['вскипятить друг друга', 'not-for-add'],
+            ['сцена'],
+            ['публика, зрители, аудитория'],
+            ['аплодировать'],
+            ['проиграть (включить для просмотра) эпизод'],
+            ['аплодисменты'],
+            ['приятный', 'common'],
+            ['не мог ничего поделать с', 'common'],
           ],
         },
       ],
