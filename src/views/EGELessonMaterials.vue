@@ -8,29 +8,22 @@
   <div class='linking-words'>
     <div class='dictionary__item-inner'>
       <ul>
-        <li class='linking-words__line'>which</li>
-        <li class='linking-words__line'>as well as</li>
-        <li class='linking-words__line'>that</li>
-        <li class='linking-words__line'>whether</li>
-        <li class='linking-words__line'>so</li>
-        <li class='linking-words__line'>because</li>
-        <li class='linking-words__line'>for</li>
-        <li class='linking-words__line'>but</li>
-        <li class='linking-words__line'>like</li>
-        <li class='linking-words__line'>such as</li>
-        <li class='linking-words__line'>whereas</li>
+        <li
+          class='linking-words__line'
+          v-for='item in linking_words.en'
+          :key='item'
+        >
+        {{item}}
+        </li>
       </ul>
       <ul>
-        <li class='linking-words__line-ru'>который</li>
-        <li class='linking-words__line-ru'>так же, как и</li>
-        <li class='linking-words__line-ru'>что</li>
-        <li class='linking-words__line-ru'>ли</li>
-        <li class='linking-words__line-ru'>так, таким образом</li>
-        <li class='linking-words__line-ru'>потому что</li>
-        <li class='linking-words__line-ru'>так как</li>
-        <li class='linking-words__line-ru'>но</li>
-        <li class='linking-words__line-ru'>такие (-ой, -ая) как</li>
-        <li class='linking-words__line-ru'>в то время как</li>
+        <li
+          class='linking-words__line-ru'
+          v-for='item in linking_words.ru'
+          :key='item'
+        >
+        {{item}}
+        </li>
       </ul>
     </div>
     <ol>
@@ -120,6 +113,38 @@ export default {
   name: 'EGELessonMaterials',
   components: {
     InputAnswer,
+  },
+  data() {
+    return {
+      linking_words: {
+        en: [
+          'which',
+          'as well as',
+          'that',
+          'whether',
+          'so',
+          'because',
+          'for',
+          'but',
+          'like',
+          'such as',
+          'whereas',
+        ],
+        ru: [
+          'который',
+          'так же, как и',
+          'что',
+          'ли',
+          'так, таким образом',
+          'потому что',
+          'так как',
+          'но',
+          'как (сравнение)',
+          'такие (-ой, -ая) как',
+          'в то время как',
+        ],
+      },
+    };
   },
 };
 </script>
