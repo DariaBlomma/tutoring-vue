@@ -412,11 +412,36 @@ export default {
         { name: 'Tee', sentence: 3, answerOrder: 4 },
         { name: 'oder', sentence: 3, answerOrder: 5 },
         { name: 'zwei.', sentence: 3, answerOrder: 6 },
+        { name: 'Zum Mittagessen', sentence: 4, answerOrder: 1 },
+        { name: 'esse', sentence: 4, answerOrder: 2 },
+        { name: 'ich', sentence: 4, answerOrder: 3 },
+        { name: 'gerne', sentence: 4, answerOrder: 4 },
+        { name: 'Fleisch', sentence: 4, answerOrder: 5 },
+        { name: 'mit', sentence: 4, answerOrder: 6 },
+        { name: 'Kartoffeln', sentence: 4, answerOrder: 7 },
+        { name: 'oder', sentence: 4, answerOrder: 8 },
+        { name: 'Suppe.', sentence: 4, answerOrder: 9 },
+        { name: 'Meine', sentence: 5, answerOrder: 1 },
+        { name: 'Mutter', sentence: 5, answerOrder: 2 },
+        { name: 'kocht', sentence: 5, answerOrder: 3 },
+        { name: 'gerne.', sentence: 5, answerOrder: 4 },
+        { name: 'Meine', sentence: 6, answerOrder: 1 },
+        { name: 'Mutter', sentence: 6, answerOrder: 2 },
+        { name: 'mag', sentence: 6, answerOrder: 3 },
+        { name: 'Reis,', sentence: 6, answerOrder: 4 },
+        { name: 'Nudeln', sentence: 6, answerOrder: 5 },
+        { name: 'mit', sentence: 6, answerOrder: 6 },
+        { name: 'Gemüse', sentence: 6, answerOrder: 7 },
+        { name: 'und', sentence: 6, answerOrder: 8 },
+        { name: 'Torten.', sentence: 6, answerOrder: 9 },
       ],
       ruSentences: [
         'На завтрак у нас есть хлеб с вареньем или мюсли',
         'Я ем охотнее всего мюсли, моему брату больше нравится хлеб с вареньем.',
         'Я пью одну чашку чая или две.',
+        'На обед я ем охотно мясо с картофелем или суп',
+        'Моя мама готовит с удовольствием(охотно)',
+        'Моей маме нравится рис, лапша с овощами и торты',
       ],
       // для пробы
       // dragCards: [
@@ -439,6 +464,7 @@ export default {
   created() {
     this.getSavedInfo();
     this.getOriginalAnswerSentenceLength();
+    this.dragCards.sort((a, b) => (a.name > b.name ? 1 : -1));
   },
   computed: {
     hasAnswers() {
