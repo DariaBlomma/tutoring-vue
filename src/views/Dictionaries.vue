@@ -29,6 +29,12 @@
               <span class='contents-list__topic'>Cry-baby</span>
             </a>
           </li>
+          <li class='contents-list__line'>
+            <a href='#n15-18-530'>
+              <span class='contents-list__unique-number'>№15-18: 530 </span>
+              <span class='contents-list__topic'>Sales adviser</span>
+            </a>
+          </li>
         </ol>
       </li>
     </ol>
@@ -61,6 +67,14 @@
     <div class='dictionary__words-block'>
       <DictionaryItem
         :dictionary='dictionaries_12_806'
+      />
+    </div>
+    <h2 class='secondary-title heading-light' id='n15-18-530'>
+      Sales adviser
+    </h2>
+    <div class='dictionary__words-block'>
+      <DictionaryItem
+        :dictionary='dictionaries_15_18_530'
       />
     </div>
   </div>
@@ -455,6 +469,92 @@ export default {
             ['аплодисменты'],
             ['приятный', 'common'],
             ['не мог ничего поделать с', 'common'],
+          ],
+        },
+      ],
+      dictionaries_15_18_530: [
+        {
+          title: 'Text',
+          en: [
+            ['sales adviser'],
+            ['to donate money to charities'],
+            ['to decide'],
+            ['a decision'],
+            ['to look for a project abroad'],
+            ['rural development'],
+            ['poor state'],
+            ['face to face'],
+            ['to talk through with husband'],
+            ['expected me to go through with it'],
+            ['to offer services'],
+            ['to receive a reply'],
+            ['in broken English'],
+          ],
+          ru: [
+            ['продавец, консультант'],
+            ['жертвовать деньги на благотворительность'],
+            ['решать'],
+            ['решение'],
+            ['искать проект заграницей'],
+            ['сельское развитие'],
+            ['бедный штат'],
+            ['лицом к лицу'],
+            ['обговорить с мужем'],
+            ['ожидал, что я пройду это'],
+            ['предлагать услуги'],
+            ['полуить отклик'],
+            ['на ломаном английском'],
+          ],
+        },
+        {
+          title: 'Questions',
+          en: [
+            ['to feel bored'],
+            ['to earn money'],
+            ['eager to help'],
+            ['directly'],
+            ['attitude'],
+            ['to accompany'],
+            ['to encourage'],
+            ['to be opposed to her going there'],
+            ['to respect'],
+            ['to arrive'],
+            ['disappointing'],
+            ['scared'],
+            ['angry'],
+            ['during her stay'],
+            ['to manage to improve'],
+            ['conditions'],
+            ['close friends'],
+            ['possible'],
+            ['to raise money'],
+            ['to move to India'],
+            ['to leave'],
+            ['any more'],
+          ],
+          ru: [
+            ['чувствовать себя скучающим'],
+            ['зарабатывать деньги'],
+            ['желающий помочь'],
+            ['напрямую'],
+            ['отношение'],
+            ['сопровождать'],
+            ['воодушевлять, вдохновлять'],
+            ['быть против, чтобы она поехала туда'],
+            ['уважать'],
+            ['прибывать'],
+            ['разачаровывающий'],
+            ['пугающий'],
+            ['злой'],
+            ['в течении ее пребывания'],
+            ['суметь улучшить'],
+            ['условия'],
+            ['близкие друзья'],
+            ['возможный'],
+            ['собирать деньги'],
+            ['переехать в Индию'],
+            ['уезжать'],
+            ['больше (нет)'],
           ],
         },
       ],
