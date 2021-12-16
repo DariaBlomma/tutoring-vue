@@ -35,6 +35,12 @@
               <span class='contents-list__topic'>Sales adviser</span>
             </a>
           </li>
+          <li class='contents-list__line'>
+            <a href='#n1-176'>
+              <span class='contents-list__unique-number'>№1: 176 </span>
+              <span class='contents-list__topic'>Listening about work</span>
+            </a>
+          </li>
         </ol>
       </li>
     </ol>
@@ -75,6 +81,14 @@
     <div class='dictionary__words-block'>
       <DictionaryItem
         :dictionary='dictionaries_15_18_530'
+      />
+    </div>
+    <h2 class='secondary-title heading-light' id='n1-176'>
+      Listening about work
+    </h2>
+    <div class='dictionary__words-block'>
+      <DictionaryItem
+        :dictionary='dictionaries_1_176'
       />
     </div>
   </div>
@@ -555,6 +569,109 @@ export default {
             ['переехать в Индию'],
             ['уезжать'],
             ['больше (нет)'],
+          ],
+        },
+      ],
+      dictionaries_1_176: [
+        {
+          title: 'Part 1',
+          en: [
+            ['Middle School'],
+            ['over the ... weeks'],
+            ['to interact'],
+            ['pupils'],
+            ['to encourage'],
+            ['during'],
+            ['hard'],
+            ['to expect'],
+          ],
+        },
+        {
+          title: 'Part 2',
+          en: [
+            ['City Hospital'],
+            ['to get'],
+            ['experience'],
+            ['we get to see'],
+            ['what it is like to'],
+            ['somewhere'],
+            ['different'],
+            ['pulse'],
+            ['blood pressure'],
+            ['patient'],
+            ['a ward'],
+            ['to serve'],
+            ['to enjoy'],
+            ['to bring'],
+          ],
+        },
+        {
+          title: 'Part 3',
+          en: [
+            ['a store'],
+            ['a waste of time'],
+            ['to put'],
+            ['a shelf/shelves'],
+            ['a break'],
+            ['some of the time'],
+            ['to be able to'],
+            ['a customer'],
+            ['a help desk'],
+            ['responsibility'],
+            ['to teach'],
+            ['anything'],
+          ],
+        },
+        {
+          title: 'Part 4',
+          en: [
+            ['development'],
+            ['clearly'],
+            ['an impression'],
+            ['like (как)'],
+            ['oh my god'],
+            ['to have to'],
+            ['to wear'],
+            ['horrible'],
+            ['to look (выглядеть)'],
+            ['to be afraid of'],
+            ['to call'],
+            ['to arrange'],
+            ['fear'],
+          ],
+        },
+        {
+          title: 'Part 5',
+          en: [
+            ['graphics'],
+            ['a company'],
+            ['basically'],
+            ['except'],
+            ['the staff'],
+            ['to deliver'],
+            ['to collect'],
+            ['equipment'],
+            ['bad'],
+            ['at the beginning'],
+            ['as the days went on'],
+            ['to find'],
+          ],
+        },
+        {
+          title: 'Part 6',
+          en: [
+            ['physical education'],
+            ['to attend'],
+            ['a club'],
+            ['a match'],
+            ['to be aged between (6 and 16)'],
+            ['good'],
+            ['cricket'],
+            ['interaction'],
+            ['others'],
+            ['something'],
+            ['I would like to'],
+            ['an adult'],
           ],
         },
       ],
