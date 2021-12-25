@@ -1,0 +1,17 @@
+.homework {
+    background-color: $dictionaries-page-background;
+    height: 100%;
+
+    .date-goal {
+        color: $hw-date-goal-color;
+    }
+
+    .hw-list {
+        color: $link-light-color;
+        margin-top: 10px;
+
+        &__elem {
+            color: $link-light-color;
+        }
+    }
+}

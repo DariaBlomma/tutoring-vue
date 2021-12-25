@@ -7,6 +7,7 @@ import Zimmer from '../views/Zimmer.vue';
 import Essen from '../views/Essen.vue';
 import Dictionaries from '@/views/Dictionaries.vue';
 import EGELessonMaterials from '@/views/EGELessonMaterials.vue';
+import HWTasks from '../views/HWTasks.vue';
 
 const routes = [
   {
@@ -43,6 +44,11 @@ const routes = [
     path: '/lesson-materials',
     name: 'ege-lesson-materials',
     component: EGELessonMaterials,
+  },
+  {
+    path: '/homework',
+    name: 'hw-tasks',
+    component: HWTasks,
   },
   {
     // path: '/about',
