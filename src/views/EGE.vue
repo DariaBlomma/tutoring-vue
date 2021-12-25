@@ -22,6 +22,14 @@
             Lesson materials
             </router-link>
           </li>
+          <li>
+            <router-link
+              class='light'
+              :to="{name: 'hw-tasks'}"
+            >
+            Homework tasks
+            </router-link>
+          </li>
         <!-- <li><router-link :to="{name: 'en-word-forms'}">Word forms</router-link></li> -->
       </ul>
     </div>

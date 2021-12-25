@@ -14,6 +14,11 @@
     font-size: 18px;
 }
 
+.hw-actual {
+    background-color: $hw-actual-background;
+    color: $dictionaries-page-background;
+}
+
 .centered {
     display: flex;
     justify-content: center;
