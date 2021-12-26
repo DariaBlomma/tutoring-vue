@@ -21,7 +21,7 @@ const routes = [
     component: Horizonte6,
   },
   {
-    path: '/ЕГЭ',
+    path: '/ege',
     name: 'ege',
     component: EGE,
   },
