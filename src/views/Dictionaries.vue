@@ -9,6 +9,9 @@
         <a href='#occupations' class='link'>Occupations</a>
       </li>
       <li class='contents-list__line'>
+        <a href='#music_feelings' class='link'>Feelings about music</a>
+      </li>
+      <li class='contents-list__line'>
         <a href='#exam-tasks' class='link'>Exam tasks</a>
         <ol>
           <li class='contents-list__line'>
@@ -48,6 +51,12 @@
     <div class='dictionary__words-block'>
       <DictionaryItem
         :dictionary='dictionaries_occupations'
+      />
+    </div>
+    <h2 class='secondary-title heading-light' id='music_feelings'>Feelings about music</h2>
+    <div class='dictionary__words-block'>
+      <DictionaryItem
+        :dictionary='dictionaries_music_feelings'
       />
     </div>
     <h2 class='secondary-title heading-light' id='exam-tasks'>Exam tasks</h2>
@@ -191,6 +200,38 @@ export default {
             ['брать (одалживать) книги из'],
             ['быть способным позволить купить'],
             ['библиотекарь', 'main'],
+          ],
+        },
+      ],
+      dictionaries_music_feelings: [
+        {
+          en: [
+            ['to feel joy/sorrow/happy/sad/bored/'],
+            ['to be amazed by'],
+            ['to enjoy'],
+            ['to fall in love with'],
+            ['to support'],
+            ['to disappoint'],
+            ['to seem'],
+            ['to regret'],
+            ['pleasure'],
+            ['sympathy'],
+            ['confidence'],
+            ['indifferent'],
+          ],
+          ru: [
+            ['чувствовать радость/печаль/себя счастливым, грустным, скучающим'],
+            ['быть пораженным чем-либо'],
+            ['наслаждаться'],
+            ['влюбиться в'],
+            ['поддерживать'],
+            ['разачаровывать'],
+            ['казаться'],
+            ['сожалеть'],
+            ['удовольствие'],
+            ['сочувствие'],
+            ['уверенность'],
+            ['безразличие'],
           ],
         },
       ],
