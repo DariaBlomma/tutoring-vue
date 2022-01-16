@@ -5,6 +5,7 @@
     </header>
     <div class='contents'>
       <h1 class='primary-title heading-light'>Homework</h1>
+      <ColorStates/>
       <table class='table'>
         <tr>
           <th></th>
@@ -70,8 +71,11 @@
 </template>
 
 <script>
+import ColorStates from '@/components/ColorStates.vue';
+
 export default {
   name: 'HWTasks',
+  components: { ColorStates },
   data() {
     return {
       hws: [
@@ -121,8 +125,8 @@ export default {
             date: '28.12.21',
             list: [
               ['Записать на английском речь Speaker A из Задания 176 на аудирование', 'done'],
-              ['Разобрать речь Speaker B, С согласно плану Как работать с аудированием. Каждый пункт проговаривать вслух в качестве отчета'],
-              ['Потренироваться говорить в том же темпе, как и оригинал, песню On the railroad. Прислать аудиозапись получившегося'],
+              ['Разобрать речь Speaker B, С согласно плану Как работать с аудированием. Каждый пункт проговаривать вслух в качестве отчета', 'debt'],
+              ['Потренироваться говорить в том же темпе, как и оригинал, песню On the railroad. Прислать аудиозапись получившегося', 'done'],
               [`Найти в интернете английские песни на рождество или новый год,
                 те, которые ты где-либо слышала и те, которые тебе просто понравились. Несколько штук.
                 Может помочь в поиске словосочетание Christmas carols, new year songs
@@ -141,10 +145,17 @@ export default {
           },
           {},
           {
-            actual: true,
+            actual: false,
             date: '15.01.22',
             list: [
-              ['Пункты 2 и 3 из дз на 28.12.21'],
+              ['Пункты 2 и 3 из дз на 28.12.21', 'partially-done'],
+              ['Прослушать песню в Телеграме My heart will go on', 'done'],
+            ],
+            links: [
+              {
+                address: 'https://youtu.be/gGraiFN283E',
+                title: '(Guitar cover) My heart will go on',
+              },
             ],
           },
         ],

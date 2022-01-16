@@ -1,0 +1,37 @@
+.color-states {
+    margin-right: auto;
+
+    &__line {
+        display: flex;
+        margin-top: 10px;
+    }
+
+    &__example {
+        width: 50px;
+        height: 30px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+
+        &--actual {
+            background-color: $hw-actual-background;
+        }
+        &--done {
+            background-color: $hw-done-item-background;
+        }
+        &--partially-done {
+            background-color: $hw-partially-done-item-background;
+        }
+        &--debt {
+            background-color: $hw-debt-item-background;
+        }
+        &--order-important {
+            background-color: $dark-blue-color;
+            color: $link-light-color;
+        }
+    }
+
+    &__explanation {
+        color: $link-light-color;
+    }
+
+}
