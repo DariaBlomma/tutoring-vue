@@ -5,6 +5,7 @@
     </header>
     <div class='contents'>
       <h1 class='primary-title heading-light'>Homework</h1>
+      <ColorStates/>
       <table class='table'>
         <tr>
           <th></th>
@@ -70,8 +71,11 @@
 </template>
 
 <script>
+import ColorStates from '@/components/ColorStates.vue';
+
 export default {
   name: 'HWTasks',
+  components: { ColorStates },
   data() {
     return {
       hws: [
@@ -121,8 +125,8 @@ export default {
             date: '28.12.21',
             list: [
               ['Записать на английском речь Speaker A из Задания 176 на аудирование', 'done'],
-              ['Разобрать речь Speaker B, С согласно плану Как работать с аудированием. Каждый пункт проговаривать вслух в качестве отчета'],
-              ['Потренироваться говорить в том же темпе, как и оригинал, песню On the railroad. Прислать аудиозапись получившегося'],
+              ['Разобрать речь Speaker B, С согласно плану Как работать с аудированием. Каждый пункт проговаривать вслух в качестве отчета', 'debt'],
+              ['Потренироваться говорить в том же темпе, как и оригинал, песню On the railroad. Прислать аудиозапись получившегося', 'done'],
               [`Найти в интернете английские песни на рождество или новый год,
                 те, которые ты где-либо слышала и те, которые тебе просто понравились. Несколько штук.
                 Может помочь в поиске словосочетание Christmas carols, new year songs
@@ -141,12 +145,52 @@ export default {
           },
           {},
           {
-            actual: true,
+            actual: false,
             date: '15.01.22',
             list: [
-              ['Пункты 2 и 3 из дз на 28.12.21'],
+              ['Пункты 2 и 3 из дз на 28.12.21', 'partially-done'],
+              ['Прослушать песню в Телеграме My heart will go on', 'done'],
+            ],
+            links: [
+              {
+                address: 'https://youtu.be/gGraiFN283E',
+                title: '(Guitar cover) My heart will go on',
+              },
             ],
           },
+          {
+            actual: true,
+            date: '17.01.22',
+            list: [
+              ['Пункт 2 дз из на 28.12.21'],
+              ['Заполнить таблицу словообразования на основе словарика Feelings about music',
+                'order-important'],
+              ['Прослушать оригинальную песню Celine Dion My heart will go on',
+                'order-important'],
+              [`Сравнить свои ощущения от гитарной и оригинальной версии этой песни,
+                использую слова из указанного выше словарикаб НО! в другой части речи 
+                (взять из заполненной в пункте 2 таблицы)`,
+              // eslint-disable-next-line indent
+                'order-important'],
+            ],
+            links: [
+              {
+                address: 'https://miro.com/app/board/o9J_kuE-FSk=/?moveToWidget=3458764516690915363&cot=14',
+                title: 'Таблица словообразования на миро',
+              },
+              {
+                address: 'https://daria-blomma-tutoring.herokuapp.com/dictionaries#music_feelings',
+                title: 'Cловарик Feelings about music',
+              },
+              {
+                address: 'https://youtu.be/8u_T0ZEVD24',
+                title: 'Celine Dion My heart will go on',
+              },
+            ],
+          },
+        ],
+        [
+          {}, {}, {}, {},
         ],
       ],
     };
