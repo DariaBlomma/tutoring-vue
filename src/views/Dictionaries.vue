@@ -217,7 +217,7 @@ export default {
             ['pleasure'],
             ['sympathy'],
             ['confidence'],
-            ['indifferent'],
+            ['indifference'],
           ],
           ru: [
             ['чувствовать радость/печаль/себя счастливым, грустным, скучающим'],

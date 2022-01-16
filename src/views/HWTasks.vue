@@ -158,6 +158,39 @@ export default {
               },
             ],
           },
+          {
+            actual: true,
+            date: '17.01.22',
+            list: [
+              ['Пункт 2 дз из на 28.12.21'],
+              ['Заполнить таблицу словообразования на основе словарика Feelings about music',
+                'order-important'],
+              ['Прослушать оригинальную песню Celine Dion My heart will go on',
+                'order-important'],
+              [`Сравнить свои ощущения от гитарной и оригинальной версии этой песни,
+                использую слова из указанного выше словарикаб НО! в другой части речи 
+                (взять из заполненной в пункте 2 таблицы)`,
+              // eslint-disable-next-line indent
+                'order-important'],
+            ],
+            links: [
+              {
+                address: 'https://miro.com/app/board/o9J_kuE-FSk=/?moveToWidget=3458764516690915363&cot=14',
+                title: 'Таблица словообразования на миро',
+              },
+              {
+                address: 'https://daria-blomma-tutoring.herokuapp.com/dictionaries#music_feelings',
+                title: 'Cловарик Feelings about music',
+              },
+              {
+                address: 'https://youtu.be/8u_T0ZEVD24',
+                title: 'Celine Dion My heart will go on',
+              },
+            ],
+          },
+        ],
+        [
+          {}, {}, {}, {},
         ],
       ],
     };
