@@ -1,10 +1,10 @@
 <template>
-<div class="page ege-lesson-materials">
-    <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
-    </header>
-  <h1 class='primary-title heading-light centered'>Lesson materials</h1>
-  <h2 class='secondary-title heading-light'>Linking words</h2>
+  <h2
+    class='secondary-title heading-light'
+    id='linking_words'
+  >
+    Linking words
+  </h2>
   <div class='linking-words'>
     <div class='dictionary__item-inner'>
       <ul>
@@ -103,17 +103,14 @@
       </li>
     </ol>
   </div>
-</div>
 </template>
 
 <script>
 import InputAnswer from '@/components/InputAnswer.vue';
 
 export default {
-  name: 'EGELessonMaterials',
-  components: {
-    InputAnswer,
-  },
+  name: 'LinkingWords',
+  components: { InputAnswer },
   data() {
     return {
       linking_words: {
