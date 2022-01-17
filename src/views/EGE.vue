@@ -17,7 +17,7 @@
           <li>
             <router-link
               class='light'
-              :to="{name: 'ege-lesson-materials'}"
+              :to="{name: 'lesson-materials'}"
             >
             Lesson materials
             </router-link>

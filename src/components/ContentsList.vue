@@ -34,6 +34,7 @@ export default {
   name: 'ContentsList',
   props: {
     contentsList: {
+      // * [{ moveTo, title, sublist: [ { moveTo, uniqueNumber, title }] }]
       type: Array,
       required: true,
     },
