@@ -36,6 +36,10 @@
     color: $link-light-color;
 }
 
+.lesson-required {
+    border: 5px dashed $hw-debt-item-background;
+}
+
 .centered {
     display: flex;
     justify-content: center;

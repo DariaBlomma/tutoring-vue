@@ -28,6 +28,10 @@
             background-color: $dark-blue-color;
             color: $link-light-color;
         }
+
+        &--lesson-required {
+            border: 3px dashed $hw-debt-item-background;
+        }
     }
 
     &__explanation {
