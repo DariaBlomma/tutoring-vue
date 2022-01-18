@@ -6,7 +6,7 @@
     <div class='contents'>
       <h1 class='primary-title heading-light'>Homework</h1>
       <ColorStates :colorsList="hwColorsList"/>
-      <table class='table'>
+      <table class='table' id='hw_table'>
         <tr>
           <th></th>
           <th class='th-light'>Вторник</th>
@@ -67,15 +67,17 @@
         </tr>
       </table>
     </div>
+    <ScrollTopBtn scroll-to-id='hw_table'/>
   </div>
 </template>
 
 <script>
 import ColorStates from '@/components/ColorStates.vue';
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 export default {
   name: 'HWTasks',
-  components: { ColorStates },
+  components: { ColorStates, ScrollTopBtn },
   data() {
     return {
       hwColorsList: [
