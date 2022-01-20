@@ -4,20 +4,23 @@
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
   <h1 class='primary-title heading-light centered'>Lesson materials</h1>
-  <ContentsList :contentsList="lessonsList"/>
+  <ContentsList :contentsList="lessonsList" id='contents_list'/>
   <LinkingWords />
+  <ScrollTopBtn :scrollToId="contents_list"/>
 </div>
 </template>
 
 <script>
 import LinkingWords from '@/components/lessons/LinkingWords.vue';
 import ContentsList from '@/components/ContentsList.vue';
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 export default {
   name: 'LessonMaterials',
   components: {
     LinkingWords,
     ContentsList,
+    ScrollTopBtn,
   },
   data() {
     return {

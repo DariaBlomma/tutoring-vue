@@ -13,6 +13,11 @@ export default {
       type: String,
       required: true,
     },
+    startScroll: {
+      type: Number,
+      required: false,
+      default: 100,
+    },
   },
   data() {
     return {
@@ -27,7 +32,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      if (window.pageYOffset > 300) {
+      if (window.pageYOffset > this.startScroll) {
         this.btnShown = true;
       } else {
         this.btnShown = false;
