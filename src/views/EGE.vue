@@ -30,6 +30,14 @@
             Homework tasks
             </router-link>
           </li>
+          <li>
+            <router-link
+              class='light'
+              :to="{name: 'lesson-reports'}"
+            >
+            Отчеты по проведенным занятиям
+            </router-link>
+          </li>
         <!-- <li><router-link :to="{name: 'en-word-forms'}">Word forms</router-link></li> -->
       </ul>
     </div>
