@@ -26,10 +26,10 @@ export default {
           moveTo: 'linking_words',
           title: 'Linking words',
         },
-        {
-          moveTo: 'my_heart_will_go_on',
-          title: 'Celine Dion. My heart will go on',
-        },
+        // {
+        //   moveTo: 'my_heart_will_go_on',
+        //   title: 'Celine Dion. My heart will go on',
+        // },
       ],
     };
   },

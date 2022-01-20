@@ -17,13 +17,6 @@
               <span class='contents-list__topic'>{{ subline.title }}</span>
             </a>
           </li>
-          <!--
-          <li class='contents-list__line'>
-            <a href='#n1-176'>
-              <span class='contents-list__unique-number'>№1: 176 </span>
-              <span class='contents-list__topic'>Listening about work</span>
-            </a>
-          </li> -->
         </ol>
       </li>
     </ol>

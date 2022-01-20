@@ -5,8 +5,8 @@
     </header>
     <div class='contents'>
       <h1 class='primary-title heading-light'>Homework</h1>
-      <ColorStates/>
-      <table class='table'>
+      <ColorStates :colorsList="hwColorsList"/>
+      <table class='table' id='hw_table'>
         <tr>
           <th></th>
           <th class='th-light'>Вторник</th>
@@ -67,17 +67,45 @@
         </tr>
       </table>
     </div>
+    <ScrollTopBtn scroll-to-id='hw_table'/>
   </div>
 </template>
 
 <script>
 import ColorStates from '@/components/ColorStates.vue';
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 export default {
   name: 'HWTasks',
-  components: { ColorStates },
+  components: { ColorStates, ScrollTopBtn },
   data() {
     return {
+      hwColorsList: [
+        {
+          class: 'actual',
+          explanation: 'Актуальное дз',
+        },
+        {
+          class: 'done',
+          explanation: 'Выполненный пункт',
+        },
+        {
+          class: 'partially-done',
+          explanation: 'Частично выполненный пункт',
+        },
+        {
+          class: 'debt',
+          explanation: 'Долг',
+        },
+        {
+          class: 'order-important',
+          explanation: 'Важен порядок выполнения пунктов',
+        },
+        {
+          class: 'lesson-required',
+          explanation: 'Нужно для урока',
+        },
+      ],
       hws: [
         [
           {},
@@ -165,7 +193,7 @@ export default {
             actual: true,
             date: '18.01.22',
             list: [
-              ['Пункт 2 дз из на 28.12.21'],
+              ['Пункт 2 дз из на 28.12.21', 'lesson-required'],
               ['Заполнить таблицу словообразования на основе словарика Feelings about music',
                 'order-important'],
               ['Прослушать оригинальную песню Celine Dion My heart will go on',
