@@ -67,7 +67,10 @@
         </tr>
       </table>
     </div>
-    <ScrollTopBtn scroll-to-id='hw_table'/>
+    <ScrollTopBtn
+      scroll-to-id='hw_table'
+      startScroll="300"
+    />
   </div>
 </template>
 
