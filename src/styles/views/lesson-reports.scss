@@ -5,5 +5,30 @@
         &__line {
             margin: $margin-normal 0;
         }
+
+        &__date {
+            color: $page-background;
+        }
+
+        .edit-icon {
+            width: 20px;
+            margin-left: $margin-normal;
+        }
+
+        .edit-icon:hover {
+            opacity: 0.5;
+        }
+
+        .planned {
+            color: $light-blue-color;
+        }
+
+        .done {
+            color: $hw-done-item-background;
+        }
+
+        .missed {
+            color: $hw-debt-item-background;
+        }
     }
 }

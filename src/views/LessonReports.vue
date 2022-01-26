@@ -13,31 +13,39 @@
   />
   <div class='plan-info'>
     <div class='plan-info__line'>
-      <b class='plan-info__title'>
+      <b class='plan-info__title planned'>
         Запланировано:
       </b>
-      <span class='span-info__number'>36 </span>
+      <span class='span-info__number'>{{ currentPlan.plannedAmount + ' ' }}</span>
       <span class='span-info__measurement'>часов</span>
     </div>
     <div class='plan-info__line'>
-      <b class='plan-info__title'>
-        Проведено на {{ currentDay }}:
+      <b class='plan-info__title done'>
+        Проведено на
       </b>
-      <span class='span-info__number'>36 </span>
+      <span class='plan-info__date'>{{ currentDay }}</span>
+      <span> : </span>
+      <span class='span-info__number'>{{ currentPlan.done + ' ' }}</span>
       <span class='span-info__measurement'>часов</span>
+      <img src='@/assets/edit.png' class='edit-icon edit-done'>
     </div>
     <div class='plan-info__line'>
-      <b class='plan-info__title'>
-        Пропущено на {{ currentDay }}:
+    </div>
+    <div class='plan-info__line'>
+      <b class='plan-info__title missed'>
+        Пропущено на
       </b>
-      <span class='span-info__number'>36 </span>
+      <span class='plan-info__date'>{{ currentDay }}</span>
+      <span> : </span>
+      <span class='span-info__number'>{{ currentPlan.missed + ' ' }}</span>
       <span class='span-info__measurement'>часов</span>
+      <img src='@/assets/edit.png' class='edit-icon edit-missed'>
     </div>
     <div class='plan-info__line'>
       <b class='plan-info__title'>
         Осталось провести:
       </b>
-      <span class='span-info__number'>36 </span>
+      <span class='span-info__number'>{{ restAmount + ' ' }}</span>
       <span class='span-info__measurement'>часов</span>
     </div>
   </div>
@@ -69,11 +77,32 @@ export default {
         'Декабрь',
       ],
       years: ['2022'],
+      planData: {
+        2022: {
+          0: {
+            plannedAmount: 8,
+            done: 3.5,
+            missed: 1,
+          },
+        },
+      },
     };
   },
   computed: {
     currentDay() {
       return new Date().toLocaleDateString('ru');
+    },
+    currentYear() {
+      return new Date().getFullYear();
+    },
+    currentMonth() {
+      return new Date().getMonth();
+    },
+    currentPlan() {
+      return this.planData[this.currentYear][this.currentMonth];
+    },
+    restAmount() {
+      return this.currentPlan.plannedAmount - this.currentPlan.done;
     },
   },
 };
