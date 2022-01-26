@@ -8,16 +8,19 @@
     >
     <div
       class='horizontal-slider__slide-wrapper'
-      v-for="(month, index) in slides"
+      v-for="(slide, index) in slides"
       :key="index"
     >
       <div
         class='horizontal-slider__slide'
         v-if="handMode
           ? chosenIndex === index
-          : index === currentMonth"
+          : (dateType === 'month'
+              ?  index === currentDate
+              : slide === currentDate
+            )"
       >
-      {{ month }}
+      {{ slide }}
       </div>
     </div>
     <img
@@ -47,6 +50,11 @@ export default {
       type: String,
       default: 'common',
     },
+    // * для автоматического режима, с каким параметром даты актуализировать
+    dateType: {
+      type: String,
+      default: 'month',
+    },
   },
   data() {
     return {
@@ -56,8 +64,15 @@ export default {
     };
   },
   computed: {
-    currentMonth() {
-      return new Date().getMonth();
+    currentDate() {
+      let currentDate;
+      if (this.dateType === 'month') {
+        currentDate = new Date().getMonth();
+      }
+      if (this.dateType === 'year') {
+        currentDate = new Date().getFullYear();
+      }
+      return currentDate;
     },
     getHandModeDuration() {
       // * первые 60 - минуты, вторые 60 - секунды, 1000 - миллисекунды

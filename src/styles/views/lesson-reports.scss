@@ -1,0 +1,9 @@
+.lesson-reports {
+    color: $link-light-color;
+
+    .plan-info {
+        &__line {
+            margin: $margin-normal 0;
+        }
+    }
+}

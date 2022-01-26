@@ -11,6 +11,36 @@
   <HorizontalSlider
     :slides="months"
   />
+  <div class='plan-info'>
+    <div class='plan-info__line'>
+      <b class='plan-info__title'>
+        Запланировано:
+      </b>
+      <span class='span-info__number'>36 </span>
+      <span class='span-info__measurement'>часов</span>
+    </div>
+    <div class='plan-info__line'>
+      <b class='plan-info__title'>
+        Проведено на {{ currentDay }}:
+      </b>
+      <span class='span-info__number'>36 </span>
+      <span class='span-info__measurement'>часов</span>
+    </div>
+    <div class='plan-info__line'>
+      <b class='plan-info__title'>
+        Пропущено на {{ currentDay }}:
+      </b>
+      <span class='span-info__number'>36 </span>
+      <span class='span-info__measurement'>часов</span>
+    </div>
+    <div class='plan-info__line'>
+      <b class='plan-info__title'>
+        Осталось провести:
+      </b>
+      <span class='span-info__number'>36 </span>
+      <span class='span-info__measurement'>часов</span>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -40,6 +70,11 @@ export default {
       ],
       years: ['2022'],
     };
+  },
+  computed: {
+    currentDay() {
+      return new Date().toLocaleDateString('ru');
+    },
   },
 };
 </script>
