@@ -5,8 +5,11 @@
     </header>
   <h1 class='primary-title heading-light centered'>Отчеты по проведенным занятиям</h1>
   <HorizontalSlider
+    :slides="years"
+    status='primary'
+  />
+  <HorizontalSlider
     :slides="months"
-    :handModeHours=5
   />
 </div>
 </template>
@@ -35,6 +38,7 @@ export default {
         'Ноябрь',
         'Декабрь',
       ],
+      years: ['2022'],
     };
   },
 };

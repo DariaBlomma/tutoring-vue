@@ -1,7 +1,8 @@
 <template>
-    <div class='horizontal-slider'>
+    <div class='horizontal-slider' :class="`horizontal-slider--${status}`">
     <img
-      src='~@/assets/prev.png'
+      v-if="showArrows"
+      :src="require(`../assets/prev-${status}.png`)"
       class='control-arrow control-arrow--prev'
       @click="getPrevSlide"
     >
@@ -20,7 +21,8 @@
       </div>
     </div>
     <img
-      src='~@/assets/next.png'
+      v-if="showArrows"
+      :src="require(`../assets/next-${status}.png`)"
       class='control-arrow control-arrow--next'
       @click="getNextSlide"
     >
@@ -40,6 +42,11 @@ export default {
       type: Number,
       default: 5,
     },
+    // * для задания цвета слайдера, если на странице таких блоков несколько
+    status: {
+      type: String,
+      default: 'common',
+    },
   },
   data() {
     return {
@@ -55,6 +62,9 @@ export default {
     getHandModeDuration() {
       // * первые 60 - минуты, вторые 60 - секунды, 1000 - миллисекунды
       return this.handModeHours * 60 * 60 * 1000;
+    },
+    showArrows() {
+      return this.slides.length > 1;
     },
   },
   methods: {
