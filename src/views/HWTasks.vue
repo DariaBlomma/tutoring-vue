@@ -1,5 +1,5 @@
 <template>
-  <div class='page homework'>
+  <div class='page page--dark-theme homework'>
     <header>
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
@@ -13,7 +13,7 @@
     </div>
     <ScrollTopBtn
       scroll-to-id='hw_table'
-      startScroll="300"
+      :startScroll="300"
     />
   </div>
 </template>

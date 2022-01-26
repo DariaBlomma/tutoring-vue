@@ -1,5 +1,5 @@
 <template>
-  <table class='table' :id='tableId'>
+  <table class='table plan-table' :id='tableId'>
     <tr>
       <th></th>
       <th class='th-light'>Вторник</th>
@@ -15,23 +15,29 @@
       <td
         v-for="day in item"
         :key="day"
-        class='row-item hw-row-item'
+        class='row-item plan-table-row-item'
       >
-        <span
+        <div
           v-if="day.date"
           class='date-goal'
         >
         Дз на {{ day.date }}
-        </span>
+        </div>
+        <div
+          v-if="day.time"
+          class='time-goal'
+        >
+        Планируемое время: {{ day.time }}
+        </div>
         <div
           v-if="Object.keys(day).length > 0"
-          :class="['hw-list', {'hw-actual': day.actual}]"
+          :class="['plan-list', {'plan-actual': day.actual}]"
         >
           <ol>
             <li
               v-for="elem in day.list"
               :key="elem"
-              :class="['hw-list__item', {'hw-actual': day.actual }, elem[1]]"
+              :class="['plan-list__item', elem[1]]"
             >
             {{ elem[0] }}
             </li>

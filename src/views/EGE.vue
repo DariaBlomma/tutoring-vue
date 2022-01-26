@@ -44,10 +44,10 @@ export default {
           routeName: 'lesson-reports',
           linkTitle: 'Отчеты по проведенным занятиям',
         },
-        // {
-        //   routeName: 'lesson-plans',
-        //   linkTitle: 'Lesson plans',
-        // },
+        {
+          routeName: 'lesson-plans',
+          linkTitle: 'Lesson plans',
+        },
         // {
         //   routeName: 'en-word-forms',
         //   linkTitle: 'Word forms',
