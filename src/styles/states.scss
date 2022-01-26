@@ -13,32 +13,6 @@
     font-weight: bold;
     font-size: 18px;
 }
-// статусы выполненности дз
-.hw-actual {
-    background-color: $hw-actual-background;
-    color: $dictionaries-page-background;
-}
-
-.done {
-    background-color: $hw-done-item-background;
-}
-
-.partially-done {
-    background-color: $hw-partially-done-item-background;
-}
-
-.debt {
-    background-color: $hw-debt-item-background;
-}
-
-.order-important {
-    background-color: $dark-blue-color;
-    color: $link-light-color;
-}
-
-.lesson-required {
-    border: 5px dashed $hw-debt-item-background;
-}
 
 .centered {
     display: flex;
@@ -69,4 +43,8 @@
 
 .wrong {
     box-shadow: 10px 0px 10px 0px $red-color, -10px 0px 10px 0px $red-color;
+}
+
+.scroll-btn-shown {
+    bottom: 80px;
 }

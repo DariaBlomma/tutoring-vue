@@ -6,31 +6,17 @@
     <div class='contents'>
       <h1 class='primary-title heading-light'>Contents</h1>
       <ul>
-          <li>
+          <li
+            v-for="link in contentLinks"
+            :key="link.routeName"
+          >
             <router-link
               class='light'
-              :to="{name: 'ege-dictionaries'}"
+              :to="{name: `${link.routeName}`}"
             >
-            Dictionaries
+            {{ link.linkTitle }}
             </router-link>
           </li>
-          <li>
-            <router-link
-              class='light'
-              :to="{name: 'lesson-materials'}"
-            >
-            Lesson materials
-            </router-link>
-          </li>
-          <li>
-            <router-link
-              class='light'
-              :to="{name: 'hw-tasks'}"
-            >
-            Homework tasks
-            </router-link>
-          </li>
-        <!-- <li><router-link :to="{name: 'en-word-forms'}">Word forms</router-link></li> -->
       </ul>
     </div>
   </div>
@@ -39,5 +25,35 @@
 <script>
 export default {
   name: 'EGE',
+  data() {
+    return {
+      contentLinks: [
+        {
+          routeName: 'ege-dictionaries',
+          linkTitle: 'Dictionaries',
+        },
+        {
+          routeName: 'lesson-materials',
+          linkTitle: 'Lesson materials',
+        },
+        {
+          routeName: 'hw-tasks',
+          linkTitle: 'Homework tasks',
+        },
+        {
+          routeName: 'lesson-reports',
+          linkTitle: 'Отчеты по проведенным занятиям',
+        },
+        {
+          routeName: 'lesson-plans',
+          linkTitle: 'Lesson plans',
+        },
+        // {
+        //   routeName: 'en-word-forms',
+        //   linkTitle: 'Word forms',
+        // },
+      ],
+    };
+  },
 };
 </script>
