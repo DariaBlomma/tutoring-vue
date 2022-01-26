@@ -1,0 +1,25 @@
+.horizontal-slider {
+    display: flex;
+    width: 300px;
+    margin: $margin-normal auto;
+
+    &__slide {
+        color: $page-background;
+        border: 1px solid $page-background;
+        border-radius: 20px;
+        padding: $margin-normal/2 $margin-normal;
+    }
+
+    .control-arrow {
+        height: 25px;
+        margin: auto 0;
+
+        &--prev {
+            margin-right: auto;
+        }
+
+        &--next {
+            margin-left: auto;
+        }
+    }
+}
