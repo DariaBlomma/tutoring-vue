@@ -1,83 +1,63 @@
 <template>
-  <div class='page homework'>
+  <div class='page page--dark-theme homework'>
     <header>
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
     <div class='contents'>
       <h1 class='primary-title heading-light'>Homework</h1>
-      <ColorStates/>
-      <table class='table'>
-        <tr>
-          <th></th>
-          <th class='th-light'>Вторник</th>
-          <th class='th-light'>Четверг</th>
-          <th class='th-light'>Суббота</th>
-          <th class='th-light'>Воскресенье</th>
-        </tr>
-        <tr
-          v-for="item in hws"
-          :key="item"
-        >
-          <td></td>
-          <td
-            v-for="day in item"
-            :key="day"
-            class='row-item hw-row-item'
-          >
-            <span
-              v-if="day.date"
-              class='date-goal'
-            >
-            Дз на {{ day.date }}
-            </span>
-            <div
-              v-if="Object.keys(day).length > 0"
-              :class="['hw-list', {'hw-actual': day.actual}]"
-            >
-              <ol>
-                <li
-                  v-for="elem in day.list"
-                  :key="elem"
-                  :class="['hw-list__item', {'hw-actual': day.actual }, elem[1]]"
-                >
-                {{ elem[0] }}
-                </li>
-              </ol>
-              <ul v-if="day.links">
-                <h4 class='title-4'>Links</h4>
-                <li
-                    v-for="link in day.links"
-                    :key="link.address"
-                >
-                  <a
-                    :href="link.address"
-                  >
-                    {{ link.title }}
-                  </a>
-                </li>
-              </ul>
-              <div
-                v-if="day.addInfo"
-                v-html="day.addInfo"
-                class='add-info'
-              >
-              </div>
-            </div>
-          </td>
-        </tr>
-      </table>
+      <ColorStates :colorsList="hwColorsList"/>
+      <PlanTable
+        tableId='hw_table'
+        :tableArray="hws"
+      />
     </div>
+    <ScrollTopBtn
+      scroll-to-id='hw_table'
+      :startScroll="300"
+    />
   </div>
 </template>
 
 <script>
 import ColorStates from '@/components/ColorStates.vue';
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
+import PlanTable from '@/components/PlanTable.vue';
 
 export default {
   name: 'HWTasks',
-  components: { ColorStates },
+  components: {
+    ColorStates,
+    ScrollTopBtn,
+    PlanTable,
+  },
   data() {
     return {
+      hwColorsList: [
+        {
+          class: 'actual',
+          explanation: 'Актуальное дз',
+        },
+        {
+          class: 'done',
+          explanation: 'Выполненный пункт',
+        },
+        {
+          class: 'partially-done',
+          explanation: 'Частично выполненный пункт',
+        },
+        {
+          class: 'debt',
+          explanation: 'Долг',
+        },
+        {
+          class: 'order-important',
+          explanation: 'Важен порядок выполнения пунктов',
+        },
+        {
+          class: 'lesson-required',
+          explanation: 'Нужно для урока',
+        },
+      ],
       hws: [
         [
           {},
@@ -158,17 +138,20 @@ export default {
               },
             ],
           },
+          {},
+        ],
+        [
           {
             actual: true,
-            date: '17.01.22',
+            date: '18.01.22',
             list: [
-              ['Пункт 2 дз из на 28.12.21'],
+              ['Пункт 2 дз из на 28.12.21', 'lesson-required'],
               ['Заполнить таблицу словообразования на основе словарика Feelings about music',
                 'order-important'],
               ['Прослушать оригинальную песню Celine Dion My heart will go on',
                 'order-important'],
               [`Сравнить свои ощущения от гитарной и оригинальной версии этой песни,
-                использую слова из указанного выше словарикаб НО! в другой части речи 
+                использую слова из указанного выше словарикаб НО! в другой части речи
                 (взять из заполненной в пункте 2 таблицы)`,
               // eslint-disable-next-line indent
                 'order-important'],
@@ -188,9 +171,7 @@ export default {
               },
             ],
           },
-        ],
-        [
-          {}, {}, {}, {},
+          {}, {}, {},
         ],
       ],
     };

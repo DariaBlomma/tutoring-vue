@@ -6,8 +6,10 @@ import EGE from '../views/EGE.vue';
 import Zimmer from '../views/Zimmer.vue';
 import Essen from '../views/Essen.vue';
 import Dictionaries from '@/views/Dictionaries.vue';
-import EGELessonMaterials from '@/views/EGELessonMaterials.vue';
+import LessonMaterials from '@/views/LessonMaterials.vue';
 import HWTasks from '../views/HWTasks.vue';
+import LessonReports from '@/views/LessonReports.vue';
+import LessonPlans from '../views/LessonPlans.vue';
 
 const routes = [
   {
@@ -42,13 +44,23 @@ const routes = [
   },
   {
     path: '/lesson-materials',
-    name: 'ege-lesson-materials',
-    component: EGELessonMaterials,
+    name: 'lesson-materials',
+    component: LessonMaterials,
   },
   {
     path: '/homework',
     name: 'hw-tasks',
     component: HWTasks,
+  },
+  {
+    path: '/lesson-reports',
+    name: 'lesson-reports',
+    component: LessonReports,
+  },
+  {
+    path: '/lesson-plans',
+    name: 'lesson-plans',
+    component: LessonPlans,
   },
   {
     // path: '/about',
