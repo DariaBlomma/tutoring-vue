@@ -48,3 +48,13 @@
 .scroll-btn-shown {
     bottom: 80px;
 }
+
+.icon {
+    width: 20px;
+}
+
+.close-icon {
+    position: absolute;
+    right: $margin-normal;
+    top: -$margin-normal;
+}

@@ -1,34 +1,129 @@
 .lesson-reports {
     color: $link-light-color;
 
-    .plan-info {
-        &__line {
-            margin: $margin-normal 0;
+    &__main {
+        margin-top: $margin-normal*3;
+        display: grid;
+        grid-template-areas: 
+            'plan edit'
+            'history history';
+        grid-gap: $margin-normal*2;
+        justify-content: center;
+
+        .plan-info {
+            grid-area: plan;
+
+            &__line {
+                margin: $margin-normal 0;
+            }
+    
+            &__date {
+                color: $page-background;
+            }
+    
+            .edit-icon {
+                margin-left: $margin-normal;
+            }
+    
+            .edit-icon:hover {
+                opacity: 0.5;
+            }
+        }
+    
+        .edit-info {
+            grid-area: edit;
+            display: grid;
+            grid-template-areas: 
+                'title title'
+                'column_date column_time'
+                'comment comment';
+            grid-gap: $margin-normal;
+            position: relative;
+            
+            &__title {
+                margin-bottom: $margin-normal;
+                grid-area: title;
+                justify-self: center;
+                align-self: center;
+            }
+        
+            &__column {
+                display: flex;
+                flex-direction: column;
+            }
+        
+            &__column--date {
+                grid-area: column_date;
+            }
+        
+            &__column--time {
+                grid-area: column_time;
+            }
+    
+            &__column--comment {
+                grid-area: comment;
+            }
+    
+            &__input {
+                height: 45px;
+            }
+    
+            &__input--number {
+                width: 50%;
+                margin: 0 auto;
+            }
         }
 
-        &__date {
-            color: $page-background;
-        }
+        .history-info {
+            position: relative;
+            grid-area: history;
+            display: grid;
+            grid-template-areas: 
+                'history_title history_title'
+                'done missed';
+            grid-gap: $margin-normal;
 
-        .edit-icon {
-            width: 20px;
-            margin-left: $margin-normal;
-        }
+            &__table td, &__table th {
+                border-color: $link-light-color;
+            }
 
-        .edit-icon:hover {
-            opacity: 0.5;
-        }
+            &__table th {
+                color: $page-background;
+            }
 
-        .planned {
-            color: $light-blue-color;
-        }
+            &__block-title {
+                grid-area: history_title;
+                justify-self: center;
+                align-self: center;
+                color: $page-background;
+            }
 
-        .done {
-            color: $hw-done-item-background;
-        }
+            &__column--done {
+                grid-area: done;
+            }
 
-        .missed {
-            color: $hw-debt-item-background;
+            &__column--missed {
+                grid-area: missed;
+            }
+
+            &__line {
+                margin-top: $margin-normal;
+            }
         }
     }
+
+    // * states
+    .planned {
+        color: $light-blue-color;
+    }
+
+    .done {
+        color: $hw-done-item-background;
+    }
+
+    .missed {
+        color: $hw-debt-item-background;
+    }
+
+
 }
