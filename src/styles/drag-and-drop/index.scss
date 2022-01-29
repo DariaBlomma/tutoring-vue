@@ -24,10 +24,10 @@
 }
 
 .to-drag-box__card {
-    border: 1px solid $primary-text-color;
+    border: 1px solid $_2-grey-color;
     font-weight: bold;
-    color: $primary-text-color;
-    background-color: $beige-color;
+    color: $_2-grey-color;
+    background-color: $_0_yellow-color;
 }
 
 .result-output__line {
@@ -43,5 +43,5 @@
 .result-output__card {
     width: $card-width + 10;
     min-height: $card-height + 10;
-    border: 2px dashed $link-color;
+    border: 2px dashed $blue-purple-color;
 }

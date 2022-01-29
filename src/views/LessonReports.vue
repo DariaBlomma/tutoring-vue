@@ -3,7 +3,7 @@
     <header>
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
-  <h1 class='primary-title heading-light centered'>Отчеты по проведенным занятиям</h1>
+  <h1 class='primary-title heading-white centered'>Отчеты по проведенным занятиям</h1>
   <HorizontalSlider
     :slides="years"
     status='primary'

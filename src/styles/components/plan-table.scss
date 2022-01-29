@@ -1,50 +1,78 @@
 .plan-table {
-  .date-goal {
-    color: $hw-date-goal-color;
+  &__row-item {
+    vertical-align: top;
   }
 
-  .time-goal {
-    color: $link-color;
+  &__date-goal {
+    color: $_1_orange_color;
   }
-  .plan-table-row-item {
-      vertical-align: top;
-  }
-
-  .plan-list {
-    background-color: $grey-background-color;
-    color: $primary-text-color;;
-    margin-top: 10px;
-    padding: 15px;
-
-    &__elem {
-      color: $primary-text-color;;
-    }
+  
+  &__time-goal {
+    color: $light-blue-color;
   }
 
   // статусы запланированного
   .plan-actual {
-    background-color: $hw-actual-background;
-    color: $page-dark-theme-background;
-  }
+    background-color: $yellow-mate-color;
+    color: $_3_grey-color;
 
+    .link {
+      color: $middle-blue-color;
+    }
+
+    .title-4 {
+      color: $_3_orange_color;
+    }
+
+    .list-type-colored li:before {
+      color: $_3_grey-color;
+    }
+
+    .plan-list__item {
+      color: $_3_grey-color;
+    }
+  }
   .done {
-    background-color: $hw-done-item-background;
+    background-color: $_3_green-mate-color;
   }
-
+  
   .partially-done {
-    background-color: $hw-partially-done-item-background;
+    background-color: $_2_orange-color;
   }
-
+  
   .debt {
-    background-color: $hw-debt-item-background;
+    background-color: $_2-red-color;
   }
-
+  
   .order-important {
-    background-color: $dark-blue-color;
-    color: $link-light-color;
+    box-shadow: 6px 5px 11px $dark-blue-color;
+  }
+  
+  .lesson-required {
+    border: 2px solid $_3_red-color;
+  }
+  
+  .add-info {
+    &__line {
+      color: $_0-grey-color;
+    }
+  }
+}
+
+.plan-list {
+  background-color: $_1-grey-color;
+  margin-top: 10px;
+  padding: 15px;
+
+  &__item {
+    color: $_0-grey-color;
   }
 
-  .lesson-required {
-    border: 5px dashed $hw-debt-item-background;
+  &__item.partially-done, &__item.done, &__item.debt {
+    color: $_3_grey-color;
+  }
+
+  &__item.order-important {
+    color: $_0-grey-color;
   }
 }

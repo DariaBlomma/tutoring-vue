@@ -13,29 +13,28 @@
         margin-right: 10px;
 
         &--actual {
-            background-color: $hw-actual-background;
+            background-color: $yellow-mate-color;
         }
         &--done {
-            background-color: $hw-done-item-background;
+            background-color: $_3_green-mate-color;
         }
         &--partially-done {
-            background-color: $hw-partially-done-item-background;
+            background-color: $_2_orange-color;
         }
         &--debt {
-            background-color: $hw-debt-item-background;
+            background-color: $_2-red-color;
         }
         &--order-important {
-            background-color: $dark-blue-color;
-            color: $link-light-color;
+            box-shadow: 6px 5px 2px $dark-blue-color;
         }
 
         &--lesson-required {
-            border: 3px dashed $hw-debt-item-background;
+            border: 2px solid $_3-red-color;
         }
     }
 
     &__explanation {
-        color: $link-light-color;
+        color: $_0-grey-color;
     }
 
 }

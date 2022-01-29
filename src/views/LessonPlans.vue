@@ -4,7 +4,7 @@
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
     <div class='contents'>
-      <h1 class='primary-title heading-light'>Lesson plans</h1>
+      <h1 class='primary-title heading-white'>Lesson plans</h1>
       <ColorStates :colorsList="plansColorsList"/>
       <PlanTable
         tableId='lesson_plans_table'

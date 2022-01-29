@@ -27,7 +27,7 @@
           :data-answer='item.answer'
       >
       <div class='dictionary__item-inner'>
-        <ol class='en'>
+        <ol class='list-type-colored en'>
             <li
               class='dictionary__line dictionary__line_en'
               :class='elem[1]'

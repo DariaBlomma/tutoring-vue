@@ -1,5 +1,5 @@
 .lesson-reports {
-    color: $link-light-color;
+    color: $_0-grey-color;
 
     &__main {
         margin-top: $margin-normal*3;
@@ -18,7 +18,7 @@
             }
     
             &__date {
-                color: $page-background;
+                color: $_1_orange_color;
             }
     
             .edit-icon {
@@ -84,18 +84,18 @@
             grid-gap: $margin-normal;
 
             &__table td, &__table th {
-                border-color: $link-light-color;
+                border-color: $_0-grey-color;
             }
 
             &__table th {
-                color: $page-background;
+                color: $_1_orange_color;
             }
 
             &__block-title {
                 grid-area: history_title;
                 justify-self: center;
                 align-self: center;
-                color: $page-background;
+                color: $_1_orange_color;
             }
 
             &__column--done {
@@ -118,11 +118,11 @@
     }
 
     .done {
-        color: $hw-done-item-background;
+        color: $_3_green-mate-color;
     }
 
     .missed {
-        color: $hw-debt-item-background;
+        color: $_2-red-color;
     }
 
 

@@ -1,6 +1,6 @@
 <template>
   <h2
-    class='secondary-title heading-light'
+    class='secondary-title heading-white'
     id='linking_words'
   >
     Linking words

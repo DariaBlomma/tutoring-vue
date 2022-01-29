@@ -5,7 +5,7 @@ $block: '.horizontal-slider';
     justify-content: center;
     width: 300px;
     margin: $margin-normal auto;
-    color: $page-background;
+    color: $_1_orange_color;
 
     &--primary {
         color: $light-blue-color;      
@@ -13,7 +13,7 @@ $block: '.horizontal-slider';
 
     &__slide {
         color: inherit;
-        border: 1px solid $page-background;
+        border: 1px solid $_1_orange_color;
         border-radius: 20px;
         border-color: inherit;
         padding: $margin-normal/2 $margin-normal;
