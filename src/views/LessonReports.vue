@@ -7,9 +7,11 @@
   <HorizontalSlider
     :slides="years"
     status='primary'
+    dateType='year'
   />
   <HorizontalSlider
     :slides="months"
+    @slide-chosen="changeShownPlan"
   />
   <main class='lesson-reports__main'>
     <div class='plan-info'>
@@ -166,6 +168,11 @@ export default {
             done: 3.5,
             missed: 1,
           },
+          1: {
+            plannedAmount: 8,
+            done: 0,
+            missed: 0,
+          },
         },
       },
       showEditInfo: false,
@@ -252,6 +259,9 @@ export default {
         this.updateCurrentPlan(obj);
         saveInfo('lesson-reports__planData', this.planData);
       }
+    },
+    changeShownPlan(info) {
+      console.log('info: ', info);
     },
   },
 };

@@ -20,7 +20,8 @@
               : slide === currentDate
             )"
       >
-      {{ slide }}
+      Slide {{ slide }}
+      date {{ currentDate }}
       </div>
     </div>
     <img
@@ -33,6 +34,9 @@
 </template>
 
 <script>
+import saveInfo from '@/helpers/saveInfo';
+import getSavedInfo from '@/helpers/getSavedInfo';
+
 export default {
   name: 'HorizontalSlider',
   props: {
@@ -61,6 +65,7 @@ export default {
       chosenIndex: 0,
       // * ручной режим переключения слайдера
       handMode: false,
+      handModeExpirationDate: 0,
     };
   },
   computed: {
@@ -74,6 +79,15 @@ export default {
       }
       return currentDate;
     },
+    currentYear() {
+      return new Date().getFullYear();
+    },
+    currentMonth() {
+      return new Date().getMonth();
+    },
+    currentDay() {
+      return new Date().getDate();
+    },
     getHandModeDuration() {
       // * первые 60 - минуты, вторые 60 - секунды, 1000 - миллисекунды
       return this.handModeHours * 60 * 60 * 1000;
@@ -82,11 +96,30 @@ export default {
       return this.slides.length > 1;
     },
   },
+  created() {
+    console.log('this.dateType: ', this.dateType);
+    const sliderInfo = getSavedInfo(`h_slider__${this.dateType}`);
+    console.log('this.dateType: ', this.dateType);
+    if (sliderInfo) {
+      this.handModeExpirationDate = sliderInfo.expirationDate;
+      this.chosenIndex = sliderInfo.index;
+      this.handMode = sliderInfo.mode;
+    }
+    this.checkHandMode();
+  },
   methods: {
-    clearHandMode() {
+    setHandMode() {
+
+    },
+    checkHandMode() {
+      const currentDate = +new Date();
+      if (currentDate > this.handModeExpirationDate
+        || this.handModeExpirationDate - currentDate === 0) return;
+      // this.handMode = true;
       setTimeout(() => {
         this.handMode = false;
-      }, this.getHandModeDuration);
+      }, this.handModeExpirationDate - currentDate);
+      console.log('this.handModeExpirationDate - currentDate: ', this.handModeExpirationDate - currentDate);
     },
     getNextSlide() {
       this.handMode = true;
@@ -95,6 +128,21 @@ export default {
       } else {
         this.chosenIndex++;
       }
+
+      const handModeExpirationDate = new Date();
+      handModeExpirationDate.setHours(23, 59, 59, 59); // сегодня, 23:59:59.
+      saveInfo(`h_slider__${this.dateType}`,
+        {
+          mode: this.handMode,
+          expirationDate: +handModeExpirationDate,
+          index: this.chosenIndex,
+        });
+
+      const emitInfo = {
+        sliderType: this.dateType,
+        index: this.chosenIndex,
+      };
+      this.$emit('slide-chosen', emitInfo);
     },
     getPrevSlide() {
       this.handMode = true;
@@ -103,6 +151,21 @@ export default {
       } else {
         this.chosenIndex--;
       }
+
+      const handModeExpirationDate = new Date();
+      handModeExpirationDate.setHours(23, 59, 59, 59); // сегодня, 23:59:59.
+      saveInfo(`h_slider__${this.dateType}`,
+        {
+          mode: this.handMode,
+          expirationDate: +handModeExpirationDate,
+          index: this.chosenIndex,
+        });
+
+      const emitInfo = {
+        sliderType: this.dateType,
+        index: this.chosenIndex,
+      };
+      this.$emit('slide-chosen', emitInfo);
     },
   },
 };
