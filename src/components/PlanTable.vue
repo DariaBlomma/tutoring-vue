@@ -15,17 +15,17 @@
       <td
         v-for="day in item"
         :key="day"
-        class='row-item plan-table-row-item'
+        class='row-item plan-table__row-item'
       >
         <div
           v-if="day.date"
-          class='date-goal'
+          class='plan-table__date-goal'
         >
         Дз на {{ day.date }}
         </div>
         <div
           v-if="day.time"
-          class='time-goal'
+          class='plan-table__time-goal'
         >
         Планируемое время: {{ day.time }}
         </div>
@@ -33,7 +33,7 @@
           v-if="Object.keys(day).length > 0"
           :class="['plan-list', {'plan-actual': day.actual}]"
         >
-          <ol>
+          <ol class='list-type-colored'>
             <li
               v-for="elem in day.list"
               :key="elem"
@@ -50,6 +50,7 @@
             >
               <a
                 :href="link.address"
+                class='link'
               >
                 {{ link.title }}
               </a>

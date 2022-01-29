@@ -3,7 +3,7 @@
     <header>
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
-  <h1 class='primary-title heading-light centered'>Lesson materials</h1>
+  <h1 class='primary-title heading-white centered'>Lesson materials</h1>
   <ContentsList :contentsList="lessonsList" id='contents_list'/>
   <LinkingWords />
   <ScrollTopBtn :scrollToId="contents_list"/>

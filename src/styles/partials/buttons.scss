@@ -3,7 +3,7 @@
     margin: 10px;
     text-decoration: none;
     padding-top: 9px;
-    color: $page-background;
+    color: $_1_orange_color;
     text-align: center;
     line-height: 20px;
     display: block;
@@ -16,8 +16,8 @@
 
 .btn:not(.active) {
     box-shadow: inset 0 1px 1px rgb(55, 81, 125 / 80%), inset 0 -1px 0px rgb(63, 59, 113 / 20%), 0 9px 16px 0 rgb(0, 0, 0 / 30%), 0 4px 3px 0 rgb(0, 0, 0 / 30%), 0 0 0 1px #0a0e1e;
-    background: $page-dark-theme-background;
-    border: 1px solid $page-background;
+    background: $_3_grey-color;
+    border: 1px solid $_1_orange_color;
     box-shadow: inset 0 1px 1px rgb(55, 81, 125 / 80%), inset 0 -1px 0px rgb(63, 59, 113 / 20%), 0 9px 16px 0 #ffa50061, 0 4px 3px 0 rgb(0, 0, 0 / 30%), 0 0 0 1px #0a0e1e;
     border-radius: 20px;
 }

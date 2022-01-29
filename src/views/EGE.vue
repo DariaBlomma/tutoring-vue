@@ -4,7 +4,7 @@
       <router-link class='go-back light' :to="{name: 'home'}">Go back</router-link>
     </header>
     <div class='contents'>
-      <h1 class='primary-title heading-light'>Contents</h1>
+      <h1 class='primary-title heading-white'>Contents</h1>
       <ul>
           <li
             v-for="link in contentLinks"

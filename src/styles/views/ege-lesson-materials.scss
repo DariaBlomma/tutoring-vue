@@ -1,20 +1,18 @@
 .ege-lesson-materials {
-    background-color: $page-dark-theme-background;
+    background-color: $_3_grey-color;
     height: 100%;
 }
 
 .linking-words {
-    // display: flex;
-
     &__line {
-        color: $link-color;
+        color: $light-blue-color;
     }
 
     &__line-ru {
-        color: $link-light-color;
+        color: $_0-grey-color;
     }
 
     &__example {
-        color: $grey-background-color;
+        color: $_0-grey-color;
     }
 }

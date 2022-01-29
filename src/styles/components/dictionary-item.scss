@@ -14,14 +14,13 @@
     }
 
     &__line {
-        background-color: $light-green-color;
+        background-color: $_2_green-mate-color;
         border: 1px solid $dark-green-color;
         margin-bottom: 5px;
         min-width: max-content;
-        color: $link-light-color;
 
         &_en {
-            background-color: $grey-background-color;
+            background-color: $_0_green_mate_color;
             margin-right: 10px;
         }
     }
@@ -37,15 +36,16 @@
     max-width: fit-content;
 
     &__title {
-        color: $heading-blue-color;
+        color: $light-blue-color;
     }
 
     &__line {
-        color: $heading-blue-color;
+        color: $light-blue-color;
     }
 
     .add {
-        margin: 10px auto;
+        margin: $margin-normal auto;
+        margin-bottom: $margin-normal*2;
     }
 }
 
@@ -55,7 +55,7 @@
 
 .main {
     background-color: $dark-green-color;
-    border: 1px solid $grey-background-color;
+    border: 1px solid $_0_green_mate_color;
 }
 
 .main span {
@@ -64,7 +64,7 @@
 
 .new {
     font-style: italic;
-    background-color: $heading-blue-color;
+    background-color: $blue-purple-color;
 }
 
 .not-for-add {
@@ -72,5 +72,5 @@
 }
 
 .common {
-    background-color: $beige-color;
+    background-color: $_0_yellow-color;
 }

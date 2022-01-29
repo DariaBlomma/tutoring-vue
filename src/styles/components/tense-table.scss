@@ -10,7 +10,7 @@
 
     th, td {
         box-shadow: $card-bow-shadow;
-        background-color: $beige-color;
+        background-color: $_0_yellow-color;
     }
 }
 
@@ -20,10 +20,10 @@
 
 .important-letter, .short-rule {
     font-size: 1.4em;
-    color: $link-color;
-    text-shadow: 1px 1px 2px $link-color;
+    color: $blue-purple-color;
+    text-shadow: 1px 1px 2px $blue-purple-color;
 }
 
 .important-ending {
-    color: $link-color;
+    color: $blue-purple-color;
 }

@@ -1,5 +1,5 @@
 .dictionary {
-    background-color: $page-dark-theme-background;
+    background-color: $_3_grey-color;
     height: 100%;
 
     &__words-block {
@@ -13,19 +13,5 @@
             //     -4px -4px 29px -6px rgba(174, 171, 200, 0.2) inset;
             // }
         // }
-    }
-}
-
-.contents-list {
-    &__line {
-        color: $link-light-color;
-    }
-
-    &__unique-number {
-        color: $heading-blue-color;
-    }
-
-    &__topic {
-        color: $link-light-color
     }
 }

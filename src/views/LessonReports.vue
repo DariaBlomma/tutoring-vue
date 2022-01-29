@@ -3,13 +3,15 @@
     <header>
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
-  <h1 class='primary-title heading-light centered'>Отчеты по проведенным занятиям</h1>
+  <h1 class='primary-title heading-white centered'>Отчеты по проведенным занятиям</h1>
   <HorizontalSlider
     :slides="years"
     status='primary'
+    dateType='year'
   />
   <HorizontalSlider
     :slides="months"
+    @slide-chosen="changeShownPlan"
   />
   <main class='lesson-reports__main'>
     <div class='plan-info'>
@@ -53,6 +55,13 @@
           Осталось провести:
         </b>
         <span class='span-info__number'>{{ restAmount + ' ' }}</span>
+        <span class='span-info__measurement'>часов</span>
+      </div>
+      <div class='plan-info__line'>
+        <b class='plan-info__title debt'>
+          Долг:
+        </b>
+        <span class='span-info__number'>{{ currentPlan.debt + ' ' }}</span>
         <span class='span-info__measurement'>часов</span>
       </div>
       <button
@@ -128,13 +137,12 @@
 
 <script>
 // todo:
-// todo 1) при смене месяца считать долг,
-// todo 2) обнулять в 12 ночи историю изменений,
-// todo 3) пушить новые данные в planData
+// todo 1) обнулять в 12 ночи историю изменений,
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
 import HistoryTable from '@/components/HistoryTable.vue';
 import saveInfo from '@/helpers/saveInfo';
 import getSavedInfo from '@/helpers/getSavedInfo';
+import getDaysInMonth from '@/helpers/getDaysInMonth';
 
 export default {
   name: 'LessonReports',
@@ -162,12 +170,23 @@ export default {
       planData: {
         2022: {
           0: {
-            plannedAmount: 8,
-            done: 3.5,
+            plannedAmount: 6,
+            done: 4.5,
             missed: 1,
+            debt: 0,
+          },
+          1: {
+            plannedAmount: 8,
+            done: 0,
+            missed: 0,
+            debt: 0,
           },
         },
       },
+      // * если в слайдере выбрали что-то
+      handModeYear: null,
+      handModeMonth: null,
+      currMonthDays: null,
       showEditInfo: false,
       editTypeClass: '',
       editTypeTitle: '',
@@ -189,30 +208,31 @@ export default {
       return new Date().toLocaleDateString('ru');
     },
     currentYear() {
-      return new Date().getFullYear();
+      return this.handModeYear || new Date().getFullYear();
     },
     currentMonth() {
-      return new Date().getMonth();
+      return this.handModeMonth || new Date().getMonth();
     },
     currentPlan() {
       return this.planData[this.currentYear][this.currentMonth];
+    },
+    prevMonthPlan() {
+      let prevMonth;
+      if (this.currentMonth === 0) {
+        prevMonth = 11;
+      } else {
+        prevMonth = this.currentMonth - 1;
+      }
+
+      return this.planData[this.currentYear][prevMonth];
     },
     restAmount() {
       return this.currentPlan.plannedAmount - this.currentPlan.done;
     },
   },
   created() {
-    this.doneInfo = getSavedInfo('lesson-reports__history-done') || {};
-    this.missedInfo = getSavedInfo('lesson-reports__history-missed') || {};
-    this.planData = getSavedInfo('lesson-reports__planData') || {
-      2022: {
-        0: {
-          plannedAmount: 8,
-          done: 3.5,
-          missed: 1,
-        },
-      },
-    };
+    this.updateSavedData();
+    this.calculateDebt();
   },
   methods: {
     showEdit(type) {
@@ -251,6 +271,36 @@ export default {
         };
         this.updateCurrentPlan(obj);
         saveInfo('lesson-reports__planData', this.planData);
+      }
+    },
+    changeShownPlan(info) {
+      if (info.sliderType === 'month') {
+        this.handModeMonth = info.index;
+      } else {
+        this.handModeYear = this.years[info.index];
+      }
+    },
+    updateSavedData() {
+      this.doneInfo = getSavedInfo('lesson-reports__history-done') || {};
+      this.missedInfo = getSavedInfo('lesson-reports__history-missed') || {};
+      const savedPlan = getSavedInfo('lesson-reports__planData');
+      if (savedPlan) {
+        this.planData = savedPlan;
+      }
+    },
+    calculateDebt() {
+      // * устанавливаем долг в последний день месяца, 24 часа и сохраняем в lc
+      this.currMonthDays = getDaysInMonth(this.currentMonth, this.currentYear);
+      if (this.currentDay === this.currMonthDays
+      && new Date().getHours() === 24
+      && this.restAmount) {
+        this.currentPlan.debt = this.restAmount;
+        saveInfo('lesson-reports__planData', this.planData);
+      }
+
+      if (this.prevMonthPlan?.debt) {
+        this.currentPlan.debt = this.prevMonthPlan.debt;
+        this.currentPlan.plannedAmount += this.currentPlan.debt;
       }
     },
   },

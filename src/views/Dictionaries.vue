@@ -3,7 +3,7 @@
     <header>
       <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
     </header>
-    <h1 class='primary-title heading-light centered'>Dictionaries</h1>
+    <h1 class='primary-title heading-white centered'>Dictionaries</h1>
     <ContentsList :contentsList="dictionariesContentsList"/>
     <div
       v-for="dictionary in dictionariesList"
@@ -11,13 +11,13 @@
     >
       <h2
         v-if="dictionary.isParentTitle"
-        class='secondary-title heading-light'
+        class='secondary-title heading-white'
         :id='dictionary.id'
       >
         {{ dictionary.title }}
       </h2>
       <div v-else>
-        <h2 class='secondary-title heading-light' :id='dictionary.id'>{{ dictionary.title }}</h2>
+        <h2 class='secondary-title heading-white' :id='dictionary.id'>{{ dictionary.title }}</h2>
         <div class='dictionary__words-block'>
           <DictionaryItem
             :dictionary='dictionary.array'

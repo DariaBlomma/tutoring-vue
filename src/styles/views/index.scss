@@ -1,11 +1,11 @@
 .page {
-    background-color: $page-background;
+    background-color: $_1_orange_color;
     padding: 30px;
     width: 100%;
     height: 100vh;
 
     &--dark-theme {
-        background-color: $page-dark-theme-background;
+        background-color: $_3_grey-color;
     }
 }
 
