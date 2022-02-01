@@ -121,14 +121,14 @@
           Проведенные занятия
         </b>
         <div class='history-info__line history-info__line--date'>
-        <HistoryTable :data="doneInfo"/>
+        <HistoryTable :array="doneInfoArray"/>
       </div>
       </div>
       <div class='histoty-info__column history-info__column--missed'>
         <b class='history-info__title missed'>
           Пропущенные занятия
         </b>
-        <HistoryTable :data="missedInfo"/>
+        <HistoryTable :array="missedInfoArray"/>
       </div>
     </div>
   </main>
@@ -138,6 +138,11 @@
 <script>
 // todo:
 // todo 1) обнулять в 12 ночи историю изменений,
+// todo 2) fix bug - done при смене месяца плюсуется к предыдущему
+// todo 3) при редактирование проведенных и пропущенных занятий
+// todo    вычленять нужный месяц из введенной даты,
+// todo    а не пушить все время в текущий календарный месяц
+// todo 4) при ручном режиме слайдера не обновляется показываемая информация о плане
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
 import HistoryTable from '@/components/HistoryTable.vue';
 import saveInfo from '@/helpers/saveInfo';
@@ -171,13 +176,13 @@ export default {
         2022: {
           0: {
             plannedAmount: 6,
-            done: 4.5,
+            done: 6,
             missed: 1,
             debt: 0,
           },
           1: {
             plannedAmount: 8,
-            done: 0,
+            done: 1,
             missed: 0,
             debt: 0,
           },
@@ -191,6 +196,8 @@ export default {
       editTypeClass: '',
       editTypeTitle: '',
       showHistoryInfo: false,
+      doneInfoArray: [],
+      missedInfoArray: [],
       doneInfo: {
         date: '',
         time: '',
@@ -254,17 +261,21 @@ export default {
       this.showHistoryInfo = false;
     },
     updateCurrentPlan(object) {
+      console.log('plan: ', this.currentPlan);
       this.currentPlan[object.type] += object.value;
     },
     saveEditInfo(elem, value) {
       if (this.editTypeClass === 'done') {
         this.doneInfo[elem] = value;
-        saveInfo('lesson-reports__history-done', this.doneInfo);
+        this.doneInfoArray.push(this.doneInfo);
+        saveInfo('lesson-reports__history-done', this.doneInfoArray);
       } else {
         this.missedInfo[elem] = value;
-        saveInfo('lesson-reports__history-missed', this.missedInfo);
+        this.missedInfoArray.push(this.missedInfo);
+        saveInfo('lesson-reports__history-missed', this.missedInfoArray);
       }
       if (elem === 'time') {
+        // { type: 'done', value: 0.5}
         const obj = {
           type: this.editTypeClass,
           value,
@@ -281,8 +292,8 @@ export default {
       }
     },
     updateSavedData() {
-      this.doneInfo = getSavedInfo('lesson-reports__history-done') || {};
-      this.missedInfo = getSavedInfo('lesson-reports__history-missed') || {};
+      this.doneInfo = getSavedInfo('lesson-reports__history-done') || [];
+      this.missedInfo = getSavedInfo('lesson-reports__history-missed') || [];
       const savedPlan = getSavedInfo('lesson-reports__planData');
       if (savedPlan) {
         this.planData = savedPlan;
