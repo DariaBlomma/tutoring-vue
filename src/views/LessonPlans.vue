@@ -100,12 +100,11 @@ export default {
             ],
           },
           {
-            actual: true,
+            actual: false,
             date: '30.01.22',
             time: '30 мин',
             list: [
-              ['Фонетическая разминка - песня Everybody walking this land'],
-              ['Разобрать речь Speaker C  согласно плану Как работать с аудированием.'],
+              ['Фонетическая разминка - песня Everybody walking this land', 'done'],
             ],
             links: [
               {
@@ -121,7 +120,16 @@ export default {
         ],
         [
           {
+            actual: false,
             date: '01.02.2022',
+            time: '30 мин',
+            list: [
+              ['Разобрать речь Speaker C  согласно плану Как работать с аудированием.', 'done'],
+            ],
+          },
+          {
+            actual: true,
+            date: '03.02.2022',
             time: '30 мин',
             list: [
               ['Обсудить речь Speaker C - проблемы, трудности, преимущества этой профессии.'],
