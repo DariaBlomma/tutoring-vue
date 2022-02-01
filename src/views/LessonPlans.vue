@@ -12,7 +12,6 @@
       />
     </div>
     <ScrollTopBtn
-      scroll-to-id='lesson_plans_table'
       :startScroll="300"
     />
   </div>

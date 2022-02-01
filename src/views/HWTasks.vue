@@ -12,7 +12,6 @@
       />
     </div>
     <ScrollTopBtn
-      scroll-to-id='hw_table'
       :startScroll="300"
     />
   </div>

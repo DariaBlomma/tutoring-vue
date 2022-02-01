@@ -11,7 +11,7 @@ export default {
   props: {
     scrollToId: {
       type: String,
-      required: true,
+      default: 'app',
     },
     startScroll: {
       type: Number,
