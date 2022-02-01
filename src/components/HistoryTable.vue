@@ -8,7 +8,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr class='history-info__line'>
+      <tr
+        v-for="data in array"
+        :key="data.date"
+        class='history-info__line'
+      >
         <td class='history-info__value'>{{ data.date }}</td>
         <td class='history-info__value'>{{ data.time }}</td>
         <td class='history-info__value'>{{ data.comment }}</td>
@@ -21,13 +25,15 @@
 export default {
   name: 'HistoryTable',
   props: {
-    data: {
-      type: Object,
-      default: () => ({
+    array: {
+      type: Array,
+      /*
+      [{
         date: '',
         time: '',
         comment: '',
-      }),
+      }] */
+      default: () => [],
     },
   },
 };
