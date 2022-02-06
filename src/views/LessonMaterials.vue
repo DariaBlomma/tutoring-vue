@@ -1,12 +1,14 @@
 <template>
 <div class="page ege-lesson-materials">
     <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
+      <router-link class='go-back light' :to="{name: 'ege'}">
+        Back to EGE page
+      </router-link>
     </header>
   <h1 class='primary-title heading-white centered'>Lesson materials</h1>
   <ContentsList :contentsList="lessonsList" id='contents_list'/>
   <LinkingWords />
-  <ScrollTopBtn :scrollToId="contents_list"/>
+  <ScrollTopBtn />
 </div>
 </template>
 

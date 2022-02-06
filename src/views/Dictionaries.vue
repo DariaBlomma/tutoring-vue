@@ -1,7 +1,9 @@
 <template>
   <div class="page dictionary">
     <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
+      <router-link class='go-back light' :to="{name: 'ege'}">
+        Back to EGE page
+      </router-link>
     </header>
     <h1 class='primary-title heading-white centered'>Dictionaries</h1>
     <ContentsList :contentsList="dictionariesContentsList"/>
@@ -25,18 +27,21 @@
         </div>
       </div>
     </div>
+    <ScrollTopBtn/>
   </div>
 </template>
 
 <script>
 import DictionaryItem from '@/components/DictionaryItem.vue';
 import ContentsList from '@/components/ContentsList.vue';
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 export default {
   name: 'Dictionaries',
   components: {
     DictionaryItem,
     ContentsList,
+    ScrollTopBtn,
   },
   data() {
     return {

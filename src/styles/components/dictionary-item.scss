@@ -30,6 +30,28 @@
         width: 60%;
         color: $dark-blue-color;
     }
+
+    .main {
+        background-color: $dark-green-color;
+        border: 1px solid $_0_green_mate_color;
+    }
+    
+    .main span {
+        color: white;
+    }
+    
+    .new {
+        font-style: italic;
+        background-color: $blue-purple-color;
+    }
+    
+    .not-for-add {
+        opacity: 0.5;
+    }
+    
+    .common {
+        background-color: $_0_yellow-color;
+    }
 }
 
 .dates {
@@ -53,24 +75,3 @@
     padding-top: 0;
 }
 
-.main {
-    background-color: $dark-green-color;
-    border: 1px solid $_0_green_mate_color;
-}
-
-.main span {
-    color: white;
-}
-
-.new {
-    font-style: italic;
-    background-color: $blue-purple-color;
-}
-
-.not-for-add {
-    opacity: 0.5;
-}
-
-.common {
-    background-color: $_0_yellow-color;
-}

@@ -5,6 +5,8 @@
         margin-top: $margin-normal*3;
         display: grid;
         grid-template-areas: 
+            'title title'
+            'sliders sliders'
             'plan edit'
             'history history';
         grid-gap: $margin-normal*2;
@@ -110,6 +112,14 @@
                 margin-top: $margin-normal;
             }
         }
+    }
+
+    &__title {
+        grid-area: title;
+    }
+
+    &__sliders {
+        grid-area: sliders;
     }
 
     // * states

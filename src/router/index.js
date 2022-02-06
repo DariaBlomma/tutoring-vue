@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Contents from '../views/Contents.vue';
+import HomePage from '../views/HomePage.vue';
 import Horizonte6 from '../views/Horizonte6.vue';
 import EGE from '../views/EGE.vue';
+import Spotlight from '../views/Spotlight.vue';
 
 import Zimmer from '../views/Zimmer.vue';
 import Essen from '../views/Essen.vue';
@@ -15,7 +16,7 @@ const routes = [
   {
     path: '',
     name: 'home',
-    component: Contents,
+    component: HomePage,
   },
   {
     path: '/horizonte-6',
@@ -26,6 +27,11 @@ const routes = [
     path: '/ege',
     name: 'ege',
     component: EGE,
+  },
+  {
+    path: '/spotlight',
+    name: 'spotlight',
+    component: Spotlight,
   },
   {
     path: '/zimmer',

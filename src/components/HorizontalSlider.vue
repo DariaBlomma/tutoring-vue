@@ -2,7 +2,7 @@
     <div class='horizontal-slider' :class="`horizontal-slider--${status}`">
     <img
       v-if="showArrows"
-      :src="require(`../assets/prev-${status}.png`)"
+      :src="require(`../assets/slider/prev-${status}.png`)"
       class='control-arrow control-arrow--prev'
       @click="getPrevSlide"
     >
@@ -25,7 +25,7 @@
     </div>
     <img
       v-if="showArrows"
-      :src="require(`../assets/next-${status}.png`)"
+      :src="require(`../assets/slider/next-${status}.png`)"
       class='control-arrow control-arrow--next'
       @click="getNextSlide"
     >

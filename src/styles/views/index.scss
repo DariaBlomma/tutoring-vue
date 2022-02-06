@@ -1,21 +1,29 @@
+// * у page реализован sticky footer за счет 3 элементов внутри
 .page {
     background-color: $_1_orange_color;
     padding: 30px;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 
     &--dark-theme {
         background-color: $_3_grey-color;
+    }
+
+    &__contents {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
 .lesson {
     background-color: #e1d41d;
-    height: 100%;
 }
 
 @import './essen.scss';
-@import './contents.scss';
+@import './home-page.scss';
 @import './horizonte6.scss';
 @import './ege.scss';
 @import './dictionaries.scss';

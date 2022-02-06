@@ -1,7 +1,9 @@
 <template>
   <div class='page page--dark-theme lesson-plans'>
     <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
+      <router-link class='go-back light' :to="{name: 'ege'}">
+        Back to EGE page
+      </router-link>
     </header>
     <div class='contents'>
       <h1 class='primary-title heading-white'>Lesson plans</h1>
@@ -127,12 +129,31 @@ export default {
             ],
           },
           {
-            actual: true,
+            actual: false,
             date: '03.02.2022',
             time: '30 мин',
             list: [
               ['Обсудить речь Speaker C - проблемы, трудности, преимущества этой профессии.'],
               ['Записать на английском речь Speaker C из Задания 176 на аудирование'],
+            ],
+          },
+          {
+            actual: false,
+            date: '05.02.2022',
+            time: '30 мин',
+            list: [
+              ['Проработать песню Everybody walking this land, строки с быстрым ритмом и речь певца в конце подробно', 'done'],
+            ],
+          },
+          {
+            actual: true,
+            date: '06.02.2022',
+            time: '60 мин',
+            list: [
+              ['Разговор на общие темы - как прошла неделя и т.д', 'done'],
+              ['Обсудить речь Speaker C - проблемы, трудности, преимущества этой профессии.', 'done'],
+              ['Записать на английском речь Speaker C из Задания 176 на аудирование'],
+              ['Разобрать речь Speaker D'],
             ],
           },
         ],

@@ -1,19 +1,28 @@
 <template>
 <div class="page page--dark-theme lesson-reports">
-    <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
+    <header class='header'>
+      <router-link
+        class='go-back light'
+        :to="{name: 'ege'}"
+      >
+      Back to EGE page
+      </router-link>
     </header>
-  <h1 class='primary-title heading-white centered'>Отчеты по проведенным занятиям</h1>
-  <HorizontalSlider
-    :slides="years"
-    status='primary'
-    dateType='year'
-  />
-  <HorizontalSlider
-    :slides="months"
-    @slide-chosen="changeShownPlan"
-  />
-  <main class='lesson-reports__main'>
+  <main class='main lesson-reports__main'>
+      <h1 class='primary-title heading-white centered lesson-reports__title'>
+        Отчеты по проведенным занятиям
+      </h1>
+      <div class='lesson-reports__sliders'>
+        <HorizontalSlider
+          :slides="years"
+          status='primary'
+          dateType='year'
+        />
+        <HorizontalSlider
+          :slides="months"
+          @slide-chosen="changeShownPlan"
+        />
+      </div>
     <div class='plan-info'>
       <div class='plan-info__line'>
         <b class='plan-info__title planned'>
@@ -132,6 +141,7 @@
       </div>
     </div>
   </main>
+  <footer class='footer'></footer>
 </div>
 </template>
 
