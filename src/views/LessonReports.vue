@@ -20,7 +20,7 @@
         />
         <HorizontalSlider
           :slides="months"
-          @slide-chosen="changeShownPlan"
+          @slide-chosen="updateShownPlan"
         />
       </div>
     <div class='plan-info'>
@@ -99,7 +99,7 @@
 // todo:
 // todo 1) обнулять в 12 ночи историю изменений,
 // todo 2) fix bug - done при смене месяца плюсуется к предыдущему
-// todo 4) при ручном режиме слайдера не обновляется показываемая информация о плане
+// todo 3) заполнить план на год автоматически, а для отдельных месяцев изменять вручную
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
 import EditInfo from '@/components/LessonEditInfo.vue';
 import HistoryInfo from '@/components/HistoryUpdateInfo.vue';
@@ -177,7 +177,7 @@ export default {
       return this.handModeYear || new Date().getFullYear();
     },
     currentMonth() {
-      return this.handModeMonth || new Date().getMonth();
+      return this.handModeMonth !== null ? this.handModeMonth : new Date().getMonth();
     },
     currentPlan() {
       return this.planData[this.currentYear][this.currentMonth];
@@ -199,6 +199,9 @@ export default {
   created() {
     this.updateSavedData();
     this.calculateDebt();
+    const sliderHandModeInfo = getSavedInfo('h_slider__month') || {};
+    this.updateShownPlan(sliderHandModeInfo);
+    console.log('plan: ', this.currentPlan);
   },
   methods: {
     showEdit(type) {
@@ -238,7 +241,7 @@ export default {
       // console.log('plan: ', this.currentPlan);
       console.log('planData: ', this.planData);
     },
-    changeShownPlan(info) {
+    updateShownPlan(info) {
       if (info.sliderType === 'month') {
         this.handModeMonth = info.index;
       } else {
