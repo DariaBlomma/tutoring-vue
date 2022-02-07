@@ -79,67 +79,17 @@
       >Показать историю изменений
       </button>
     </div>
-    <div
+    <EditInfo
       v-if="showEditInfo"
-      class='edit-info'
-    >
-      <img
-        src='@/assets/cross.png'
-        class='icon close-icon'
-        @click="closeEdit"
-      >
-      <b class='edit-info__title' :class="editTypeClass">
-        {{ editTypeTitle }}
-      </b>
-      <div class='edit-info__column edit-info__column--date'>
-        <b class='edit-info__title'>Дата занятия</b>
-        <input
-          type='date'
-          class='edit-info__input'
-          @input="saveEditInfo('date', $event.target.value)"
-        >
-      </div>
-      <div class='edit-info__column edit-info__column--time'>
-        <b class='edit-info__title'>Длительность (в часах)</b>
-        <input
-          type='number'
-          class='edit-info__input edit-info__input--number'
-          @input="saveEditInfo('time', parseFloat($event.target.value))"
-        >
-      </div>
-      <div class='edit-info__column edit-info__column--comment'>
-        <b class='edit-info__title'>Комментарий</b>
-        <textarea
-          class='edit-info__comment-text'
-          @input="saveEditInfo('comment', $event.target.value)"
-        />
-      </div>
-    </div>
-    <div
+      :editTypeTitle="editTypeTitle"
+      :editTypeClass="editTypeClass"
+      @close-edit="closeEdit"
+      @update-edit-info="updateCurrentPlan"
+    />
+    <HistoryInfo
       v-if="showHistoryInfo"
-      class='history-info'
-    >
-      <img
-        src='@/assets/cross.png'
-        class='icon close-icon'
-        @click="closeHistory"
-      >
-      <h3 class='history-info__block-title light'>История изменений</h3>
-      <div class='histoty-info__column history-info__column--done'>
-        <b class='history-info__title done'>
-          Проведенные занятия
-        </b>
-        <div class='history-info__line history-info__line--date'>
-        <HistoryTable :array="doneInfoArray"/>
-      </div>
-      </div>
-      <div class='histoty-info__column history-info__column--missed'>
-        <b class='history-info__title missed'>
-          Пропущенные занятия
-        </b>
-        <HistoryTable :array="missedInfoArray"/>
-      </div>
-    </div>
+      @close-history="closeHistory"
+    />
   </main>
   <footer class='footer'></footer>
 </div>
@@ -149,12 +99,10 @@
 // todo:
 // todo 1) обнулять в 12 ночи историю изменений,
 // todo 2) fix bug - done при смене месяца плюсуется к предыдущему
-// todo 3) при редактирование проведенных и пропущенных занятий
-// todo    вычленять нужный месяц из введенной даты,
-// todo    а не пушить все время в текущий календарный месяц
 // todo 4) при ручном режиме слайдера не обновляется показываемая информация о плане
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
-import HistoryTable from '@/components/HistoryTable.vue';
+import EditInfo from '@/components/LessonEditInfo.vue';
+import HistoryInfo from '@/components/HistoryUpdateInfo.vue';
 import saveInfo from '@/helpers/saveInfo';
 import getSavedInfo from '@/helpers/getSavedInfo';
 import getDaysInMonth from '@/helpers/getDaysInMonth';
@@ -163,7 +111,8 @@ export default {
   name: 'LessonReports',
   components: {
     HorizontalSlider,
-    HistoryTable,
+    EditInfo,
+    HistoryInfo,
   },
   data() {
     return {
@@ -192,7 +141,7 @@ export default {
           },
           1: {
             plannedAmount: 8,
-            done: 1,
+            done: 2,
             missed: 0,
             debt: 0,
           },
@@ -270,29 +219,24 @@ export default {
     closeHistory() {
       this.showHistoryInfo = false;
     },
-    updateCurrentPlan(object) {
-      console.log('plan: ', this.currentPlan);
-      this.currentPlan[object.type] += object.value;
-    },
-    saveEditInfo(elem, value) {
-      if (this.editTypeClass === 'done') {
-        this.doneInfo[elem] = value;
-        this.doneInfoArray.push(this.doneInfo);
-        saveInfo('lesson-reports__history-done', this.doneInfoArray);
+    updateCurrentPlan(editInfoType) {
+      let infoObject = {};
+      if (editInfoType === 'done') {
+        this.doneInfo = getSavedInfo('lesson-edit-info--done');
+        infoObject = this.doneInfo;
       } else {
-        this.missedInfo[elem] = value;
-        this.missedInfoArray.push(this.missedInfo);
-        saveInfo('lesson-reports__history-missed', this.missedInfoArray);
+        this.missedInfo = getSavedInfo('lesson-edit-info--missed');
+        infoObject = this.missedInfo;
       }
-      if (elem === 'time') {
-        // { type: 'done', value: 0.5}
-        const obj = {
-          type: this.editTypeClass,
-          value,
-        };
-        this.updateCurrentPlan(obj);
-        saveInfo('lesson-reports__planData', this.planData);
-      }
+      const editDate = new Date(infoObject.date);
+      const editMonth = editDate.getMonth();
+      const editYear = editDate.getFullYear();
+      // * обновляем план исходя из указанной при редактировании даты
+      this.planData[editYear][editMonth][editInfoType] += infoObject.time;
+      saveInfo('lesson-reports__planData', this.planData);
+      // ! остановилась на переписывании этой функции
+      // console.log('plan: ', this.currentPlan);
+      console.log('planData: ', this.planData);
     },
     changeShownPlan(info) {
       if (info.sliderType === 'month') {
