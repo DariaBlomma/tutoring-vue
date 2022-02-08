@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 <template>
 <div class="page page--dark-theme lesson-reports">
     <header class='header'>
@@ -28,8 +29,15 @@
         <b class='plan-info__title planned'>
           Запланировано:
         </b>
-        <span class='span-info__number'>{{ currentPlan.plannedAmount + ' ' }}</span>
-        <span class='span-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ plannedHours }}</span>
+        <span class='plan-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ plannedMinutes }}</span>
+        <span class='plan-info__measurement'>минут</span>
+        <img
+          src='@/assets/edit.png'
+          class='icon edit-icon edit-done'
+          @click="showEditPlan"
+        >
       </div>
       <div class='plan-info__line'>
         <b class='plan-info__title done'>
@@ -37,8 +45,10 @@
         </b>
         <span class='plan-info__date'>{{ currentDay }}</span>
         <span> : </span>
-        <span class='span-info__number'>{{ currentPlan.done + ' ' }}</span>
-        <span class='span-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ doneHours }}</span>
+        <span class='plan-info__measurement'>часов</span>
+        <span class='splaninfo__number'>{{ doneMinutes }}</span>
+        <span class='plan-info__measurement'>минут</span>
         <img
           src='@/assets/edit.png'
           class='icon edit-icon edit-done'
@@ -51,8 +61,10 @@
         </b>
         <span class='plan-info__date'>{{ currentDay }}</span>
         <span> : </span>
-        <span class='span-info__number'>{{ currentPlan.missed + ' ' }}</span>
-        <span class='span-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ missedHours }}</span>
+        <span class='plan-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ missedMinutes }}</span>
+        <span class='plan-info__measurement'>минут</span>
         <img
           src='@/assets/edit.png'
           class='icon edit-icon edit-missed'
@@ -63,20 +75,25 @@
         <b class='plan-info__title'>
           Осталось провести:
         </b>
-        <span class='span-info__number'>{{ restAmount + ' ' }}</span>
-        <span class='span-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ restHours }}</span>
+        <span class='plan-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ restMinutes }}</span>
+        <span class='plan-info__measurement'>минут</span>
       </div>
       <div class='plan-info__line'>
         <b class='plan-info__title debt'>
           Долг:
         </b>
-        <span class='span-info__number'>{{ currentPlan.debt + ' ' }}</span>
-        <span class='span-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ debtHours }}</span>
+        <span class='plan-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ debtMinutes }}</span>
+        <span class='plan-info__measurement'>минут</span>
       </div>
       <button
         class='btn'
         @click="showHistory"
-      >Показать историю изменений
+      >
+        Показать историю изменений
       </button>
     </div>
     <EditInfo
@@ -90,6 +107,12 @@
       v-if="showHistoryInfo"
       @close-history="closeHistory"
     />
+    <EditPlanned
+      v-if="showEditPlanBlock"
+      :month="months[this.currentMonth]"
+      @close-edit-plan="closeEditPlan"
+      @save-edit-plan="saveEditPlan"
+    />
   </main>
   <footer class='footer'></footer>
 </div>
@@ -99,10 +122,13 @@
 // todo:
 // todo 1) обнулять в 12 ночи историю изменений,
 // todo 2) fix bug - done при смене месяца плюсуется к предыдущему
-// todo 3) заполнить план на год автоматически, а для отдельных месяцев изменять вручную
+// todo 4) при прошедшем месяце в ручном режиме слайдера показывать последний день месяца,
+// todo    а не текущую дату
+// todo 5) вывести верстку в цикле
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
 import EditInfo from '@/components/LessonEditInfo.vue';
 import HistoryInfo from '@/components/HistoryUpdateInfo.vue';
+import EditPlanned from '@/components/LessonEditPlanned.vue';
 import saveInfo from '@/helpers/saveInfo';
 import getSavedInfo from '@/helpers/getSavedInfo';
 import getDaysInMonth from '@/helpers/getDaysInMonth';
@@ -113,6 +139,7 @@ export default {
     HorizontalSlider,
     EditInfo,
     HistoryInfo,
+    EditPlanned,
   },
   data() {
     return {
@@ -131,21 +158,22 @@ export default {
         'Декабрь',
       ],
       years: ['2022'],
+      // * plannedAmount будет храниться в минутах и преобразовываться в часы для вывода
       planData: {
-        2022: {
-          0: {
-            plannedAmount: 6,
-            done: 6,
-            missed: 1,
-            debt: 0,
-          },
-          1: {
-            plannedAmount: 8,
-            done: 2,
-            missed: 0,
-            debt: 0,
-          },
-        },
+        // 2022: {
+        //   0: {
+        //     plannedAmount: 6,
+        //     done: 6,
+        //     missed: 1,
+        //     debt: 0,
+        //   },
+        //   1: {
+        //     plannedAmount: 8,
+        //     done: 2,
+        //     missed: 0,
+        //     debt: 0,
+        //   },
+        // },
       },
       // * если в слайдере выбрали что-то
       handModeYear: null,
@@ -155,6 +183,7 @@ export default {
       editTypeClass: '',
       editTypeTitle: '',
       showHistoryInfo: false,
+      showEditPlanBlock: false,
       doneInfoArray: [],
       missedInfoArray: [],
       doneInfo: {
@@ -182,6 +211,46 @@ export default {
     currentPlan() {
       return this.planData[this.currentYear][this.currentMonth];
     },
+    plannedHours() {
+      // * преобразуем хранимые минуты в часы
+      return Math.floor(this.currentPlan.plannedAmount / 60);
+    },
+    plannedMinutes() {
+      // * считаем удобочитаемые минуты от общего количества
+      return this.currentPlan.plannedAmount - this.plannedHours * 60;
+    },
+    doneHours() {
+      // * преобразуем хранимые минуты в часы
+      return Math.floor(this.currentPlan.done / 60);
+    },
+    doneMinutes() {
+      // * считаем удобочитаемые минуты от общего количества
+      return this.currentPlan.done - this.doneHours * 60;
+    },
+    missedHours() {
+      // * преобразуем хранимые минуты в часы
+      return Math.floor(this.currentPlan.missed / 60);
+    },
+    missedMinutes() {
+      // * считаем удобочитаемые минуты от общего количества
+      return this.currentPlan.missed - this.missedHours * 60;
+    },
+    restHours() {
+      return Math.floor(this.restAmount / 60);
+    },
+    restMinutes() {
+      return this.restAmount - this.restHours * 60;
+    },
+    restAmount() {
+      // * остаток в минутах
+      return this.currentPlan.plannedAmount - this.currentPlan.done;
+    },
+    debtHours() {
+      return Math.floor(this.currentPlan.debt / 60);
+    },
+    debtMinutes() {
+      return this.currentPlan.debt - this.debtHours * 60;
+    },
     prevMonthPlan() {
       let prevMonth;
       if (this.currentMonth === 0) {
@@ -192,12 +261,12 @@ export default {
 
       return this.planData[this.currentYear][prevMonth];
     },
-    restAmount() {
-      return this.currentPlan.plannedAmount - this.currentPlan.done;
-    },
   },
   created() {
     this.updateSavedData();
+    if (this.planData[this.currentYear] === undefined) {
+      this.fillPlan();
+    }
     this.calculateDebt();
     const sliderHandModeInfo = getSavedInfo('h_slider__month') || {};
     this.updateShownPlan(sliderHandModeInfo);
@@ -222,6 +291,31 @@ export default {
     closeHistory() {
       this.showHistoryInfo = false;
     },
+    showEditPlan() {
+      this.showEditPlanBlock = true;
+    },
+    closeEditPlan() {
+      this.showEditPlanBlock = false;
+    },
+    // * первичное заполнение плана на год дефолтными значениями
+    fillPlan() {
+      const monthBase = {
+        plannedAmount: 8 * 60,
+        done: 0,
+        missed: 0,
+        debt: 0,
+      };
+      this.planData[this.currentYear] = {};
+      this.months.forEach((month, index) => {
+        this.planData[this.currentYear][index] = monthBase;
+      });
+      saveInfo('lesson-reports__planData', this.planData);
+    },
+    saveEditPlan(plannedMinutes) {
+      // * сохранение запланированных часов и минут на месяц
+      this.currentPlan.plannedAmount = plannedMinutes;
+      saveInfo('lesson-reports__planData', this.planData);
+    },
     updateCurrentPlan(editInfoType) {
       let infoObject = {};
       if (editInfoType === 'done') {
@@ -237,8 +331,7 @@ export default {
       // * обновляем план исходя из указанной при редактировании даты
       this.planData[editYear][editMonth][editInfoType] += infoObject.time;
       saveInfo('lesson-reports__planData', this.planData);
-      // ! остановилась на переписывании этой функции
-      // console.log('plan: ', this.currentPlan);
+      console.log('currentPlan: ', this.currentPlan);
       console.log('planData: ', this.planData);
     },
     updateShownPlan(info) {
@@ -249,8 +342,6 @@ export default {
       }
     },
     updateSavedData() {
-      this.doneInfo = getSavedInfo('lesson-reports__history-done') || [];
-      this.missedInfo = getSavedInfo('lesson-reports__history-missed') || [];
       const savedPlan = getSavedInfo('lesson-reports__planData');
       if (savedPlan) {
         this.planData = savedPlan;
