@@ -179,6 +179,7 @@ export default {
       handModeYear: null,
       handModeMonth: null,
       currMonthDays: null,
+      handModeLastDay: null,
       showEditInfo: false,
       editTypeClass: '',
       editTypeTitle: '',
@@ -199,6 +200,14 @@ export default {
     };
   },
   computed: {
+    isDayEnd() {
+      // * для вычисления долга
+      // * this.lastDayMonth - маркер ручного режима слайдера
+      return this.lastDayMonth ? true : new Date().getHours() === 24;
+    },
+    lastDayMonth() {
+      return this.handModeLastDay || new Date().getDate();
+    },
     currentDay() {
       return new Date().toLocaleDateString('ru');
     },
@@ -262,15 +271,17 @@ export default {
       return this.planData[this.currentYear][prevMonth];
     },
   },
-  created() {
+  async created() {
     this.updateSavedData();
     if (this.planData[this.currentYear] === undefined) {
       this.fillPlan();
     }
-    this.calculateDebt();
     const sliderHandModeInfo = getSavedInfo('h_slider__month') || {};
-    this.updateShownPlan(sliderHandModeInfo);
-    console.log('plan: ', this.currentPlan);
+    // * handModeMonth устанавливается в этой функции
+    // * await нужен, чтобы calculateDebt выполнялся строго после этой функциии
+    await this.updateShownPlan(sliderHandModeInfo);
+    this.calculateDebt();
+    console.log('this.currentPlan: ', this.currentPlan);
   },
   methods: {
     showEdit(type) {
@@ -330,11 +341,14 @@ export default {
       const editYear = editDate.getFullYear();
       // * обновляем план исходя из указанной при редактировании даты
       this.planData[editYear][editMonth][editInfoType] += infoObject.time;
+      this.calculateDebt();
       saveInfo('lesson-reports__planData', this.planData);
       console.log('currentPlan: ', this.currentPlan);
       console.log('planData: ', this.planData);
     },
     updateShownPlan(info) {
+      this.handModeLastDay = new Date(this.currentYear, this.currentMonth, this.currMonthDays)
+        .getDate();
       if (info.sliderType === 'month') {
         this.handModeMonth = info.index;
       } else {
@@ -348,16 +362,18 @@ export default {
       }
     },
     calculateDebt() {
+      // todo пересчитывать долг для следующего месяца при изменении предыдущего
+      // todo прибавлять долг к планируемому времени только один раз
       // * устанавливаем долг в последний день месяца, 24 часа и сохраняем в lc
       this.currMonthDays = getDaysInMonth(this.currentMonth, this.currentYear);
-      if (this.currentDay === this.currMonthDays
-      && new Date().getHours() === 24
+      if (this.lastDayMonth === this.currMonthDays
+      && this.isDayEnd
       && this.restAmount) {
         this.currentPlan.debt = this.restAmount;
         saveInfo('lesson-reports__planData', this.planData);
       }
 
-      if (this.prevMonthPlan?.debt) {
+      if (this.prevMonthPlan.debt) {
         this.currentPlan.debt = this.prevMonthPlan.debt;
         this.currentPlan.plannedAmount += this.currentPlan.debt;
       }

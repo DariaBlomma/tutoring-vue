@@ -1,0 +1,40 @@
+.edit-plan {
+  position: relative;
+  display: grid;
+  grid-template-areas: 
+      'title title'
+      'hours minutes'
+      'btn btn';
+  
+  &__title {
+      grid-area: title;
+  }
+
+  &__month {
+      color: $_1_orange-color;
+  }
+
+  &__line {
+      margin-right: $margin-normal;
+
+      &--hours {
+          grid-area: hours;
+      }
+
+      &--minutes {
+          grid-area: minutes;
+      }
+  }
+
+  &__input {
+      margin-right: $margin-normal;
+      max-width: 100px;
+  }
+
+  &__btn {
+      grid-area: btn;
+      max-width: fit-content;
+      height: fit-content;
+      justify-self: center;
+  }
+}

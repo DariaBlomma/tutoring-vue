@@ -1,0 +1,56 @@
+.edit-info {
+  grid-area: edit;
+  display: grid;
+  grid-template-areas: 
+      'title title'
+      'column_date column_time'
+      'comment comment'
+      'btn btn';
+  grid-gap: $margin-normal;
+  position: relative;
+  
+  &__title {
+      margin-bottom: $margin-normal;
+      grid-area: title;
+      justify-self: center;
+      align-self: center;
+  }
+
+  &__column {
+      display: flex;
+      flex-direction: column;
+  }
+
+  &__column--date {
+      grid-area: column_date;
+  }
+
+  &__column--time {
+      grid-area: column_time;
+  }
+
+  &__column--comment {
+      grid-area: comment;
+  }
+
+  &__line {
+    display: flex;
+    margin-bottom: $margin-normal;
+    justify-content: space-between;
+    width: 170px;
+  }
+
+  &__input {
+      height: 45px;
+  }
+
+  &__input--number {
+      width: 50%;
+      margin-left: $margin-normal;
+  }
+
+  &__btn {
+    grid-area: btn;
+    justify-self: center;
+  }
+}

@@ -19,12 +19,23 @@
       >
     </div>
     <div class='edit-info__column edit-info__column--time'>
-      <b class='edit-info__title'>Длительность (в часах)</b>
-      <input
-        type='number'
-        class='edit-info__input edit-info__input--number'
-        v-model="editedLesson.time"
-      >
+      <b class='edit-info__title'>Длительность</b>
+      <div class='edit-info__line'>
+          <input
+          type='number'
+          class='edit-info__input edit-info__input--number'
+          v-model="editedLesson.hours"
+        >
+        <span class='edit-info__measurement'>часов</span>
+      </div>
+      <div class='edit-info__line'>
+        <input
+          type='number'
+          class='edit-info__input edit-info__input--number'
+          v-model="editedLesson.minutes"
+        >
+        <span class='edit-info__measurement'>минут</span>
+      </div>
     </div>
     <div class='edit-info__column edit-info__column--comment'>
       <b class='edit-info__title'>Комментарий</b>
@@ -34,7 +45,7 @@
       />
     </div>
     <button
-      class='btn'
+      class='btn edit-info__btn'
       @click="saveEditInfo"
     >
     Сохранить
@@ -65,7 +76,9 @@ export default {
     return {
       editedLesson: {
         date: '',
-        time: 0.5,
+        hours: 0,
+        minutes: 30,
+        time: 0,
         comment: '',
       },
       doneArray: [],
@@ -81,6 +94,8 @@ export default {
       this.$emit('close-edit');
     },
     saveEditInfo() {
+      // * time - общее время в минутах
+      this.editedLesson.time = this.editedLesson.hours * 60 + Number(this.editedLesson.minutes);
       if (this.editTypeClass === 'done') {
         this.doneArray.push(this.editedLesson);
         saveInfo('lesson-edit-info--done', this.editedLesson);

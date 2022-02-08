@@ -1,0 +1,36 @@
+.history-info {
+  position: relative;
+  grid-area: history;
+  display: grid;
+  grid-template-areas: 
+      'history_title history_title'
+      'done missed';
+  grid-gap: $margin-normal;
+
+  &__table td, &__table th {
+      border-color: $_0-grey-color;
+  }
+
+  &__table th {
+      color: $_1_orange_color;
+  }
+
+  &__block-title {
+      grid-area: history_title;
+      justify-self: center;
+      align-self: center;
+      color: $_1_orange_color;
+  }
+
+  &__column--done {
+      grid-area: done;
+  }
+
+  &__column--missed {
+      grid-area: missed;
+  }
+
+  &__line {
+      margin-top: $margin-normal;
+  }
+}
