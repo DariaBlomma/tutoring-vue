@@ -21,7 +21,7 @@
         />
         <HorizontalSlider
           :slides="months"
-          @slide-chosen="updateShownPlan"
+          @slide-chosen="updateMonthSlide"
         />
       </div>
     <div class='plan-info'>
@@ -38,6 +38,18 @@
           class='icon edit-icon edit-done'
           @click="showEditPlan"
         >
+      </div>
+      <div
+        class='plan-info__line'
+        v-if="currentMonth > 0 && currentPlan.withDebtPlannedAmount"
+      >
+        <b class='plan-info__title planned'>
+          Запланировано c учетом долга:
+        </b>
+        <span class='plan-info__number'>{{ withDebtPlannedHours }}</span>
+        <span class='plan-info__measurement'>часов</span>
+        <span class='plan-info__number'>{{ withDebtPlannedMinutes }}</span>
+        <span class='plan-info__measurement'>минут</span>
       </div>
       <div class='plan-info__line'>
         <b class='plan-info__title done'>
@@ -101,7 +113,7 @@
       :editTypeTitle="editTypeTitle"
       :editTypeClass="editTypeClass"
       @close-edit="closeEdit"
-      @update-edit-info="updateCurrentPlan"
+      @update-edit-info="updateDoneMissed"
     />
     <HistoryInfo
       v-if="showHistoryInfo"
@@ -111,7 +123,7 @@
       v-if="showEditPlanBlock"
       :month="months[this.currentMonth]"
       @close-edit-plan="closeEditPlan"
-      @save-edit-plan="saveEditPlan"
+      @save-edit-plan="saveEditPlannedAmount"
     />
   </main>
   <footer class='footer'></footer>
@@ -119,12 +131,18 @@
 </template>
 
 <script>
+// ! чтобы получить правильный долг,
+// ! надо указать в прошлом месяце проведенные занятия и обновить страницу на том же прошлом месяце
+// done February 08 - 2.5 hours
 // todo:
 // todo 1) обнулять в 12 ночи историю изменений,
 // todo 2) fix bug - done при смене месяца плюсуется к предыдущему
+// todo 3) выводить в таблице истории данные за выбранный месяц,
+// todo   переопределить там  формат даты и времени
 // todo 4) при прошедшем месяце в ручном режиме слайдера показывать последний день месяца,
 // todo    а не текущую дату
 // todo 5) вывести верстку в цикле
+// todo 7) пересчитывать долг автоматически при изменении запланированного и переключении слайда
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
 import EditInfo from '@/components/LessonEditInfo.vue';
 import HistoryInfo from '@/components/HistoryUpdateInfo.vue';
@@ -159,22 +177,7 @@ export default {
       ],
       years: ['2022'],
       // * plannedAmount будет храниться в минутах и преобразовываться в часы для вывода
-      planData: {
-        // 2022: {
-        //   0: {
-        //     plannedAmount: 6,
-        //     done: 6,
-        //     missed: 1,
-        //     debt: 0,
-        //   },
-        //   1: {
-        //     plannedAmount: 8,
-        //     done: 2,
-        //     missed: 0,
-        //     debt: 0,
-        //   },
-        // },
-      },
+      planData: {},
       // * если в слайдере выбрали что-то
       handModeYear: null,
       handModeMonth: null,
@@ -228,6 +231,14 @@ export default {
       // * считаем удобочитаемые минуты от общего количества
       return this.currentPlan.plannedAmount - this.plannedHours * 60;
     },
+    withDebtPlannedHours() {
+      // * преобразуем хранимые минуты в часы
+      return Math.floor(this.currentPlan.withDebtPlannedAmount / 60);
+    },
+    withDebtPlannedMinutes() {
+      // * считаем удобочитаемые минуты от общего количества
+      return this.currentPlan.withDebtPlannedAmount - this.withDebtPlannedHours * 60;
+    },
     doneHours() {
       // * преобразуем хранимые минуты в часы
       return Math.floor(this.currentPlan.done / 60);
@@ -252,7 +263,11 @@ export default {
     },
     restAmount() {
       // * остаток в минутах
-      return this.currentPlan.plannedAmount - this.currentPlan.done;
+      // * в январе считаем остаток из обычного запланированного,
+      // * в остальных месяцах учитываем план с долгом
+      return this.currentMonth > 0 && this.currentPlan.withDebtPlannedAmount
+        ? this.currentPlan.withDebtPlannedAmount - this.currentPlan.done
+        : this.currentPlan.plannedAmount - this.currentPlan.done;
     },
     debtHours() {
       return Math.floor(this.currentPlan.debt / 60);
@@ -271,16 +286,14 @@ export default {
       return this.planData[this.currentYear][prevMonth];
     },
   },
-  async created() {
+  created() {
     this.updateSavedData();
     if (this.planData[this.currentYear] === undefined) {
       this.fillPlan();
     }
     const sliderHandModeInfo = getSavedInfo('h_slider__month') || {};
     // * handModeMonth устанавливается в этой функции
-    // * await нужен, чтобы calculateDebt выполнялся строго после этой функциии
-    await this.updateShownPlan(sliderHandModeInfo);
-    this.calculateDebt();
+    this.updateMonthSlide(sliderHandModeInfo);
     console.log('this.currentPlan: ', this.currentPlan);
   },
   methods: {
@@ -312,6 +325,7 @@ export default {
     fillPlan() {
       const monthBase = {
         plannedAmount: 8 * 60,
+        withDebtPlannedAmount: 0,
         done: 0,
         missed: 0,
         debt: 0,
@@ -322,12 +336,13 @@ export default {
       });
       saveInfo('lesson-reports__planData', this.planData);
     },
-    saveEditPlan(plannedMinutes) {
+    saveEditPlannedAmount(plannedMinutes) {
       // * сохранение запланированных часов и минут на месяц
       this.currentPlan.plannedAmount = plannedMinutes;
       saveInfo('lesson-reports__planData', this.planData);
+      this.calculateDebt();
     },
-    updateCurrentPlan(editInfoType) {
+    updateDoneMissed(editInfoType) {
       let infoObject = {};
       if (editInfoType === 'done') {
         this.doneInfo = getSavedInfo('lesson-edit-info--done');
@@ -341,12 +356,12 @@ export default {
       const editYear = editDate.getFullYear();
       // * обновляем план исходя из указанной при редактировании даты
       this.planData[editYear][editMonth][editInfoType] += infoObject.time;
-      this.calculateDebt();
       saveInfo('lesson-reports__planData', this.planData);
+      this.calculateDebt();
       console.log('currentPlan: ', this.currentPlan);
       console.log('planData: ', this.planData);
     },
-    updateShownPlan(info) {
+    updateMonthSlide(info) {
       this.handModeLastDay = new Date(this.currentYear, this.currentMonth, this.currMonthDays)
         .getDate();
       if (info.sliderType === 'month') {
@@ -354,6 +369,8 @@ export default {
       } else {
         this.handModeYear = this.years[info.index];
       }
+      // * чтобы computed успели обновиться
+      this.$nextTick(() => this.calculateDebt());
     },
     updateSavedData() {
       const savedPlan = getSavedInfo('lesson-reports__planData');
@@ -362,9 +379,7 @@ export default {
       }
     },
     calculateDebt() {
-      // todo пересчитывать долг для следующего месяца при изменении предыдущего
-      // todo прибавлять долг к планируемому времени только один раз
-      // * устанавливаем долг в последний день месяца, 24 часа и сохраняем в lc
+      // * устанавливаем долг в последний день месяца, 24 часа и сохраняем в l
       this.currMonthDays = getDaysInMonth(this.currentMonth, this.currentYear);
       if (this.lastDayMonth === this.currMonthDays
       && this.isDayEnd
@@ -373,9 +388,10 @@ export default {
         saveInfo('lesson-reports__planData', this.planData);
       }
 
-      if (this.prevMonthPlan.debt) {
+      if (this.currentMonth > 0 && this.prevMonthPlan.debt) {
         this.currentPlan.debt = this.prevMonthPlan.debt;
-        this.currentPlan.plannedAmount += this.currentPlan.debt;
+        this.currentPlan.withDebtPlannedAmount = this.currentPlan.plannedAmount
+          + this.currentPlan.debt;
       }
     },
   },
