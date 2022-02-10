@@ -75,6 +75,7 @@ export default {
   data() {
     return {
       editedLesson: {
+        month: null,
         date: '',
         hours: 0,
         minutes: 30,
@@ -96,6 +97,7 @@ export default {
     saveEditInfo() {
       // * time - общее время в минутах
       this.editedLesson.time = this.editedLesson.hours * 60 + Number(this.editedLesson.minutes);
+      this.editedLesson.month = new Date(this.editedLesson.month).getMonth();
       if (this.editTypeClass === 'done') {
         this.doneArray.push(this.editedLesson);
         saveInfo('lesson-edit-info--done', this.editedLesson);

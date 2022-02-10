@@ -13,9 +13,12 @@
         :key="data.date"
         class='history-info__line'
       >
-        <td class='history-info__value'>{{ data.date }}</td>
-        <td class='history-info__value'>{{ data.time }}</td>
-        <td class='history-info__value'>{{ data.comment }}</td>
+      <!-- выводим историю только для выбранного месяца -->
+        <template v-if="data.month === month">
+          <td class='history-info__value'>{{ new Date(data.date).toLocaleDateString('ru') }}</td>
+          <td class='history-info__value'>{{ `${data.hours} часов ${data.minutes} минут` }}</td>
+          <td class='history-info__value'>{{ data.comment }}</td>
+        </template>
       </tr>
     </tbody>
   </table>
@@ -29,11 +32,18 @@ export default {
       type: Array,
       /*
       [{
+        month: null,
         date: '',
+        hours: '',
+        minutes: '',
         time: '',
         comment: '',
       }] */
       default: () => [],
+    },
+    month: {
+      type: Number,
+      default: new Date().getMonth(),
     },
   },
 };

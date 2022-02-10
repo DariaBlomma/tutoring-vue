@@ -13,14 +13,20 @@
         Проведенные занятия
       </b>
       <div class='history-info__line history-info__line--date'>
-      <HistoryTable :array="doneInfoArray"/>
+      <HistoryTable
+        :array="doneInfoArray"
+        :month="month"
+      />
     </div>
     </div>
     <div class='histoty-info__column history-info__column--missed'>
       <b class='history-info__title missed'>
         Пропущенные занятия
       </b>
-      <HistoryTable :array="missedInfoArray"/>
+      <HistoryTable
+        :array="missedInfoArray"
+        :month="month"
+      />
     </div>
   </div>
 </template>
@@ -33,6 +39,12 @@ export default {
   name: 'HistoryUpdateInfo',
   components: {
     HistoryTable,
+  },
+  props: {
+    month: {
+      type: Number,
+      default: new Date().getMonth(),
+    },
   },
   data() {
     return {
