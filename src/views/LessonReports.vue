@@ -93,7 +93,7 @@
 // todo 3) выводить в таблице истории данные за выбранный месяц,
 // todo   переопределить там  формат даты и времени
 // todo 4) при прошедшем месяце в ручном режиме слайдера показывать последний день месяца,
-// todo    а не текущую дату
+// todo    а не текущую дату - работает с запозданием, показывает дату предыдущего слайда
 // todo 5) добавлять долг только при окончании календарного месяца
 // todo 7) пересчитывать долг автоматически при изменении запланированного и переключении слайда
 // todo 8) в деплое долг не обновляется после изменений проведенных занятий
@@ -181,6 +181,7 @@ export default {
       // * plannedAmount будет храниться в минутах и преобразовываться в часы для вывода
       planData: {},
       // * если в слайдере выбрали что-то
+      sliderHandMode: false,
       handModeYear: null,
       handModeMonth: null,
       currMonthDays: null,
@@ -205,19 +206,23 @@ export default {
     };
   },
   computed: {
+    // * определяет отношение календарного месяца к выбранному в слайдере
+    calendarMonthPassed() {
+      return this.handModeMonth < new Date().getMonth();
+    },
     showPlannedWithDebt() {
       return this.currentMonth > 0 && this.currentPlan.withDebtPlannedAmount;
     },
     isDayEnd() {
       // * для вычисления долга
-      // * this.lastDayMonth - маркер ручного режима слайдера
-      return this.lastDayMonth ? true : new Date().getHours() === 24;
+      // * this.sliderHandMode - маркер ручного режима слайдера
+      return this.sliderHandMode ? true : new Date().getHours() === 24;
     },
     lastDayMonth() {
       return this.handModeLastDay || new Date().getDate();
     },
     currentDay() {
-      return new Date().toLocaleDateString('ru');
+      return this.calendarMonthPassed ? this.sliderLastDate : new Date().toLocaleDateString('ru');
     },
     currentYear() {
       return this.handModeYear || new Date().getFullYear();
@@ -367,6 +372,10 @@ export default {
       console.log('planData: ', this.planData);
     },
     updateMonthSlide(info) {
+      if (info !== {}) {
+        this.sliderHandMode = true;
+      }
+      // * число - номер последнего дня
       this.handModeLastDay = new Date(this.currentYear, this.currentMonth, this.currMonthDays)
         .getDate();
       if (info.sliderType === 'month') {
@@ -374,6 +383,8 @@ export default {
       } else {
         this.handModeYear = this.years[info.index];
       }
+      // * дата - последний день выбранного в слайдере месяца
+      this.sliderLastDate = new Date(this.currentYear, this.currentMonth, this.currMonthDays).toLocaleDateString('ru');
       // * чтобы computed успели обновиться
       this.$nextTick(() => this.calculateDebt());
     },
