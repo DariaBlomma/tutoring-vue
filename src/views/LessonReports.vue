@@ -1,4 +1,3 @@
-/* eslint-disable radix */
 <template>
 <div class="page page--dark-theme lesson-reports">
     <header class='header'>
@@ -91,7 +90,6 @@
 // todo:
 // todo 1) обнулять в 12 ночи историю изменений,
 // todo 2) fix bug - done при смене месяца плюсуется к предыдущему
-// todo 3) выводить в таблице истории данные за выбранный месяц,
 // todo 5) добавлять долг только при окончании календарного месяца
 // todo 7) пересчитывать долг автоматически при изменении запланированного и переключении слайда
 // todo 8) в деплое долг не обновляется после изменений проведенных занятий
@@ -224,7 +222,7 @@ export default {
       return this.handModeLastDay || new Date().getDate();
     },
     currentDay() {
-      return this.calendarMonthPassed ? this.sliderLastDate : new Date().toLocaleDateString('ru');
+      return this.calendarMonthPassed ? this.currentPlan.lastMonthDay : new Date().toLocaleDateString('ru');
     },
     currentYear() {
       return this.handModeYear || new Date().getFullYear();
@@ -335,15 +333,19 @@ export default {
     },
     // * первичное заполнение плана на год дефолтными значениями
     fillPlan() {
-      const monthBase = {
-        plannedAmount: 8 * 60,
-        withDebtPlannedAmount: 0,
-        done: 0,
-        missed: 0,
-        debt: 0,
-      };
       this.planData[this.currentYear] = {};
       this.months.forEach((month, index) => {
+        const daysInMonth = getDaysInMonth(index + 1, this.currentYear);
+        const lastMonthDay = new Date(this.currentYear, index, daysInMonth).toLocaleDateString('ru');
+        const monthBase = {
+          plannedAmount: 8 * 60,
+          withDebtPlannedAmount: 0,
+          done: 0,
+          missed: 0,
+          debt: 0,
+          lastMonthDay,
+          daysInMonth,
+        };
         this.planData[this.currentYear][index] = monthBase;
       });
       saveInfo('lesson-reports__planData', this.planData);
@@ -385,8 +387,7 @@ export default {
       } else {
         this.handModeYear = this.years[info.index];
       }
-      // * дата - последний день выбранного в слайдере месяца
-      this.sliderLastDate = new Date(this.currentYear, this.currentMonth, this.currMonthDays).toLocaleDateString('ru');
+
       // * чтобы computed успели обновиться
       this.$nextTick(() => this.calculateDebt());
     },
