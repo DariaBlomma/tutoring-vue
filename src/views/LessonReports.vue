@@ -25,81 +25,34 @@
         />
       </div>
     <div class='plan-info'>
-      <div class='plan-info__line'>
-        <b class='plan-info__title planned'>
-          Запланировано:
-        </b>
-        <span class='plan-info__number'>{{ plannedHours }}</span>
-        <span class='plan-info__measurement'>часов</span>
-        <span class='plan-info__number'>{{ plannedMinutes }}</span>
-        <span class='plan-info__measurement'>минут</span>
-        <img
-          src='@/assets/edit.png'
-          class='icon edit-icon edit-done'
-          @click="showEditPlan"
-        >
-      </div>
       <div
         class='plan-info__line'
-        v-if="currentMonth > 0 && currentPlan.withDebtPlannedAmount"
+        v-for="item in planMarkUp"
+        :key="item.title"
       >
-        <b class='plan-info__title planned'>
-          Запланировано c учетом долга:
+        <b
+          class='plan-info__title'
+          :class="item.class"
+        >
+          {{ item.title }}
         </b>
-        <span class='plan-info__number'>{{ withDebtPlannedHours }}</span>
+        <span
+          v-if="item.showDate"
+          class='plan-info__date'
+        >
+          {{ this[item.dateField] }}
+        </span>
+        <span v-if="item.showDate"> : </span>
+        <span class='plan-info__number'>{{ this[item.hoursField] }}</span>
         <span class='plan-info__measurement'>часов</span>
-        <span class='plan-info__number'>{{ withDebtPlannedMinutes }}</span>
-        <span class='plan-info__measurement'>минут</span>
-      </div>
-      <div class='plan-info__line'>
-        <b class='plan-info__title done'>
-          Проведено на
-        </b>
-        <span class='plan-info__date'>{{ currentDay }}</span>
-        <span> : </span>
-        <span class='plan-info__number'>{{ doneHours }}</span>
-        <span class='plan-info__measurement'>часов</span>
-        <span class='splaninfo__number'>{{ doneMinutes }}</span>
+        <span class='plan-info__number'>{{ this[item.minutesField] }}</span>
         <span class='plan-info__measurement'>минут</span>
         <img
+          v-if="item.editable"
           src='@/assets/edit.png'
           class='icon edit-icon edit-done'
-          @click="showEdit('done')"
+          @click="item.editMethod"
         >
-      </div>
-      <div class='plan-info__line'>
-        <b class='plan-info__title missed'>
-          Пропущено на
-        </b>
-        <span class='plan-info__date'>{{ currentDay }}</span>
-        <span> : </span>
-        <span class='plan-info__number'>{{ missedHours }}</span>
-        <span class='plan-info__measurement'>часов</span>
-        <span class='plan-info__number'>{{ missedMinutes }}</span>
-        <span class='plan-info__measurement'>минут</span>
-        <img
-          src='@/assets/edit.png'
-          class='icon edit-icon edit-missed'
-          @click="showEdit('missed')"
-        >
-      </div>
-      <div class='plan-info__line'>
-        <b class='plan-info__title'>
-          Осталось провести:
-        </b>
-        <span class='plan-info__number'>{{ restHours }}</span>
-        <span class='plan-info__measurement'>часов</span>
-        <span class='plan-info__number'>{{ restMinutes }}</span>
-        <span class='plan-info__measurement'>минут</span>
-      </div>
-      <div class='plan-info__line'>
-        <b class='plan-info__title debt'>
-          Долг:
-        </b>
-        <span class='plan-info__number'>{{ debtHours }}</span>
-        <span class='plan-info__measurement'>часов</span>
-        <span class='plan-info__number'>{{ debtMinutes }}</span>
-        <span class='plan-info__measurement'>минут</span>
       </div>
       <button
         class='btn'
@@ -141,8 +94,9 @@
 // todo   переопределить там  формат даты и времени
 // todo 4) при прошедшем месяце в ручном режиме слайдера показывать последний день месяца,
 // todo    а не текущую дату
-// todo 5) вывести верстку в цикле
+// todo 5) добавлять долг только при окончании календарного месяца
 // todo 7) пересчитывать долг автоматически при изменении запланированного и переключении слайда
+// todo 8) в деплое долг не обновляется после изменений проведенных занятий
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
 import EditInfo from '@/components/LessonEditInfo.vue';
 import HistoryInfo from '@/components/HistoryUpdateInfo.vue';
@@ -161,6 +115,54 @@ export default {
   },
   data() {
     return {
+      planMarkUp: [
+        {
+          title: 'Запланировано:',
+          class: 'planned',
+          hoursField: 'plannedHours',
+          minutesField: 'plannedMinutes',
+          editable: true,
+          editMethod: this.showEditPlan,
+        },
+        {
+          title: 'Запланировано c учетом долга:',
+          class: 'planned',
+          hoursField: 'withDebtPlannedHours',
+          minutesField: 'withDebtPlannedMinutes',
+          editable: false,
+        },
+        {
+          title: 'Проведено на ',
+          class: 'done',
+          showDate: true,
+          dateField: 'currentDay',
+          hoursField: 'doneHours',
+          minutesField: 'doneMinutes',
+          editable: true,
+          editMethod: () => this.showEdit('done'),
+        },
+        {
+          title: 'Пропущено на ',
+          class: 'missed',
+          showDate: true,
+          dateField: 'currentDay',
+          hoursField: 'missedHours',
+          minutesField: 'missedMinutes',
+          editable: true,
+          editMethod: () => this.showEdit('missed'),
+        },
+        {
+          title: 'Осталось провести: ',
+          hoursField: 'restHours',
+          minutesField: 'restMinutes',
+        },
+        {
+          title: 'Долг: ',
+          class: 'debt',
+          hoursField: 'debtHours',
+          minutesField: 'debtMinutes',
+        },
+      ],
       months: [
         'Январь',
         'Февраль',
@@ -203,6 +205,9 @@ export default {
     };
   },
   computed: {
+    showPlannedWithDebt() {
+      return this.currentMonth > 0 && this.currentPlan.withDebtPlannedAmount;
+    },
     isDayEnd() {
       // * для вычисления долга
       // * this.lastDayMonth - маркер ручного режима слайдера
