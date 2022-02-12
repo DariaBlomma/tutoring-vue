@@ -95,7 +95,7 @@
 // todo 1) обнулять в 12 ночи историю изменений,
 // todo 2) fix bug - done при смене месяца плюсуется к предыдущему
 // todo 3) при редактировании прошедших месяце предвыбирать соответствующую дату редактирования
-// todo 8) в деплое долг не обновляется после изменений проведенных занятий
+// todo 4) история изменений отображается не по месяцам
 import HorizontalSlider from '@/components/HorizontalSlider.vue';
 import EditInfo from '@/components/LessonEditInfo.vue';
 import HistoryInfo from '@/components/HistoryUpdateInfo.vue';

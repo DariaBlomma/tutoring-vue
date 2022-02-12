@@ -20,6 +20,7 @@
 </template>
 
 <script>
+// todo 1) скролл к актуальному плану
 import ColorStates from '@/components/ColorStates.vue';
 import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 import PlanTable from '@/components/PlanTable.vue';
@@ -146,7 +147,7 @@ export default {
             ],
           },
           {
-            actual: true,
+            actual: false,
             date: '06.02.2022',
             time: '60 мин',
             list: [
@@ -154,6 +155,64 @@ export default {
               ['Обсудить речь Speaker C - проблемы, трудности, преимущества этой профессии.', 'done'],
               ['Записать на английском речь Speaker C из Задания 176 на аудирование'],
               ['Разобрать речь Speaker D'],
+            ],
+          },
+        ],
+        [
+          {
+            actual: false,
+            date: '08.02.2022',
+            time: '30 мин',
+            list: [
+              ['Записать на английском речь Speaker C из Задания 176 на аудирование', 'done'],
+              ['Разобрать речь Speaker D'],
+            ],
+          },
+          {},
+          {
+            actual: false,
+            date: '12.02.2022',
+            time: '60 мин',
+            list: [
+              ['Разобрать речь Speaker D'],
+              ['Записать на английском речь Speaker D из Задания 176 на аудирование'],
+              ['Обсудить речь Speaker D - проблемы, трудности, преимущества этой профессии.'],
+            ],
+          },
+          {
+            actual: true,
+            date: '13.02.2022',
+            time: '30 мин',
+            list: [
+              ['Разобрать речь Speaker E'],
+            ],
+          },
+        ],
+        [
+          {
+            actual: false,
+            date: '14.02.2022',
+            time: '30 мин',
+            list: [
+              ['Записать на английском речь Speaker E из Задания 176 на аудирование'],
+              ['Обсудить речь Speaker E - проблемы, трудности, преимущества этой профессии.'],
+            ],
+          },
+          {
+            actual: false,
+            date: '16.02.2022',
+            time: '30 мин',
+            list: [
+              ['Разобрать речь Speaker F'],
+            ],
+          },
+          {
+            actual: false,
+            date: '18.02.2022',
+            time: '30 мин',
+            list: [
+              ['Записать на английском речь Speaker F из Задания 176 на аудирование'],
+              ['Обсудить речь Speaker F - проблемы, трудности, преимущества этой профессии.'],
             ],
           },
         ],
