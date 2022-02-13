@@ -29,25 +29,27 @@
 <script>
 export default {
   name: 'HomePage',
-  data() {
+  setup() {
+    const contentsLinks = [
+      {
+        routeName: 'ege',
+        linkTitle: 'ЕГЭ',
+        icon: 'contents/exam.svg',
+      },
+      {
+        routeName: 'horizonte-6',
+        linkTitle: 'Horizonte 6',
+        icon: 'contents/german.png',
+      },
+      {
+        routeName: 'spotlight',
+        linkTitle: 'Spotlight',
+        icon: 'contents/english.png',
+      },
+    ];
+
     return {
-      contentsLinks: [
-        {
-          routeName: 'ege',
-          linkTitle: 'ЕГЭ',
-          icon: 'contents/exam.svg',
-        },
-        {
-          routeName: 'horizonte-6',
-          linkTitle: 'Horizonte 6',
-          icon: 'contents/german.png',
-        },
-        {
-          routeName: 'spotlight',
-          linkTitle: 'Spotlight',
-          icon: 'contents/english.png',
-        },
-      ],
+      contentsLinks,
     };
   },
 };
