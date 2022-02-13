@@ -36,39 +36,41 @@
 <script>
 export default {
   name: 'EGE',
-  data() {
+  setup() {
+    const contentLinks = [
+      {
+        routeName: 'ege-dictionaries',
+        linkTitle: 'Dictionaries',
+        icon: 'contents/dictionary.png',
+      },
+      {
+        routeName: 'lesson-materials',
+        linkTitle: 'Lesson materials',
+        icon: 'contents/exercise.png',
+      },
+      {
+        routeName: 'hw-tasks',
+        linkTitle: 'Homework tasks',
+        icon: 'contents/hw.png',
+      },
+      {
+        routeName: 'lesson-reports',
+        linkTitle: 'Отчеты по проведенным занятиям',
+        icon: 'contents/report.png',
+      },
+      {
+        routeName: 'lesson-plans',
+        linkTitle: 'Lesson plans',
+        icon: 'contents/todo.png',
+      },
+      // {
+      //   routeName: 'en-word-forms',
+      //   linkTitle: 'Word forms',
+      // },
+    ];
+
     return {
-      contentLinks: [
-        {
-          routeName: 'ege-dictionaries',
-          linkTitle: 'Dictionaries',
-          icon: 'contents/dictionary.png',
-        },
-        {
-          routeName: 'lesson-materials',
-          linkTitle: 'Lesson materials',
-          icon: 'contents/exercise.png',
-        },
-        {
-          routeName: 'hw-tasks',
-          linkTitle: 'Homework tasks',
-          icon: 'contents/hw.png',
-        },
-        {
-          routeName: 'lesson-reports',
-          linkTitle: 'Отчеты по проведенным занятиям',
-          icon: 'contents/report.png',
-        },
-        {
-          routeName: 'lesson-plans',
-          linkTitle: 'Lesson plans',
-          icon: 'contents/todo.png',
-        },
-        // {
-        //   routeName: 'en-word-forms',
-        //   linkTitle: 'Word forms',
-        // },
-      ],
+      contentLinks,
     };
   },
 };
