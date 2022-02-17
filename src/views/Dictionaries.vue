@@ -712,6 +712,7 @@ export default {
           {
             title: 'Part 4',
             en: [
+              ['department store'],
               ['development'],
               ['clearly'],
               ['an impression'],
@@ -728,6 +729,7 @@ export default {
               ['fear'],
             ],
             ru: [
+              ['универмаг'],
               ['развитие'],
               ['ясно, четко'],
               ['впечатление'],
