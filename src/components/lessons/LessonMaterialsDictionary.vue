@@ -3,7 +3,7 @@
     <ul>
       <li
         class='lesson-materials__line'
-        v-for='item in words.en'
+        v-for='item in props.words.en'
         :key='item'
       >
       {{item}}
@@ -12,7 +12,7 @@
     <ul>
       <li
         class='lesson-materials__line-ru'
-        v-for='item in words.ru'
+        v-for='item in props.words.ru'
         :key='item'
       >
       {{item}}
@@ -21,15 +21,14 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LessonMaterialsDictionary',
-  props: {
-    // { en: [], ru: []}
-    words: {
-      type: Object,
-      required: true,
-    },
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  // { en: [], ru: []}
+  words: {
+    type: Object,
+    required: true,
   },
-};
+});
 </script>

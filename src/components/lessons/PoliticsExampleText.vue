@@ -133,11 +133,6 @@
   </a>
 </template>
 
-<script>
+<script setup>
 import InputAnswer from '@/components/InputAnswer.vue';
-
-export default {
-  name: 'PoliticsExampleText',
-  components: { InputAnswer },
-};
 </script>

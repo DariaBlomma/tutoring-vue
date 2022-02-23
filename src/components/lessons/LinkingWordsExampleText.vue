@@ -77,13 +77,6 @@
   </ol>
 </template>
 
-<script>
+<script setup>
 import InputAnswer from '@/components/InputAnswer.vue';
-
-export default {
-  name: 'LinkingWordsExampleText',
-  components: {
-    InputAnswer,
-  },
-};
 </script>
