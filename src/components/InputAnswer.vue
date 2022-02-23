@@ -18,16 +18,16 @@ export default {
     // слово без окончания, первоначальное значение инпута. Ученик будет вписывать только окончания
     word: {
       type: String,
-      required: true,
+      default: '',
     },
     // окончание
     ending: {
       type: String,
-      required: true,
+      default: '',
     },
+    // просто слово-ответ для проверки
     readyFullWord: {
       type: String,
-      required: false,
       default: '',
     },
     // массив слов-исключений и соответствующих классов на основе местоимений

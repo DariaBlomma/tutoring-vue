@@ -1,6 +1,22 @@
-.ege-lesson-materials {
+.lesson-materials {
     background-color: $_3_grey-color;
     height: 100%;
+
+    &__dictionary {
+        display: flex;
+    }
+
+    &__line {
+        color: $light-blue-color;
+    }
+
+    &__line-ru {
+        color: $_0-grey-color;
+    }
+
+    &__example-text {
+        color: $_0-grey-color;
+    }
 }
 
 .linking-words {
