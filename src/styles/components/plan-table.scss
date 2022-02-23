@@ -31,6 +31,12 @@
     .plan-list__item {
       color: $_3_grey-color;
     }
+
+    .add-info {
+      &__line {
+        color: $_2-grey-color;
+      }
+    }
   }
   .done {
     background-color: $_3_green-mate-color;
