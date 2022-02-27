@@ -7,12 +7,16 @@ h2 {
     font-size: 24px;
 }
 
-.title-3 {
+.title-3-absolute {
     position: absolute;
     top: -10px;
     left: 30px;
     color: $_0-grey-color;
     font-family: Helvetica;
+}
+
+.title-3 {
+    color: $_0-grey-color;
 }
 
 .title-4 {

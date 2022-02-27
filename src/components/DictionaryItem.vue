@@ -5,7 +5,7 @@
     :class='item.class'
     :key='i'
   >
-      <h3 v-if='item.title' class='title-3'>{{item.title}}</h3>
+      <h3 v-if='item.title' class='title-3-absolute'>{{item.title}}</h3>
       <div class='dates'>
         <span class='dates__title'>Done:</span>
         <ol class='dates__list'>

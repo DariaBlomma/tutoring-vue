@@ -42,8 +42,8 @@ export default {
         icon: 'contents/german.png',
       },
       {
-        routeName: 'spotlight',
-        linkTitle: 'Spotlight',
+        routeName: 'english',
+        linkTitle: 'English',
         icon: 'contents/english.png',
       },
     ];

@@ -2,8 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import Horizonte6 from '../views/Horizonte6.vue';
 import EGE from '../views/EGE.vue';
+import English from '@/views/English.vue';
 import Spotlight from '../views/Spotlight.vue';
 
+import LevelTests from '@/views/LevelTests.vue';
 import Zimmer from '../views/Zimmer.vue';
 import Essen from '../views/Essen.vue';
 import Dictionaries from '@/views/Dictionaries.vue';
@@ -24,6 +26,11 @@ const routes = [
     component: Horizonte6,
   },
   {
+    path: '/english',
+    name: 'english',
+    component: English,
+  },
+  {
     path: '/ege',
     name: 'ege',
     component: EGE,
@@ -32,6 +39,11 @@ const routes = [
     path: '/spotlight',
     name: 'spotlight',
     component: Spotlight,
+  },
+  {
+    path: '/level-tests',
+    name: 'level-tests',
+    component: LevelTests,
   },
   {
     path: '/zimmer',
