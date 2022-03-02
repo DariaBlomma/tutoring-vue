@@ -103,6 +103,11 @@ const routes = [
       },
     ],
   },
+  // {
+  //   path: 'en-exercises',
+  //   name: 'en-exercises',
+  //   component: EnExercises,
+  // },
   // ege subviews
   {
     path: '/dictionaries',
