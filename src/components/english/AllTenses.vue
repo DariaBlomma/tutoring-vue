@@ -759,11 +759,22 @@
             </tr>
           </table>
         </div>
+        <img
+          src='@/assets/english-level-tests/all-tenses-funny-1.jpg'
+          class='all-tenses-funny'
+        >
+        <img
+          src='@/assets/english-level-tests/all-tenses-funny-2.jpg'
+          class='all-tenses-funny'
+        >
       </div>
     </main>
-    <footer/>
+    <footer>
+      <ScrollTopBtn />
+    </footer>
   </div>
 </template>
 
 <script setup>
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 </script>
