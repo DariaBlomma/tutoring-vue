@@ -12,6 +12,8 @@ import EnGrammar from '../views/english/Grammar.vue';
 // en grammar subviews
 import EnTenses from '../views/english/Tenses.vue';
 import AllEnTenses from '../components/english/AllTenses.vue';
+import PresentSimple from '@/components/english/PresentSimple.vue';
+import ToBeInPresentSimple from '../components/english/ToBeInPresentSimple.vue';
 // personal accounts
 import Vlad from '@/views/accounts/Vlad.vue';
 // vlad subviews
@@ -86,6 +88,18 @@ const routes = [
         path: 'all-tenses',
         name: 'all-en-tenses',
         component: AllEnTenses,
+      },
+      {
+        path: 'present-simple',
+        name: 'present-simple',
+        component: PresentSimple,
+        children: [
+          {
+            path: 'to-be-in-present-simple',
+            name: 'to-be-in-present-simple',
+            component: ToBeInPresentSimple,
+          },
+        ],
       },
     ],
   },

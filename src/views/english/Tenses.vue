@@ -24,5 +24,16 @@ const subRoutesList = [
     moveTo: 'all-en-tenses',
     title: 'All tenses',
   },
+  {
+    moveTo: 'present-simple',
+    title: 'Present Simple',
+    sublist: [
+      {
+        moveTo: 'to-be-in-present-simple',
+        title: 'To be in Present Simple',
+        uniqueNumber: '',
+      },
+    ],
+  },
 ];
 </script>
