@@ -33,7 +33,7 @@
 
 <script setup>
 import DictionaryItem from '@/components/DictionaryItem.vue';
-import ContentsList from '@/components/ContentsList.vue';
+import ContentsList from '@/components/ui/ContentsList.vue';
 import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 const dictionariesContentsList = [

@@ -16,7 +16,7 @@
 <script>
 import LinkingWords from '@/components/lessons/LinkingWords.vue';
 import Politics2022 from '@/components/lessons/Politics2022.vue';
-import ContentsList from '@/components/ContentsList.vue';
+import ContentsList from '@/components/ui/ContentsList.vue';
 import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 export default {

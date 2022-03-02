@@ -15,3 +15,103 @@ td, th {
 .row-item {
     color: $_0-grey-color;
 }
+
+.all-tenses-table {
+    background-color: $middle-purple-color;
+    padding: $margin-normal;
+    margin-top: $margin-normal;
+    border: 1px solid $blue-purple-color;
+
+    .markers-table {
+        border: none;
+
+        th, td {
+            border: none;
+        }
+    }
+
+    .card {
+        padding: $margin-normal;
+        margin: 0 auto;
+
+        &--grey {
+            background-color: $_0-grey-color;
+        }
+
+        &--yellow {
+            background-color: $yellow-mate-color;
+        }
+    }
+
+    .formation-line {
+        display: flex;
+    }
+
+    .add-meaning-wrapper {
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .meaning {
+        background-color: $white-color;
+        padding: $margin-normal;
+        font-style: italic;
+
+        &--with-margin {
+            margin-bottom: $margin-normal;
+        }
+
+        &--with-large-margin {
+            margin-bottom: $margin-normal * 3;
+            min-height: fit-content;
+        }
+    }
+
+    .tense-type {
+        &--header {
+            background-color: $_0-grey-color;
+        }
+
+        &--simple {
+            background-color: $_1-grey-color;
+        }
+
+        &--continuous {
+            background-color: $light-blue-color;
+        }
+
+        &--perfect {
+            background-color: $middle-blue-color;
+        }
+
+        &--perfect-continuous {
+            background-color: $dark-blue-color;
+            color: $white-color;
+        }
+    }
+
+    .past {
+        background-color: $_2-red-color;
+    }
+
+    .present {
+        background-color: $_2_green-mate-color;
+    }
+
+    .future {
+        background-color: $_2_orange-color;
+    }
+
+    .sentense-type {
+        width: 30px;
+        min-height: 30px;
+        background-color: $white-color;
+        margin-right: $margin-normal / 2;
+    }
+
+    .not-used-in-speech {
+        opacity: 0.4;
+    }
+}

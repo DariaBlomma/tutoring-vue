@@ -7,9 +7,10 @@
     </header>
     <main>
       <div class='page__contents'>
-        <h1 class='primary-title heading-white'>Contents</h1>
+        <h1 class='primary-title heading-white'>Vlad</h1>
         <ContentLinksList :links="contentLinks"/>
       </div>
+      <router-view/>
     </main>
     <footer/>
   </div>
@@ -20,24 +21,9 @@ import ContentLinksList from '@/components/ui/ContentLinksList.vue';
 
 const contentLinks = [
   {
-    routeName: 'level-tests',
-    linkTitle: 'Level tests',
-    icon: 'contents/exercise.png',
-  },
-  {
-    routeName: 'en-grammar',
-    linkTitle: 'Grammar',
-    icon: 'contents/dictionary.png',
-  },
-  {
-    routeName: 'spotlight',
-    linkTitle: 'Spotlight',
+    routeName: 'lesson-1',
+    linkTitle: 'Lesson 1. Tenses, Present Simple, to be',
     icon: 'contents/english.png',
-  },
-  {
-    routeName: 'vlad',
-    linkTitle: 'Vlad',
-    icon: 'contents/account.png',
   },
   // {
   //   routeName: 'en-word-forms',
