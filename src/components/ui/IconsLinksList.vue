@@ -12,7 +12,10 @@
       >
       <router-link
         class='light'
-        :to="{name: `${link.routeName}`}"
+        :to="{
+          name: `${link.routeName}`,
+          params: link.routeParams || {},
+        }"
       >
       {{ link.linkTitle }}
       </router-link>

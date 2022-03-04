@@ -11,6 +11,7 @@
       <PlanTable
         tableId='lesson_plans_table'
         :tableArray="lessonPlans"
+        :planDays="planDays"
       />
     </div>
     <ScrollTopBtn
@@ -22,6 +23,8 @@
 <script setup>
 // todo 1) скролл к актуальному плану
 // todo 2) адаптация под мобильный
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import ColorStates from '@/components/ColorStates.vue';
 import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 import PlanTable from '@/components/PlanTable.vue';
@@ -48,7 +51,9 @@ const plansColorsList = [
     explanation: 'Важен порядок выполнения пунктов',
   },
 ];
-const lessonPlans = [
+
+const MashaPlanDays = ['ВТ', 'ЧТ', 'СБ', 'ВС'];
+const MashaLessonPlans = [
   [
     {},
     {
@@ -272,4 +277,34 @@ const lessonPlans = [
     {},
   ],
 ];
+
+const VladPlanDays = ['ВТ', 'ЧТ'];
+const VladLessonPlans = [
+  // 28.02.22 - 06.03.22
+  [
+    {},
+    {
+      actual: false,
+      date: '01.03.2022',
+      time: '60 мин',
+      list: [
+        ['Теория про всю системы времен', 'done'],
+        ['Теория про Present Simple, To be in Present Simple', 'done'],
+        ['Упражнение на коррекцию ошибок в Present Simple', 'done'],
+        ['Разговор - introduce yourself, используя Present Simple', 'done'],
+      ],
+      links: [
+        {
+          title: 'Коррекция ошибок в Present Simple',
+          address: 'https://docs.google.com/document/d/1CwgIFzOmLeJDoukPgEa7u4NN_9d0w2Pq/edit?usp=sharing&ouid=100114228061075300910&rtpof=true&sd=true',
+        },
+      ],
+    },
+  ],
+];
+
+const route = useRoute();
+const lessonPlans = computed(() => (route.params.name === 'masha' ? MashaLessonPlans : VladLessonPlans));
+const planDays = computed(() => (route.params.name === 'masha' ? MashaPlanDays : VladPlanDays));
+
 </script>

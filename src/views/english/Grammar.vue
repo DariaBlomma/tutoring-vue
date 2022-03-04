@@ -8,7 +8,7 @@
     <main>
       <div class='page__contents'>
         <h1 class='primary-title heading-white'>Grammar</h1>
-        <ContentLinksList :links="contentLinks"/>
+        <IconsLinksList :links="contentLinks"/>
       </div>
     </main>
     <footer/>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import ContentLinksList from '@/components/ui/ContentLinksList.vue';
+import IconsLinksList from '@/components/ui/IconsLinksList.vue';
 
 const contentLinks = [
   {

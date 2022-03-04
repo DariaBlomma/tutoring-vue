@@ -8,7 +8,7 @@
     <main>
       <div class='page__contents'>
         <h1 class='primary-title heading-white'>Vlad</h1>
-        <ContentLinksList :links="contentLinks"/>
+        <IconsLinksList :links="contentLinks"/>
       </div>
       <router-view/>
     </main>
@@ -17,9 +17,17 @@
 </template>
 
 <script setup>
-import ContentLinksList from '@/components/ui/ContentLinksList.vue';
+import IconsLinksList from '@/components/ui/IconsLinksList.vue';
 
 const contentLinks = [
+  {
+    routeName: 'lesson-plans',
+    routeParams: {
+      name: 'vlad',
+    },
+    linkTitle: 'Lesson Plans',
+    icon: 'contents/todo.png',
+  },
   {
     routeName: 'lesson-1',
     linkTitle: 'Lesson 1. Tenses, Present Simple, to be',

@@ -1,17 +1,18 @@
 <template>
   <table class='table plan-table' :id='tableId'>
     <tr>
-      <th></th>
-      <th class='th-light'>Вторник</th>
-      <th class='th-light'>Четверг</th>
-      <th class='th-light'>Суббота</th>
-      <th class='th-light'>Воскресенье</th>
+      <th
+        v-for="day in planDays"
+        :key="day"
+        class='th-light'
+      >
+        {{ day }}
+      </th>
     </tr>
     <tr
       v-for="item in tableArray"
       :key="item"
     >
-      <td></td>
       <td
         v-for="day in item"
         :key="day"
@@ -68,18 +69,24 @@
   </table>
 </template>
 
-<script>
-export default {
-  name: 'PlanTable',
-  props: {
-    tableId: {
-      type: String,
-      default: 'plan_table',
-    },
-    tableArray: {
-      type: Array,
-      default: () => [],
-    },
+<script setup>
+import { defineProps, toRefs } from 'vue';
+
+const props = defineProps({
+  tableId: {
+    type: String,
+    default: 'plan_table',
   },
-};
+  tableArray: {
+    type: Array,
+    default: () => [],
+  },
+  // * дни занятий с учениками
+  planDays: {
+    type: Array,
+    default: () => [],
+  },
+});
+
+const { tableId, tableArray, planDays } = toRefs(props);
 </script>

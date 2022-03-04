@@ -130,7 +130,7 @@ const routes = [
     component: LessonReports,
   },
   {
-    path: '/lesson-plans',
+    path: '/lesson-plans/:name',
     name: 'lesson-plans',
     component: LessonPlans,
   },
