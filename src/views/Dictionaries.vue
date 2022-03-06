@@ -1,8 +1,8 @@
 <template>
   <div class="page dictionary">
     <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">
-        Back to EGE page
+      <router-link class='go-back light' :to="{name: 'masha'}">
+        Back to personal page
       </router-link>
     </header>
     <h1 class='primary-title heading-white centered'>Dictionaries</h1>

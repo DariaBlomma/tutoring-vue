@@ -3,54 +3,26 @@
     <header class='header'/>
     <main class='main'>
       <h1 class='primary-title light'>Contents</h1>
-      <ul>
-        <li
-          v-for="link in contentsLinks"
-          :key="link.routeName"
-          class='link-wrapper'
-        >
-          <img
-            v-if="link.icon"
-            :src="require(`@/assets/${link.icon}`)"
-            class='link-icon'
-          >
-          <router-link
-            :to="{name: `${link.routeName}`}"
-          >
-          {{ link.linkTitle }}
-          </router-link>
-        </li>
-      </ul>
+      <IconsLinksList :links="contentLinks"/>
     </main>
     <footer/>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomePage',
-  setup() {
-    const contentsLinks = [
-      {
-        routeName: 'ege',
-        linkTitle: 'ЕГЭ',
-        icon: 'contents/exam.svg',
-      },
-      {
-        routeName: 'horizonte-6',
-        linkTitle: 'Horizonte 6',
-        icon: 'contents/german.png',
-      },
-      {
-        routeName: 'english',
-        linkTitle: 'English',
-        icon: 'contents/english.png',
-      },
-    ];
+<script setup>
+import IconsLinksList from '@/components/ui/IconsLinksList.vue';
 
-    return {
-      contentsLinks,
-    };
+const contentLinks = [
+  {
+    routeName: 'horizonte-6',
+    linkTitle: 'Horizonte 6',
+    icon: 'contents/german.png',
   },
-};
+  {
+    routeName: 'english',
+    linkTitle: 'English',
+    icon: 'contents/english.png',
+  },
+];
+
 </script>

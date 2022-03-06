@@ -1,8 +1,8 @@
 <template>
-  <div class="page ege">
+  <div class="page page--dark-theme masha">
     <header>
-      <router-link class='go-back light' :to="{name: 'home'}">
-        To home page
+      <router-link class='go-back light' :to="{name: 'english'}">
+        To English page
       </router-link>
     </header>
     <main>
@@ -20,7 +20,7 @@ import IconsLinksList from '@/components/ui/IconsLinksList.vue';
 
 const contentLinks = [
   {
-    routeName: 'ege-dictionaries',
+    routeName: 'masha-dictionaries',
     linkTitle: 'Dictionaries',
     icon: 'contents/dictionary.png',
   },

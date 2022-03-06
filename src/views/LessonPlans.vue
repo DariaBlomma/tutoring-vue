@@ -1,8 +1,9 @@
 <template>
   <div class='page page--dark-theme lesson-plans'>
     <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">
-        Back to EGE page
+      <!-- todo: сделать возврат к личной странице в зависимости от аккаунта -->
+      <router-link class='go-back light' :to="{name: 'english'}">
+        Back to English page
       </router-link>
     </header>
     <div class='contents'>

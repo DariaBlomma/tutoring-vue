@@ -3,9 +3,9 @@
     <header class='header'>
       <router-link
         class='go-back light'
-        :to="{name: 'ege'}"
+        :to="{name: 'masha'}"
       >
-      Back to EGE page
+      Back to personal page
       </router-link>
     </header>
   <main class='main lesson-reports__main'>

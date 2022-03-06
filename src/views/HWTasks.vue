@@ -1,7 +1,7 @@
 <template>
   <div class='page page--dark-theme homework'>
     <header>
-      <router-link class='go-back light' :to="{name: 'ege'}">Go back</router-link>
+      <router-link class='go-back light' :to="{name: 'masha'}">Back to personal page</router-link>
     </header>
     <div class='contents'>
       <h1 class='primary-title heading-white'>Homework</h1>

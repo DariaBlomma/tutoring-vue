@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 // main views of application
 import Horizonte6 from '../views/Horizonte6.vue';
-import EGE from '../views/EGE.vue';
+import Masha from '@/views/accounts/Masha.vue';
 import English from '@/views/English.vue';
 
 // subviews of english
@@ -46,11 +46,6 @@ const routes = [
     name: 'english',
     component: English,
   },
-  {
-    path: '/ege',
-    name: 'ege',
-    component: EGE,
-  },
   // subviews of english
   {
     path: '/level-tests',
@@ -84,6 +79,37 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/masha',
+    name: 'masha',
+    component: Masha,
+  },
+  // masha subviews
+  {
+    path: '/dictionaries',
+    name: 'masha-dictionaries',
+    component: Dictionaries,
+  },
+  {
+    path: '/lesson-materials',
+    name: 'lesson-materials',
+    component: LessonMaterials,
+  },
+  {
+    path: '/homework',
+    name: 'hw-tasks',
+    component: HWTasks,
+  },
+  {
+    path: '/lesson-reports',
+    name: 'lesson-reports',
+    component: LessonReports,
+  },
+  {
+    path: '/lesson-plans/:name',
+    name: 'lesson-plans',
+    component: LessonPlans,
+  },
   // en grammar subviews
   {
     path: '/tenses',
@@ -114,32 +140,6 @@ const routes = [
   //   name: 'en-exercises',
   //   component: EnExercises,
   // },
-  // ege subviews
-  {
-    path: '/dictionaries',
-    name: 'ege-dictionaries',
-    component: Dictionaries,
-  },
-  {
-    path: '/lesson-materials',
-    name: 'lesson-materials',
-    component: LessonMaterials,
-  },
-  {
-    path: '/homework',
-    name: 'hw-tasks',
-    component: HWTasks,
-  },
-  {
-    path: '/lesson-reports',
-    name: 'lesson-reports',
-    component: LessonReports,
-  },
-  {
-    path: '/lesson-plans/:name',
-    name: 'lesson-plans',
-    component: LessonPlans,
-  },
   // horizonte subviews
   {
     path: '/zimmer',

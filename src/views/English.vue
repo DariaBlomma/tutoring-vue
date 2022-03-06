@@ -39,6 +39,11 @@ const contentLinks = [
     linkTitle: 'Vlad',
     icon: 'contents/account.png',
   },
+  {
+    routeName: 'masha',
+    linkTitle: 'Masha',
+    icon: 'contents/account.png',
+  },
   // {
   //   routeName: 'en-word-forms',
   //   linkTitle: 'Word forms',
