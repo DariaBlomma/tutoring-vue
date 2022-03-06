@@ -1,12 +1,12 @@
 <template>
-  <div class="page page--dark-theme en-grammar">
+  <div class="sub-page sub-page--dark-theme en-grammar">
     <header>
       <router-link class='go-back light' :to="{name: 'en-tenses'}">
         To Tenses
       </router-link>
     </header>
     <main>
-      <div class='page__contents'>
+      <div class='sub-page__contents'>
         <h2 class='secondary-title heading-white'>All tenses</h2>
         <div class='filled-table all-tenses-table'>
           <table class='table'>
