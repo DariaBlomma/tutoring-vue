@@ -29,11 +29,11 @@ const contentLinks = [
     linkTitle: 'Grammar',
     icon: 'contents/dictionary.png',
   },
-  {
-    routeName: 'spotlight',
-    linkTitle: 'Spotlight',
-    icon: 'contents/english.png',
-  },
+  // {
+  //   routeName: 'spotlight',
+  //   linkTitle: 'Spotlight',
+  //   icon: 'contents/english.png',
+  // },
   {
     routeName: 'vlad',
     linkTitle: 'Vlad',

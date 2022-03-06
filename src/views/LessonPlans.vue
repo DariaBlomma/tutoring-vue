@@ -301,6 +301,38 @@ const VladLessonPlans = [
       ],
     },
   ],
+  [
+    {
+      actual: true,
+      date: '08.03.2022',
+      time: '60 мин',
+      list: [
+        ['Вопрос: значения типов времен (simple, continuous), примеры из жизни'],
+        ['Вопрос: Теория про Present Simple, его значение, образование'],
+        ['Грамматические упражнени на образование Present Simple (Speakout Elementary, 4a, Murphy Elementary 5.3, 6.1, 7.1'],
+        ['Аудирование на тему Introductions - видео представление канала, из учебника New Headway'],
+      ],
+      links: [
+        {
+          title: 'All tenses',
+          address: 'https://daria-blomma-tutoring.herokuapp.com/tenses/all-tenses',
+        },
+        {
+          title: 'Present Simple theory',
+          address: 'https://daria-blomma-tutoring.herokuapp.com/tenses/present-simple',
+        },
+        {
+          title: 'Present Simple exercises',
+          address: 'https://daria-blomma-tutoring.herokuapp.com/vlad/lesson-2/#vlad-lesson2-gr-exs',
+        },
+        {
+          title: 'Listening Introductions',
+          address: 'https://daria-blomma-tutoring.herokuapp.com/vlad/lesson-2/#vlad-lesson2-listening',
+        },
+      ],
+    },
+    {},
+  ],
 ];
 
 const route = useRoute();

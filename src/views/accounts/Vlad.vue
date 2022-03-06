@@ -30,12 +30,13 @@ const contentLinks = [
   },
   {
     routeName: 'lesson-1',
-    linkTitle: 'Lesson 1. Tenses, Present Simple, to be',
+    linkTitle: 'Lesson 1. Tenses, Present Simple, to be, Speaking',
     icon: 'contents/english.png',
   },
-  // {
-  //   routeName: 'en-word-forms',
-  //   linkTitle: 'Word forms',
-  // },
+  {
+    routeName: 'lesson-2',
+    linkTitle: 'Lesson 2. Present Simple, listening',
+    icon: 'contents/english.png',
+  },
 ];
 </script>

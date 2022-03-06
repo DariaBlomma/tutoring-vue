@@ -30,29 +30,6 @@
           <li class='light'>
             Introduce yourself
             <img src='@/assets/english/introduce-yourself.jpg' class="img introduce-yourself">
-            <a
-              href='https://youtu.be/wVLSUp-no50'
-              class="link"
-            >
-              Watch the video
-            </a>
-            <h4 class="centered">Introductions - in family</h4>
-            <a
-              href='https://www.youtube.com/watch?v=KIQFg_IidQg'
-              class="link"
-            >
-              Video
-            </a>
-            <div>
-              <b>Questions</b>
-              <ol>
-                <li>Tell about each of the people</li>
-                <li>What phrases are used to talk about person's job,
-                  to greet, to start a polite converstation, etc?</li>
-                <li>Listen and translate every sentence.
-                  Use subtitles, if necessary, or change the video's speed</li>
-              </ol>
-            </div>
           </li>
         </ol>
       </div>
