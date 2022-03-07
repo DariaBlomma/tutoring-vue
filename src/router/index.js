@@ -19,6 +19,7 @@ import Vlad from '@/views/accounts/Vlad.vue';
 // vlad subviews
 import Lesson1 from '@/components/lessons/pre-intermediate/Lesson1.vue';
 import Lesson2 from '@/components/lessons/pre-intermediate/Lesson2.vue';
+import Lesson3 from '../components/lessons/pre-intermediate/Lesson3.vue';
 
 // horizonte 6 subviews
 import Zimmer from '../views/Zimmer.vue';
@@ -76,6 +77,11 @@ const routes = [
         path: 'lesson-2',
         name: 'lesson-2',
         component: Lesson2,
+      },
+      {
+        path: 'lesson-3',
+        name: 'lesson-3',
+        component: Lesson3,
       },
     ],
   },

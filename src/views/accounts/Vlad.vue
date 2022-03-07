@@ -38,5 +38,10 @@ const contentLinks = [
     linkTitle: 'Lesson 2. Present Simple, listening',
     icon: 'contents/english.png',
   },
+  {
+    routeName: 'lesson-3',
+    linkTitle: 'Lesson 3. To be, speaking',
+    icon: 'contents/english.png',
+  },
 ];
 </script>

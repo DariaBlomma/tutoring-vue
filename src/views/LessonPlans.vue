@@ -302,6 +302,7 @@ const VladLessonPlans = [
       ],
     },
   ],
+  // 07 - 13.03.21
   [
     {
       actual: true,
@@ -332,7 +333,24 @@ const VladLessonPlans = [
         },
       ],
     },
-    {},
+    {
+      actual: false,
+      date: '10.03.2022',
+      time: '60 мин',
+      list: [
+        ['Вопрос: Теория про Present Simple, его значение, образование'],
+        ['Вопрос: Теория про To be, его применение, формы в Present Simple'],
+        ['Грамматические упражнения на образование To be (Murphy Elementary 1.1, 1.2, 2.2'],
+        ['Полезные фразы для разговора.(Speakout Elementary 1.1, 1.2, 2.2)'],
+        ['Разговор - пример обсуждения чего-либо с заказчиком'],
+      ],
+      links: [
+        {
+          title: 'Present Simple theory',
+          address: 'https://daria-blomma-tutoring.herokuapp.com/tenses/present-simple',
+        },
+      ],
+    },
   ],
 ];
 
