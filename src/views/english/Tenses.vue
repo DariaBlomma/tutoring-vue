@@ -12,12 +12,15 @@
           <router-view />
       </div>
     </main>
-    <footer/>
+    <footer>
+      <ScrollTopBtn />
+    </footer>
   </div>
 </template>
 
 <script setup>
 import ContentsList from '@/components/ui/ContentsList.vue';
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 const subRoutesList = [
   {

@@ -10,7 +10,20 @@
         <h2 class='secondary-title heading-white'>Present Simple</h2>
         <img
           src='@/assets/english/present-simple.jpg'
-          class="img"
+          class="img desktop-img"
+        >
+        <!-- картинки для адаптива на маленьких экранов -->
+        <img
+          src='@/assets/english/present-simple/adaptive/affirmative-till-500.png'
+          class="img max-500-img"
+        >
+        <img
+          src='@/assets/english/present-simple/adaptive/negative-till-500.png'
+          class="img max-500-img"
+        >
+        <img
+          src='@/assets/english/present-simple/adaptive/questions-till-500.png'
+          class="img max-500-img"
         >
         <a
           href='https://docs.google.com/document/d/1tpHI2TYpOh_TzulmafrxtdomB5eCarUmAANOgVW6weg/edit?usp=sharing'

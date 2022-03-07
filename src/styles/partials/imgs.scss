@@ -1,7 +1,43 @@
 .img {
   margin: $margin-normal auto;
+  width: 70vw;
 }
 
 .introduce-yourself {
   max-width: 80vw;
+}
+
+// картинка для адаптива
+.max-500-img {
+  display: none
+}
+
+@media (max-width: 800px) {
+  .img {
+    max-width: 80vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .desktop-img {
+    display: none;
+  }
+
+  .max-500-img {
+    display: block;
+    width: 60vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .max-500-img {
+    // width: 70vw;
+    width: 50vw;
+  }
+}
+
+@media (max-width: 300px) {
+  .max-500-img {
+    width: 40vw;
+  }
 }

@@ -1,0 +1,21 @@
+.to-be-in-pr-simple {
+  .desktop-img {
+    max-width: 80vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .to-be-in-pr-simple {
+    .desktop-img {
+      max-width: 70vw;
+    }
+  }
+}
+
+// @media (max-width: 400px) {
+//   .to-be-in-pr-simple {
+//     .max-500-img {
+//       max-width: 60vw;
+//     }
+//   }
+// }
