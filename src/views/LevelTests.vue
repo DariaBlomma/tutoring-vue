@@ -1,17 +1,19 @@
 <template>
   <div class="page page--dark-theme english">
     <header>
-      <router-link class="go-back light" :to="{ name: 'home' }">To home page</router-link>
+      <router-link class="go-back light" :to="{ name: 'english' }">To English page</router-link>
     </header>
     <main>
-      <h1 class="primary-title heading-white centered">Level tests</h1>
-      <ContentsList :contentsList="levelTests" />
-      <LevelTest testId="beginner" testTitle="Beginner" :test="beginnerTest" />
-      <LevelTest
-        testId="pre-intermediate"
-        testTitle="Pre-Intermediate"
-        :test="preIntermediateTest"
-      />
+      <div class='page__contents'>
+        <h1 class="primary-title heading-white centered">Level tests</h1>
+        <ContentsList :contentsList="levelTests" />
+        <LevelTest testId="beginner" testTitle="Beginner" :test="beginnerTest" />
+        <LevelTest
+          testId="pre-intermediate"
+          testTitle="Pre-Intermediate"
+          :test="preIntermediateTest"
+        />
+      </div>
     </main>
     <footer>
       <ScrollTopBtn />

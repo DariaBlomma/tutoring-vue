@@ -1,0 +1,27 @@
+// * у page реализован sticky footer за счет 3 элементов внутри
+.page {
+  background-color: $_1_orange_color;
+  padding: 30px;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  &--dark-theme {
+      background-color: $_3_grey-color;
+  }
+
+  &__contents {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+      &__contents {
+          margin-top: $margin-normal * 4;
+      }
+  }
+}

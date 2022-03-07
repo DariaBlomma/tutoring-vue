@@ -1,4 +1,6 @@
 .level-test {
+  margin-top: $margin-normal * 2;
+
   &__list {
     max-width: 900px;
     margin: 0 auto;
@@ -48,5 +50,38 @@
   .answer {
     color: $dark-purple-color;
     font-weight: bold;
+  }
+}
+
+@media (max-width: 900px) {
+  .level-test {
+    &__list {
+      max-width: 500px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .level-test {
+    &__list, &__answer-field {
+      max-width: 300px;
+    }
+
+    .input {
+      width: 200px;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .level-test {
+    &__list, &__answer-field {
+      max-width: 200px;
+    }
+
+    .input {
+      width: 100px;
+      margin: $margin-normal 0;
+    }
   }
 }

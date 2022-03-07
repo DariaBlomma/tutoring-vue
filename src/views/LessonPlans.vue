@@ -1,9 +1,8 @@
 <template>
   <div class='page page--dark-theme lesson-plans'>
     <header>
-      <!-- todo: сделать возврат к личной странице в зависимости от аккаунта -->
-      <router-link class='go-back light' :to="{name: 'english'}">
-        Back to English page
+      <router-link class='go-back light' :to="{name: route.params.name}">
+        Back to personal page
       </router-link>
     </header>
     <div class='contents'>
@@ -357,5 +356,4 @@ const VladLessonPlans = [
 const route = useRoute();
 const lessonPlans = computed(() => (route.params.name === 'masha' ? MashaLessonPlans : VladLessonPlans));
 const planDays = computed(() => (route.params.name === 'masha' ? MashaPlanDays : VladPlanDays));
-
 </script>

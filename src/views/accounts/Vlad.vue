@@ -12,12 +12,15 @@
       </div>
       <router-view/>
     </main>
-    <footer/>
+    <footer>
+      <ScrollTopBtn />
+    </footer>
   </div>
 </template>
 
 <script setup>
 import IconsLinksList from '@/components/ui/IconsLinksList.vue';
+import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
 
 const contentLinks = [
   {
