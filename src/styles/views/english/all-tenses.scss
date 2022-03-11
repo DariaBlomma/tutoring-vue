@@ -1,0 +1,17 @@
+.all-tenses-funny {
+  margin: $margin-normal * 2 auto;
+}
+
+@media (max-width: 1250px) {
+  .all-tenses-table {
+    width: 150vw;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 500px) {
+  .all-tenses-table {
+    width: 130vw;
+    overflow: scroll;
+  }
+}

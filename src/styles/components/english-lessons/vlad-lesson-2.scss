@@ -1,0 +1,18 @@
+@media (max-width: 600px) {
+  .lesson2 {   
+    padding: 0;
+
+    .img {
+      width: 90vw;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .lesson2 { 
+    .img {
+      width: 70vw;
+      margin: 5px auto;
+    }  
+  }
+}

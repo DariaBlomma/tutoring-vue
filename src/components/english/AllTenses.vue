@@ -761,11 +761,11 @@
         </div>
         <img
           src='@/assets/english-level-tests/all-tenses-funny-1.jpg'
-          class='all-tenses-funny'
+          class='img all-tenses-funny'
         >
         <img
           src='@/assets/english-level-tests/all-tenses-funny-2.jpg'
-          class='all-tenses-funny'
+          class='img all-tenses-funny'
         >
       </div>
     </main>

@@ -6,7 +6,7 @@
     <main>
       <div class="sub-page__contents">
         <h2 class="secondary-title heading-white">Lesson 3</h2>
-        <ol>
+        <ol class="en-lesson__list">
           <li class="light">
             <h4
               class="en-lesson__task-title"

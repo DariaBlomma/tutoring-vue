@@ -8,3 +8,11 @@
     display: block;
   }
 }
+
+@media (max-width: 500px) {
+  .en-lesson {   
+    &__list {
+      padding-inline-start: 15px;
+    }
+  }
+}
