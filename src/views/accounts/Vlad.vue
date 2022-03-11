@@ -9,8 +9,8 @@
       <div class='page__contents'>
         <h1 class='primary-title heading-white'>Vlad</h1>
         <IconsLinksList :links="contentLinks"/>
+        <router-view/>
       </div>
-      <router-view/>
     </main>
     <footer>
       <ScrollTopBtn />

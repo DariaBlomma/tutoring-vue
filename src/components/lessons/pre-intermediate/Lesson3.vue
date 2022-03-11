@@ -1,17 +1,18 @@
 <template>
-  <div class="sub-page sub-page--dark-theme english en-lesson">
+  <div class="sub-page sub-page--dark-theme en-lesson lesson3">
     <header>
       <router-link class="go-back light" :to="{ name: 'vlad' }">To personal page</router-link>
     </header>
     <main>
       <div class="sub-page__contents">
-        <h1 class="primary-title heading-white">Lesson 3</h1>
+        <h2 class="secondary-title heading-white">Lesson 3</h2>
         <ol>
           <li class="light">
             <h4
               class="en-lesson__task-title"
             >
-            Tell about Present Simple, what it means, how is formed</h4>
+              Tell about Present Simple, what it means, how is formed
+            </h4>
             <router-link
               :to="{ name: 'present-simple' }"
               target="_blank"
@@ -24,6 +25,7 @@
             <router-link
               :to="{ name: 'to-be-in-present-simple' }"
               target="_blank"
+              class="en-lesson__link"
             >
             To be forms
             </router-link>
@@ -33,16 +35,25 @@
             <h4 class="en-lesson__task-title">Grammar exercises</h4>
             <img
               src="@/assets/english/present-simple/to-be-affirmative-murphy-1.1-1.2.png"
-              class="img"
+              class="img lesson3__gr-img"
             />
-            <img src="@/assets/english/present-simple/to-be-questions-murphy-2.2.png" class="img" />
+            <img
+              src="@/assets/english/present-simple/to-be-questions-murphy-2.2.png"
+              class="img lesson3__gr-img"
+            />
             <div class="lesson3__speakout-imgs">
               <img
                 src="@/assets/english/speakout-elementary/before-units/ex-3a-4a.png"
-                class="img"
+                class="img lesson3__gr-img"
               />
-              <img src="@/assets/english/speakout-elementary/unit-1/ex1.png" class="img" />
-              <img src="@/assets/english/speakout-elementary/unit-1/ex4.png" class="img" />
+              <img
+                src="@/assets/english/speakout-elementary/unit-1/ex1.png"
+                class="img lesson3__gr-img"
+              />
+              <img
+                src="@/assets/english/speakout-elementary/unit-1/ex4.png"
+                class="img lesson3__gr-img"
+              />
             </div>
           </li>
           <li class="light" id="vlad-lesson-3-speaking">

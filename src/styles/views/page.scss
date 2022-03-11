@@ -2,7 +2,8 @@
 .page {
   background-color: $_1_orange_color;
   padding: 30px;
-  width: 100vw;
+  // * 100vw создает горизонтальную прокрутку во всех вложенных маршрутаах
+  width: 100%;
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;

@@ -7,9 +7,9 @@
     // color: $primary-text-color;
 }
 
+@import 'partials/index.scss';
 @import 'views/index.scss';
 @import 'components/index.scss';
-@import 'partials/index.scss';
 @import 'drag-and-drop/index.scss';
 
 @import './states.scss';

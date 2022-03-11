@@ -303,9 +303,10 @@ const VladLessonPlans = [
   ],
   // 07 - 13.03.21
   [
+    {},
     {
       actual: true,
-      date: '08.03.2022',
+      date: '10.03.2022',
       time: '60 мин',
       list: [
         ['Вопрос: значения типов времен (simple, continuous), примеры из жизни'],
@@ -332,9 +333,11 @@ const VladLessonPlans = [
         },
       ],
     },
+  ],
+  [
     {
       actual: false,
-      date: '10.03.2022',
+      date: '15.03.2022',
       time: '60 мин',
       list: [
         ['Вопрос: Теория про Present Simple, его значение, образование'],

@@ -1,0 +1,31 @@
+.lesson1 { 
+  .introduce-yourself {
+    width: 40vw;
+  }
+
+  &__speakout-imgs {
+    display: flex;
+  }
+}
+
+@media (max-width: 800px) {
+  .lesson1 {   
+    .introduce-yourself {
+      width: 60vw;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .lesson1 {   
+    padding: 0;
+
+    ol {
+      padding-inline-start: 15px;
+    }
+
+    .introduce-yourself {
+      width: 100%;
+    }
+  }
+}

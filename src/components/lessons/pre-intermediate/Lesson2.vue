@@ -1,5 +1,5 @@
 <template>
-  <div class="sub-page sub-page--dark-theme english en-lesson">
+  <div class="sub-page sub-page--dark-theme en-lesson lesson2">
     <header>
       <router-link class='go-back light' :to="{name: 'vlad'}">
         To personal page
@@ -7,7 +7,7 @@
     </header>
     <main>
       <div class='sub-page__contents'>
-        <h1 class='primary-title heading-white'>Lesson 2</h1>
+        <h2 class='secondary-title heading-white'>Lesson 2</h2>
         <ol>
           <li class='light'>
             <h4 class='en-lesson__task-title'>
