@@ -2,9 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 // main views of application
 import Horizonte6 from '../views/Horizonte6.vue';
-import Masha from '@/views/accounts/Masha.vue';
 import English from '@/views/English.vue';
-
 // subviews of english
 import LevelTests from '@/views/LevelTests.vue';
 import Spotlight from '../views/Spotlight.vue';
@@ -16,6 +14,7 @@ import PresentSimple from '@/components/english/PresentSimple.vue';
 import ToBeInPresentSimple from '../components/english/ToBeInPresentSimple.vue';
 // personal accounts
 import Vlad from '@/views/accounts/Vlad.vue';
+import Masha from '@/views/accounts/Masha.vue';
 // vlad subviews
 import Lesson1 from '@/components/lessons/pre-intermediate/Lesson1.vue';
 import Lesson2 from '@/components/lessons/pre-intermediate/Lesson2.vue';
