@@ -5,10 +5,12 @@
       :key="link.routeName"
       class='link-wrapper'
     >
+      <div v-if="link.personalImg" class="link-icon icon-wrapper" :class="link.class" />
       <img
-        v-if="link.icon"
+        v-else-if="link.icon"
         :src="require(`@/assets/${link.icon}`)"
         class='link-icon'
+        :class="link.class"
       >
       <router-link
         class='light'

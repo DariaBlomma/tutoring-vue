@@ -38,11 +38,14 @@ const contentLinks = [
     routeName: 'vlad',
     linkTitle: 'Vlad',
     icon: 'contents/account.png',
+    class: 'vlad-avatar',
   },
   {
     routeName: 'masha',
     linkTitle: 'Masha',
-    icon: 'contents/account.png',
+    icon: 'contents/masha-avatar.jpg',
+    personalImg: true,
+    class: 'masha-avatar',
   },
   // {
   //   routeName: 'en-word-forms',
