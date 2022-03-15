@@ -248,7 +248,7 @@ export default {
     calendarCurrentMonth() {
       return new Date().getMonth();
     },
-    currentCalendarPlan() {
+    calendarCurrentPlan() {
       return this.planData[this.calendarCurrentYear][this.calendarCurrentMonth];
     },
     plannedHours() {
@@ -293,9 +293,9 @@ export default {
       // * остаток в минутах
       // * в январе считаем остаток из обычного запланированного,
       // * в остальных месяцах учитываем план с долгом
-      return this.calendarCurrentMonth > 0 && this.currentCalendarPlan.withDebtPlannedAmount
-        ? this.currentCalendarPlan.withDebtPlannedAmount - this.currentCalendarPlan.done
-        : this.currentCalendarPlan.plannedAmount - this.currentCalendarPlan.done;
+      return this.calendarCurrentMonth > 0 && this.calendarCurrentPlan.withDebtPlannedAmount
+        ? this.calendarCurrentPlan.withDebtPlannedAmount - this.calendarCurrentPlan.done
+        : this.calendarCurrentPlan.plannedAmount - this.calendarCurrentPlan.done;
     },
     debtHours() {
       return Math.floor(this.currentPlan.debt / 60);
@@ -373,7 +373,7 @@ export default {
         const lastMonthDay = new Date(this.currentYear, index, daysInMonth).toLocaleDateString('ru');
         const monthBase = {
           plannedAmount: 8 * 60,
-          withDebtPlannedAmount: 0,
+          withDebtPlannedAmount: 8 * 60,
           done: 0,
           missed: 0,
           restAmount: 8 * 60,
@@ -386,16 +386,16 @@ export default {
       saveInfo('lesson-reports__planData', this.planData);
     },
     saveEditPlannedAmount(plannedMinutes) {
-      console.log('in saveEditPlannedAmount this.currentPlan', this.currentPlan);
+      // console.log('in saveEditPlannedAmount this.currentPlan', this.currentPlan);
       // * сохранение запланированных часов и минут на месяц
       this.currentPlan.plannedAmount = plannedMinutes;
-      console.log('this.currentPlan.plannedAmount: ', this.currentPlan.plannedAmount);
+      // console.log('this.currentPlan.plannedAmount: ', this.currentPlan.plannedAmount);
       this.calculateRestAmount(this.currentPlan);
-      console.log('after calculateRestAmount planData', this.planData);
+      // console.log('after calculateRestAmount planData', this.planData);
       saveInfo('lesson-reports__planData', this.planData);
-      console.log('after saveInfo planData', this.planData);
+      // console.log('after saveInfo planData', this.planData);
       this.updateDebt(this.currentMonth);
-      console.log('after updateDebt planData', this.planData);
+      // console.log('after updateDebt planData', this.planData);
     },
     updateDoneMissed(editInfoType) {
       let infoObject = {};
@@ -439,11 +439,11 @@ export default {
         this.planData = savedPlan;
       }
     },
-    updatePlannedWithDebt(plan, month) {
+    updatePlannedWithDebt(plan, month, debt = 0) {
       if (month === 0) {
         plan.withDebtPlannedAmount = plan.plannedAmount;
       } else {
-        plan.withDebtPlannedAmount = plan.plannedAmount + (plan.debt || 0);
+        plan.withDebtPlannedAmount = plan.plannedAmount + (debt || plan.debt);
       }
     },
     calculateRestAmount(plan, month = this.currentMonth) {
@@ -456,34 +456,17 @@ export default {
     },
     // * для календарного обновления долга
     calculateCalendarDebt() {
-      // * устанавливаем долг в последний день месяца, 24 часа и сохраняем в l
+      // * проверяем, что у предыдущего календарного месяца был остаток
       // * конец календарного месяца
-      if (this.islastMonthDay
-      && this.isDayEnd
-      && this.restAmount) {
-        // console.log('in calculate calendar debt');
-        this.currentCalendarPlan.debt = this.calendarRestAmount;
-        if (this.calendarNextMonthPlan) {
-          this.calendarNextMonthPlan.debt = this.currentCalendarPlan.debt;
-          this.calendarNextMonthPlan
-            .withDebtPlannedAmount = this.calendarNextMonthPlan.plannedAmount
-              + this.currentCalendarPlan.debt;
-        }
-        saveInfo('lesson-reports__planData', this.planData);
+      const prevMonthPlan = this.planData[this.currentYear][this.calendarCurrentMonth - 1];
+      if (prevMonthPlan.restAmount) {
+        prevMonthPlan.debt = prevMonthPlan.restAmount;
+        this.calendarCurrentPlan.withDebtPlannedAmount = this.calendarCurrentPlan.plannedAmount
+          + prevMonthPlan.debt;
+        this.calculateRestAmount(this.calendarCurrentPlan);
       }
 
-      // this.months.forEach((month, index) => {
-      //   const plan = this.planData[this.currentYear][index];
-      //   this.calculateRestAmount(plan, index);
-      //   if (index <= this.calendarCurrentMonth && plan.restAmount) {
-      //     plan.debt = plan.restAmount;
-      //   }
-      //   this.updatePlannedWithDebt(plan, index);
-      //   this.calculateRestAmount(plan, index);
-      //   if (index <= this.calendarCurrentMonth && plan.restAmount) {
-      //     plan.debt = plan.restAmount;
-      //   }
-      // });
+      saveInfo('lesson-reports__planData', this.planData);
     },
     // * вызывается при редактировании данных плана
     updateDebt(updateMonth) {
@@ -497,7 +480,8 @@ export default {
       // console.log('changedMonth: ', changedMonth);
       this.months.forEach((month, index) => {
         const plan = this.planData[this.currentYear][index];
-        if (index <= this.calendarCurrentMonth) {
+        // * обновляем долг у предыдущих месяцев, не включая текущий
+        if (index < this.calendarCurrentMonth) {
           // * не обновлять долг у тех месяцев, где его не было
           if (index < updateMonth) {
             return;
@@ -505,12 +489,15 @@ export default {
           // console.log('in calculate slider debt');
           // console.log('changedMonth.restAmount: ', changedMonth.restAmount / 60);a
           plan.debt = changedMonth.restAmount;
+          // * запланировано с учетом долга обновлять у следующего месяца, не того же
+          if (index + 1 < 11) {
+            const nextPlan = this.planData[this.currentYear][index + 1];
+            this.updatePlannedWithDebt(nextPlan, index + 1, plan.debt);
+            this.calculateRestAmount(nextPlan, index + 1);
+          }
+
+          saveInfo('lesson-reports__planData', this.planData);
         }
-
-        this.updatePlannedWithDebt(plan, index);
-
-        this.calculateRestAmount(plan, index);
-        saveInfo('lesson-reports__planData', this.planData);
       });
 
       // обновить долг для следующего месяца с помощью слайдерного nextMonthPlan
