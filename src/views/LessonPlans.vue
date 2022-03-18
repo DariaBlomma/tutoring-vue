@@ -21,9 +21,8 @@
 </template>
 
 <script setup>
-// todo 1) скролл к актуальному плану
 // todo 2) адаптация под мобильный
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import ColorStates from '@/components/ColorStates.vue';
 import ScrollTopBtn from '@/components/ScrollTopBtn.vue';
@@ -359,4 +358,11 @@ const VladLessonPlans = [
 const route = useRoute();
 const lessonPlans = computed(() => (route.params.name === 'masha' ? MashaLessonPlans : VladLessonPlans));
 const planDays = computed(() => (route.params.name === 'masha' ? MashaPlanDays : VladPlanDays));
+
+const scrollToActualPlan = () => {
+  const actualPlan = document.querySelector('.plan-actual');
+  actualPlan.scrollIntoView(false);
+};
+
+onMounted(scrollToActualPlan);
 </script>
