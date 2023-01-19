@@ -5,6 +5,7 @@ import Horizonte6 from '../views/Horizonte6.vue';
 import English from '@/views/English.vue';
 // subviews of english
 import LevelTests from '@/views/LevelTests.vue';
+import SpeakoutElementary from '@/components/english/SpeakoutElementary.vue';
 import Spotlight from '../views/Spotlight.vue';
 import EnGrammar from '../views/english/Grammar.vue';
 // en grammar subviews
@@ -56,6 +57,11 @@ const routes = [
     path: '/grammar',
     name: 'en-grammar',
     component: EnGrammar,
+  },
+  {
+    path: '/speakout-elementary',
+    name: 'speakout-elementary',
+    component: SpeakoutElementary,
   },
   {
     path: '/spotlight',

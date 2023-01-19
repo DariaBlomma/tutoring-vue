@@ -29,24 +29,29 @@ const contentLinks = [
     linkTitle: 'Grammar',
     icon: 'contents/dictionary.png',
   },
+  {
+    routeName: 'speakout-elementary',
+    linkTitle: 'Speakout Elementary',
+    icon: 'contents/english.png',
+  },
   // {
   //   routeName: 'spotlight',
   //   linkTitle: 'Spotlight',
   //   icon: 'contents/english.png',
   // },
-  {
-    routeName: 'vlad',
-    linkTitle: 'Vlad',
-    icon: 'contents/account.png',
-    class: 'vlad-avatar',
-  },
-  {
-    routeName: 'masha',
-    linkTitle: 'Masha',
-    icon: 'contents/masha-avatar.jpg',
-    personalImg: true,
-    class: 'masha-avatar',
-  },
+  // {
+  //   routeName: 'vlad',
+  //   linkTitle: 'Vlad',
+  //   icon: 'contents/account.png',
+  //   class: 'vlad-avatar',
+  // },
+  // {
+  //   routeName: 'masha',
+  //   linkTitle: 'Masha',
+  //   icon: 'contents/masha-avatar.jpg',
+  //   personalImg: true,
+  //   class: 'masha-avatar',
+  // },
   // {
   //   routeName: 'en-word-forms',
   //   linkTitle: 'Word forms',
