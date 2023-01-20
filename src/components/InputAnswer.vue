@@ -26,9 +26,9 @@ export default {
       default: '',
     },
     // просто слово-ответ для проверки
-    readyFullWord: {
+    rightAnswer: {
       type: String,
-      default: '',
+      required: true,
     },
     // массив слов-исключений и соответствующих классов на основе местоимений
     exceptions: {
@@ -59,14 +59,13 @@ export default {
     // вернет слово -образец для проверки правильного ответа
     fullWord() {
       let name = this.word + this.ending;
-      if (this.readyFullWord) {
-        name = this.readyFullWord;
+      if (this.rightAnswer) {
+        name = this.rightAnswer;
       }
       if (this.exceptions) {
         this.exceptions.forEach(item => {
           if (item[1] === this.pronounClass) {
-            // eslint-disable-next-line prefer-destructuring
-            name = item[0];
+            [name] = item;
           }
         });
       }

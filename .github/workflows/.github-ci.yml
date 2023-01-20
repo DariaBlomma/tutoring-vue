@@ -1,0 +1,29 @@
+name: lint
+
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  lint:
+    name: linter
+    runs-on: ubuntu-latest
+    steps:
+      #  checkout делает pull репозитория и ветки, в котором запущен.
+      #  Таким образом мы получаем доступ к коду.
+      #  Без этого экшена делать npm i было бы не на чем.
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        name: 'setup node'
+        with:
+          node-version: 14
+      - name: install dependencies
+        run: npm i
+      - name: eslint-fix
+        run: npm run lint:quiet
+      - name: tslint
+        run: npm run ts-lint:ci
