@@ -341,9 +341,39 @@
         "signature": "90112582f52a2dfd527d025ef65cb410b483e2def552a086d40aec0ea5697262",
         "affectsGlobalScope": false
       },
+      "./src/types/levelTests.ts": {
+        "version": "b04ee52ce1ec5390da1219e3dc006c3e2e02f7e0531e9bd70a049efed5b5f303",
+        "signature": "68ad377d7eb8cb8d42f86d0887f550e968844dfd4e15e80c70be49e2c2b7f064",
+        "affectsGlobalScope": false
+      },
+      "./src/types/index.ts": {
+        "version": "5d5215fe755e2cda699d8366e24b00d40c23f3185ff5b28e7ad4e43c39447f2e",
+        "signature": "5d5215fe755e2cda699d8366e24b00d40c23f3185ff5b28e7ad4e43c39447f2e",
+        "affectsGlobalScope": false
+      },
+      "./src/constants/level-tests/english/pre-intermediate.ts": {
+        "version": "6bb1a5b9050faa291e8178e1c23ee9f1231b2e0471056c7de5eb2c08a0f05272",
+        "signature": "bdcc7bf964b4f2f82bbd468201e4dfb82abfb4e5b70b5d7d0dea19d241ec0fa9",
+        "affectsGlobalScope": false
+      },
+      "./src/constants/level-tests/english/beginner.ts": {
+        "version": "86308f58ff88f2fa394a306e0a005577926b0c5573d35d86477d2eacdca32dd6",
+        "signature": "22747725633d711a421875512651ff7fa08acf0c325803ff9d30add05b14f8d3",
+        "affectsGlobalScope": false
+      },
+      "./src/constants/level-tests/english/index.ts": {
+        "version": "afa6f47f363dcd7fe9a9386ffaaa18b5faecf64f2c23683f6c52e6b7ed74cc44",
+        "signature": "afa6f47f363dcd7fe9a9386ffaaa18b5faecf64f2c23683f6c52e6b7ed74cc44",
+        "affectsGlobalScope": false
+      },
+      "./src/constants/level-tests/index.ts": {
+        "version": "c82e85ba12a27ee49feca038ac67dc591723a48fdb4bbe25ded2b1037370cc8d",
+        "signature": "c82e85ba12a27ee49feca038ac67dc591723a48fdb4bbe25ded2b1037370cc8d",
+        "affectsGlobalScope": false
+      },
       "./src/constants/index.ts": {
-        "version": "c6ec5c17e2bd318232199365f08fa73feb28a644d3d4fe77096e228d2b20917d",
-        "signature": "c6ec5c17e2bd318232199365f08fa73feb28a644d3d4fe77096e228d2b20917d",
+        "version": "1323ad72ac34c09bbaaedf2b007be692e294ed2eb34d9d0b9b4ee3f8412bd501",
+        "signature": "1323ad72ac34c09bbaaedf2b007be692e294ed2eb34d9d0b9b4ee3f8412bd501",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/webpack-env/index.d.ts": {
@@ -437,7 +467,25 @@
       ],
       "./src/constants/index.ts": [
         "./node_modules/tslib/tslib.d.ts",
+        "./src/constants/level-tests/index.ts",
         "./src/constants/speakOutWB2ed/index.ts"
+      ],
+      "./src/constants/level-tests/english/beginner.ts": [
+        "./node_modules/tslib/tslib.d.ts",
+        "./src/types/index.ts"
+      ],
+      "./src/constants/level-tests/english/index.ts": [
+        "./node_modules/tslib/tslib.d.ts",
+        "./src/constants/level-tests/english/beginner.ts",
+        "./src/constants/level-tests/english/pre-intermediate.ts"
+      ],
+      "./src/constants/level-tests/english/pre-intermediate.ts": [
+        "./node_modules/tslib/tslib.d.ts",
+        "./src/types/index.ts"
+      ],
+      "./src/constants/level-tests/index.ts": [
+        "./node_modules/tslib/tslib.d.ts",
+        "./src/constants/level-tests/english/index.ts"
       ],
       "./src/constants/speakOutWB2ed/index.ts": [
         "./node_modules/tslib/tslib.d.ts",
@@ -464,6 +512,13 @@
       "./src/store/index.js": [
         "./node_modules/tslib/tslib.d.ts",
         "./node_modules/vuex/types/index.d.ts"
+      ],
+      "./src/types/index.ts": [
+        "./node_modules/tslib/tslib.d.ts",
+        "./src/types/levelTests.ts"
+      ],
+      "./src/types/levelTests.ts": [
+        "./node_modules/tslib/tslib.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -519,7 +574,21 @@
         "./node_modules/vuex/types/index.d.ts"
       ],
       "./src/constants/index.ts": [
+        "./src/constants/level-tests/index.ts",
         "./src/constants/speakOutWB2ed/index.ts"
+      ],
+      "./src/constants/level-tests/english/beginner.ts": [
+        "./src/types/index.ts"
+      ],
+      "./src/constants/level-tests/english/index.ts": [
+        "./src/constants/level-tests/english/beginner.ts",
+        "./src/constants/level-tests/english/pre-intermediate.ts"
+      ],
+      "./src/constants/level-tests/english/pre-intermediate.ts": [
+        "./src/types/index.ts"
+      ],
+      "./src/constants/level-tests/index.ts": [
+        "./src/constants/level-tests/english/index.ts"
       ],
       "./src/constants/speakOutWB2ed/index.ts": [
         "./src/constants/speakOutWB2ed/unit2/index.ts"
@@ -532,6 +601,9 @@
       ],
       "./src/store/index.js": [
         "./node_modules/vuex/types/index.d.ts"
+      ],
+      "./src/types/index.ts": [
+        "./src/types/levelTests.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -599,12 +671,18 @@
       "./node_modules/vuex/types/logger.d.ts",
       "./node_modules/vuex/types/vue.d.ts",
       "./src/constants/index.ts",
+      "./src/constants/level-tests/english/beginner.ts",
+      "./src/constants/level-tests/english/index.ts",
+      "./src/constants/level-tests/english/pre-intermediate.ts",
+      "./src/constants/level-tests/index.ts",
       "./src/constants/speakOutWB2ed/index.ts",
       "./src/constants/speakOutWB2ed/unit2/index.ts",
       "./src/main.ts",
       "./src/router/index.js",
       "./src/shims-vue.d.ts",
-      "./src/store/index.js"
+      "./src/store/index.js",
+      "./src/types/index.ts",
+      "./src/types/levelTests.ts"
     ],
     "affectedFilesPendingEmit": [
       [
@@ -712,6 +790,22 @@
         1
       ],
       [
+        "./src/constants/level-tests/english/beginner.ts",
+        1
+      ],
+      [
+        "./src/constants/level-tests/english/index.ts",
+        1
+      ],
+      [
+        "./src/constants/level-tests/english/pre-intermediate.ts",
+        1
+      ],
+      [
+        "./src/constants/level-tests/index.ts",
+        1
+      ],
+      [
         "./src/constants/speakOutWB2ed/index.ts",
         1
       ],
@@ -733,6 +827,14 @@
       ],
       [
         "./src/store/index.js",
+        1
+      ],
+      [
+        "./src/types/index.ts",
+        1
+      ],
+      [
+        "./src/types/levelTests.ts",
         1
       ]
     ]
