@@ -1,17 +1,20 @@
 <template>
   <div class="page page--dark-theme english">
     <header>
-      <router-link class='go-back light' :to="{name: 'home'}">
+      <router-link
+        class="go-back light"
+        :to="{name: 'home'}"
+      >
         To home page
       </router-link>
     </header>
     <main>
-      <div class='page__contents'>
-        <h1 class='primary-title heading-white'>Contents</h1>
-        <IconsLinksList :links="contentLinks"/>
+      <div class="page__contents">
+        <h1 class="primary-title heading-white">Contents</h1>
+        <IconsLinksList :links="contentLinks" />
       </div>
     </main>
-    <footer/>
+    <footer />
   </div>
 </template>
 
@@ -33,6 +36,11 @@ const contentLinks = [
     routeName: 'speakout-elementary',
     linkTitle: 'Speakout Elementary',
     icon: 'contents/english.png',
+  },
+  {
+    routeName: 'crosswords',
+    linkTitle: 'Crosswords',
+    icon: 'contents/crossword.png',
   },
   // {
   //   routeName: 'spotlight',

@@ -8,6 +8,7 @@ import LevelTests from '@/views/LevelTests.vue';
 import SpeakoutElementary from '@/components/english/SpeakoutElementary.vue';
 import Spotlight from '../views/Spotlight.vue';
 import EnGrammar from '../views/english/Grammar.vue';
+import Crosswords from '@/views/Crosswords.vue';
 // en grammar subviews
 import EnTenses from '../views/english/Tenses.vue';
 import AllEnTenses from '../components/english/AllTenses.vue';
@@ -62,6 +63,11 @@ const routes = [
     path: '/speakout-elementary',
     name: 'speakout-elementary',
     component: SpeakoutElementary,
+  },
+  {
+    path: '/crosswords',
+    name: 'crosswords',
+    component: Crosswords,
   },
   {
     path: '/spotlight',
