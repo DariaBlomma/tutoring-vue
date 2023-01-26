@@ -292,7 +292,7 @@
         "affectsGlobalScope": false
       },
       "./src/router/index.js": {
-        "version": "0723bc7ceec7fa7314b7ec5828a7dd9e51b7d2b551b3fb9e58513b5c08231090",
+        "version": "9c81be4dbb88db4e626839ac0c23d6ea3572ff576d8cc78543c7e0ddb4d375ec",
         "signature": "f980343aaf9e0c35cb78e74dfbe07d405cd20358e009e160b1b3cecee925dc19",
         "affectsGlobalScope": false
       },
@@ -371,9 +371,19 @@
         "signature": "c82e85ba12a27ee49feca038ac67dc591723a48fdb4bbe25ded2b1037370cc8d",
         "affectsGlobalScope": false
       },
+      "./src/constants/crosswords/alex_english.ts": {
+        "version": "b2da4ee0ca686ad22706306e80d09daa96d7f26d7a8b998f0bcf693889d8f59c",
+        "signature": "86b43ee4aa0a527d6957048c840a28fac7ed49af128bbd0a27118574b0ce85e8",
+        "affectsGlobalScope": false
+      },
+      "./src/constants/crosswords/index.ts": {
+        "version": "d0312d4a9144cb76ae85ab63f3053e3c8f1d3dd776260b22f3f662e1f06eca9c",
+        "signature": "d0312d4a9144cb76ae85ab63f3053e3c8f1d3dd776260b22f3f662e1f06eca9c",
+        "affectsGlobalScope": false
+      },
       "./src/constants/index.ts": {
-        "version": "1323ad72ac34c09bbaaedf2b007be692e294ed2eb34d9d0b9b4ee3f8412bd501",
-        "signature": "1323ad72ac34c09bbaaedf2b007be692e294ed2eb34d9d0b9b4ee3f8412bd501",
+        "version": "90cccc13c852f42dfc91058d1ec713af44507e60eb2ca0196d423c554ae48794",
+        "signature": "90cccc13c852f42dfc91058d1ec713af44507e60eb2ca0196d423c554ae48794",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/webpack-env/index.d.ts": {
@@ -465,8 +475,16 @@
         "./node_modules/vue/dist/vue.d.ts",
         "./node_modules/vuex/types/index.d.ts"
       ],
+      "./src/constants/crosswords/alex_english.ts": [
+        "./node_modules/tslib/tslib.d.ts"
+      ],
+      "./src/constants/crosswords/index.ts": [
+        "./node_modules/tslib/tslib.d.ts",
+        "./src/constants/crosswords/alex_english.ts"
+      ],
       "./src/constants/index.ts": [
         "./node_modules/tslib/tslib.d.ts",
+        "./src/constants/crosswords/index.ts",
         "./src/constants/level-tests/index.ts",
         "./src/constants/speakOutWB2ed/index.ts"
       ],
@@ -573,7 +591,11 @@
         "./node_modules/vue/dist/vue.d.ts",
         "./node_modules/vuex/types/index.d.ts"
       ],
+      "./src/constants/crosswords/index.ts": [
+        "./src/constants/crosswords/alex_english.ts"
+      ],
       "./src/constants/index.ts": [
+        "./src/constants/crosswords/index.ts",
         "./src/constants/level-tests/index.ts",
         "./src/constants/speakOutWB2ed/index.ts"
       ],
@@ -670,6 +692,8 @@
       "./node_modules/vuex/types/index.d.ts",
       "./node_modules/vuex/types/logger.d.ts",
       "./node_modules/vuex/types/vue.d.ts",
+      "./src/constants/crosswords/alex_english.ts",
+      "./src/constants/crosswords/index.ts",
       "./src/constants/index.ts",
       "./src/constants/level-tests/english/beginner.ts",
       "./src/constants/level-tests/english/index.ts",
@@ -783,6 +807,14 @@
       ],
       [
         "./node_modules/vuex/types/vue.d.ts",
+        1
+      ],
+      [
+        "./src/constants/crosswords/alex_english.ts",
+        1
+      ],
+      [
+        "./src/constants/crosswords/index.ts",
         1
       ],
       [
